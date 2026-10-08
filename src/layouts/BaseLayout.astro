@@ -53,6 +53,8 @@ const dir = isRtl(locale) ? 'rtl' : 'ltr';
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#14161B" media="(prefers-color-scheme: dark)" />
     <link rel="icon" type="image/svg+xml" href={asset('/favicon.svg')} />
+    <link rel="manifest" href={asset('/manifest.webmanifest')} />
+    <link rel="apple-touch-icon" href={asset('/images/apple-touch-icon.png')} />
 
     <link rel="preload" href={asset('/fonts/sora-700.woff2')} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={asset('/fonts/inter-400.woff2')} as="font" type="font/woff2" crossorigin />

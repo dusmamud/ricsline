@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import {
   Play,
   Pause,
@@ -15,8 +15,18 @@ import {
   TagSimple,
   Plus,
   X,
+  Gauge,
+  ShareNetwork,
+  ArrowCounterClockwise,
+  Files,
+  Scissors,
+  CaretUp,
+  CaretDown,
+  Trash,
+  FileArrowUp,
+  Keyboard,
 } from 'phosphor-react';
-import { formatLrcTime, parseTimeInput, parseLyrics, buildLrc, type ParsedLine } from './lrc';
+import { formatLrcTime, parseTimeInput, parseLyrics, buildLrc, buildSrt, type ParsedLine } from './lrc';
 import type { Dict } from '../i18n/dicts';
 
 interface Line extends ParsedLine {
@@ -29,6 +39,14 @@ const nid = () => nextId++;
 const inputCls =
   'w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm text-gray-900 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 dark:border-graphite-700 dark:bg-graphite-800 dark:text-white';
 const labelCls = 'mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-300';
+
+function Kbd({ children }: { children: ReactNode }) {
+  return (
+    <kbd className="mx-0.5 inline-block rounded border border-gray-300 bg-white px-1.5 py-0.5 font-mono text-[11px] font-semibold text-gray-700 dark:border-graphite-600 dark:bg-graphite-700 dark:text-gray-200">
+      {children}
+    </kbd>
+  );
+}
 
 export default function MakerApp({ dict, locale }: { dict: Dict; locale: string }) {
   const m = dict.maker;
@@ -64,11 +82,17 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
   const [editText, setEditText] = useState('');
   const [savedFlag, setSavedFlag] = useState(false);
   const [toast, setToast] = useState<{ msg: string; key: number } | null>(null);
+  const [speed, setSpeed] = useState(1);
+  const [showShortcuts, setShowShortcuts] = useState(false);
+  const [draftAvailable, setDraftAvailable] = useState(false);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const lrcInputRef = useRef<HTMLInputElement | null>(null);
   const toastTimer = useRef<number | null>(null);
   const lineRefs = useRef<Map<number, HTMLDivElement>>(new Map());
+  const lastTagScroll = useRef(0);
+  const draftTimer = useRef<number | null>(null);
 
   const showToast = (msg: string) => {
     if (toastTimer.current) window.clearTimeout(toastTimer.current);
@@ -94,6 +118,99 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [phase]);
+
+  // ---- playback speed ----
+  const SPEEDS = [0.5, 0.75, 1, 1.25, 1.5, 2];
+  useEffect(() => {
+    if (audioRef.current) audioRef.current.playbackRate = speed;
+  }, [speed, phase, audioUrl]);
+
+  const cycleSpeed = () => {
+    const i = SPEEDS.indexOf(speed);
+    setSpeed(SPEEDS[(i + 1) % SPEEDS.length]);
+  };
+
+  // ---- scroll a lyric row into a stable centered position ----
+  const scrollToLine = (id: number) => {
+    lastTagScroll.current = Date.now();
+    window.setTimeout(() => {
+      lineRefs.current.get(id)?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }, 80);
+  };
+
+  // ---- draft auto-save / resume ----
+  const DRAFT_KEY = 'ricsline-draft';
+  useEffect(() => {
+    if (phase !== 'sync' || lines.length === 0) return;
+    if (draftTimer.current) window.clearTimeout(draftTimer.current);
+    draftTimer.current = window.setTimeout(() => {
+      try {
+        localStorage.setItem(
+          DRAFT_KEY,
+          JSON.stringify({ title, artist, author, lines: lines.map(({ id, ...l }) => l), savedAt: Date.now() })
+        );
+      } catch {}
+    }, 800);
+    return () => {
+      if (draftTimer.current) window.clearTimeout(draftTimer.current);
+    };
+  }, [phase, lines, title, artist, author]);
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(DRAFT_KEY);
+      if (!raw) return;
+      const d = JSON.parse(raw);
+      if (d && Array.isArray(d.lines) && d.lines.length > 0) setDraftAvailable(true);
+    } catch {}
+  }, []);
+
+  const resumeDraft = () => {
+    try {
+      const raw = localStorage.getItem(DRAFT_KEY);
+      if (!raw) return;
+      const d = JSON.parse(raw);
+      if (!d || !Array.isArray(d.lines) || d.lines.length === 0) return;
+      setTitle(d.title || '');
+      setArtist(d.artist || '');
+      setAuthor(d.author || '');
+      setLines(d.lines.map((l: ParsedLine) => ({ ...l, id: nid() })));
+      setCurrentTime(0);
+      setSavedFlag(false);
+      setDraftAvailable(false);
+      setPhase('sync');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      showToast(m.draftRestored);
+    } catch {}
+  };
+
+  const discardDraft = () => {
+    try {
+      localStorage.removeItem(DRAFT_KEY);
+    } catch {}
+    setDraftAvailable(false);
+  };
+
+  // ---- keyboard shortcuts (sync phase) ----
+  useEffect(() => {
+    if (phase !== 'sync') return;
+    const onKey = (e: KeyboardEvent) => {
+      const el = e.target as HTMLElement;
+      if (el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable)) return;
+      if (editingId != null) return;
+      const a = audioRef.current;
+      if (e.code === 'Space') {
+        e.preventDefault();
+        tagNextRef.current();
+      } else if (e.key === 'ArrowRight' && a) {
+        a.currentTime = Math.min(a.duration || 0, a.currentTime + 5);
+      } else if (e.key === 'ArrowLeft' && a) {
+        a.currentTime = Math.max(0, a.currentTime - 5);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [phase, editingId]);
 
   // ---- load a saved entry from My Library ----
   useEffect(() => {
@@ -171,10 +288,14 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
       return;
     }
     setLines((prev) => prev.map((l, i) => (i === idx ? { ...l, time: t } : l)));
+    // scroll the next untagged line (or the just-tagged one) to a stable center
+    const nextIdx = lines.findIndex((l, i) => i > idx && l.time == null);
+    scrollToLine(lines[nextIdx !== -1 ? nextIdx : idx].id);
   };
   const tagNextRef = useRef(tagNext);
   tagNextRef.current = tagNext;
 
+  // ---- per-line tools ----
   const tagLine = (id: number) => {
     const t = audioRef.current?.currentTime ?? 0;
     const idx = lines.findIndex((l) => l.id === id);
@@ -184,6 +305,53 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
       return;
     }
     setLines((prev) => prev.map((l) => (l.id === id ? { ...l, time: t } : l)));
+    const nextIdx = lines.findIndex((l, i) => i > idx && l.time == null);
+    scrollToLine(lines[nextIdx !== -1 ? nextIdx : idx].id);
+  };
+
+  const untagLine = (id: number) => {
+    setLines((prev) => prev.map((l) => (l.id === id ? { ...l, time: null } : l)));
+    showToast(m.untagged);
+  };
+
+  const duplicateLine = (id: number) => {
+    setLines((prev) => {
+      const i = prev.findIndex((l) => l.id === id);
+      if (i === -1) return prev;
+      const copy = { ...prev[i], id: nid(), time: null };
+      return [...prev.slice(0, i + 1), copy, ...prev.slice(i + 1)];
+    });
+    setEditingId(null);
+  };
+
+  const splitLine = (id: number) => {
+    setLines((prev) => {
+      const i = prev.findIndex((l) => l.id === id);
+      if (i === -1) return prev;
+      const words = prev[i].text.split(/\s+/).filter(Boolean);
+      if (words.length < 2) return prev;
+      const mid = Math.ceil(words.length / 2);
+      const first = { ...prev[i], text: words.slice(0, mid).join(' ') };
+      const second = { ...prev[i], id: nid(), text: words.slice(mid).join(' '), time: null };
+      return [...prev.slice(0, i), first, second, ...prev.slice(i + 1)];
+    });
+    setEditingId(null);
+  };
+
+  const moveLine = (id: number, dir: -1 | 1) => {
+    setLines((prev) => {
+      const i = prev.findIndex((l) => l.id === id);
+      const j = i + dir;
+      if (i === -1 || j < 0 || j >= prev.length) return prev;
+      const next = [...prev];
+      [next[i], next[j]] = [next[j], next[i]];
+      return next;
+    });
+  };
+
+  const deleteLine = (id: number) => {
+    setLines((prev) => prev.filter((l) => l.id !== id));
+    setEditingId(null);
   };
 
   const seekLine = (line: Line) => {
@@ -298,6 +466,55 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
     }
   };
 
+  const downloadSrt = () => {
+    if (!guardAllTagged()) return;
+    const blob = new Blob([buildSrt(lines)], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${(title || 'ricsline').replace(/[\\/:*?"<>|]/g, '_')}.srt`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  };
+
+  const shareLrc = async () => {
+    if (!guardAllTagged()) return;
+    const text = lrcText();
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: title || 'Ricsline', text });
+        return;
+      } catch {
+        /* user cancelled or failed — fall through to copy */
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(text);
+      showToast(m.copied);
+    } catch {
+      showToast(m.copied);
+    }
+  };
+
+  // ---- import .lrc file ----
+  const importLrcFile = (f: File | undefined | null) => {
+    if (!f) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const text = String(reader.result || '');
+      if (!text.trim()) return;
+      const { meta } = parseLyrics(text);
+      setRawLyrics(text);
+      if (!title && meta.title) setTitle(meta.title);
+      if (!artist && meta.artist) setArtist(meta.artist);
+      if (!author && meta.author) setAuthor(meta.author);
+      showToast(m.imported);
+    };
+    reader.readAsText(f);
+  };
+
   const saveLocal = () => {
     if (!title.trim()) {
       showToast(m.needTitle);
@@ -347,6 +564,8 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
   })();
 
   useEffect(() => {
+    // don't fight a manual tag scroll that just happened
+    if (Date.now() - lastTagScroll.current < 1500) return;
     if (activeIdx >= 0 && isPlaying) {
       const el = lineRefs.current.get(lines[activeIdx]?.id);
       el?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
@@ -377,6 +596,26 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
           Lrc Maker
         </h1>
 
+        {draftAvailable && (
+          <div className="mt-6 flex flex-wrap items-center gap-3 rounded-xl border border-brand-300 bg-brand-50 px-4 py-3 dark:border-brand-800 dark:bg-brand-950/40">
+            <p className="flex-1 text-sm text-gray-700 dark:text-gray-200">{m.draftFound}</p>
+            <button
+              type="button"
+              onClick={resumeDraft}
+              className="rounded-lg bg-brand-500 px-4 py-2 text-xs font-semibold text-white transition hover:bg-brand-600"
+            >
+              {m.resumeDraft}
+            </button>
+            <button
+              type="button"
+              onClick={discardDraft}
+              className="rounded-lg border border-gray-300 px-4 py-2 text-xs font-medium text-gray-600 transition hover:border-red-400 hover:text-red-600 dark:border-graphite-700 dark:text-gray-300"
+            >
+              {m.discardDraft}
+            </button>
+          </div>
+        )}
+
         <div className="mt-8 space-y-6">
           <div>
             <label className={labelCls}>{m.labelTitle}</label>
@@ -404,7 +643,27 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
           </div>
 
           <div>
-            <label className={labelCls}>{m.lyricsLabel}</label>
+            <div className="mb-1.5 flex items-center justify-between">
+              <label className={labelCls} style={{ marginBottom: 0 }}>{m.lyricsLabel}</label>
+              <button
+                type="button"
+                onClick={() => lrcInputRef.current?.click()}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-600 transition hover:border-brand-400 hover:text-brand-600 dark:border-graphite-700 dark:text-gray-300"
+              >
+                <FileArrowUp className="h-4 w-4" />
+                {m.importLrc}
+              </button>
+              <input
+                ref={lrcInputRef}
+                type="file"
+                accept=".lrc,.txt"
+                className="hidden"
+                onChange={(e) => {
+                  importLrcFile(e.target.files?.[0]);
+                  e.target.value = '';
+                }}
+              />
+            </div>
             <textarea
               value={rawLyrics}
               onChange={(e) => setRawLyrics(e.target.value)}
@@ -558,6 +817,16 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
         </span>
         <button
           type="button"
+          onClick={cycleSpeed}
+          title={m.speed}
+          aria-label={m.speed}
+          className="inline-flex shrink-0 items-center gap-1 rounded-md border border-gray-300 px-2 py-1 text-xs font-semibold tabular-nums text-gray-600 transition hover:border-brand-400 hover:text-brand-600 dark:border-graphite-700 dark:text-gray-300"
+        >
+          <Gauge className="h-4 w-4" />
+          {speed}x
+        </button>
+        <button
+          type="button"
           onClick={() => setMuted((v) => !v)}
           aria-label={muted ? m.unmute : m.mute}
           className="shrink-0 text-gray-500 transition hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
@@ -605,6 +874,24 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
       {/* instructions */}
       <p className="mt-4 text-sm leading-relaxed text-gray-600 dark:text-gray-400">{m.tapHint}</p>
 
+      {/* keyboard shortcuts */}
+      <div className="mt-2">
+        <button
+          type="button"
+          onClick={() => setShowShortcuts((v) => !v)}
+          className="inline-flex items-center gap-1.5 text-xs font-medium text-gray-500 transition hover:text-brand-600 dark:text-gray-400"
+        >
+          <Keyboard className="h-4 w-4" />
+          {m.shortcutsTitle}
+        </button>
+        {showShortcuts && (
+          <div className="mt-2 grid max-w-lg grid-cols-1 gap-1.5 rounded-xl border border-gray-200 bg-gray-50 p-3 text-xs text-gray-600 sm:grid-cols-2 dark:border-graphite-700 dark:bg-graphite-800/50 dark:text-gray-300">
+            <div><Kbd>Space</Kbd> — {m.scTag}</div>
+            <div><Kbd>←</Kbd><Kbd>→</Kbd> — {m.scSeek}</div>
+          </div>
+        )}
+      </div>
+
       {/* offset */}
       <div className="mt-3 flex flex-wrap items-center gap-2">
         <span className="text-sm font-bold text-gray-800 dark:text-gray-100">{m.offsetLabel}</span>
@@ -644,6 +931,7 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
               }}
             >
               {isEditing ? (
+                <>
                 <div className="flex items-center gap-2">
                   <input
                     value={editTime}
@@ -676,6 +964,30 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
                     <X className="h-4 w-4" />
                   </button>
                 </div>
+                <div className="mt-2 flex flex-wrap items-center gap-1.5">
+                  {(
+                    [
+                      { fn: () => duplicateLine(line.id), icon: <Files className="h-4 w-4" />, label: m.duplicate },
+                      { fn: () => splitLine(line.id), icon: <Scissors className="h-4 w-4" />, label: m.split },
+                      { fn: () => moveLine(line.id, -1), icon: <CaretUp className="h-4 w-4" />, label: m.moveUp },
+                      { fn: () => moveLine(line.id, 1), icon: <CaretDown className="h-4 w-4" />, label: m.moveDown },
+                      { fn: () => deleteLine(line.id), icon: <Trash className="h-4 w-4" />, label: m.deleteLine },
+                    ] as const
+                  ).map((t, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={t.fn}
+                      title={t.label}
+                      aria-label={t.label}
+                      className="inline-flex items-center gap-1 rounded-md border border-gray-200 px-2 py-1 text-xs text-gray-500 transition hover:border-brand-400 hover:text-brand-600 dark:border-graphite-700 dark:text-gray-400"
+                    >
+                      {t.icon}
+                      <span className="hidden sm:inline">{t.label}</span>
+                    </button>
+                  ))}
+                </div>
+                </>
               ) : (
                 <div className="flex items-center gap-3">
                   <button
@@ -714,6 +1026,17 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
                   >
                     <PencilSimpleLine className="h-4 w-4" />
                   </button>
+                  {tagged && (
+                    <button
+                      type="button"
+                      onClick={() => untagLine(line.id)}
+                      title={m.untag}
+                      aria-label={m.untag}
+                      className="shrink-0 p-1 text-gray-400 transition hover:text-red-500"
+                    >
+                      <ArrowCounterClockwise className="h-4 w-4" />
+                    </button>
+                  )}
                 </div>
               )}
             </div>
@@ -767,6 +1090,24 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
         >
           <BracketsCurly className="h-4 w-4" />
           {m.copyJson}
+        </button>
+        <button
+          type="button"
+          onClick={downloadSrt}
+          disabled={!allTagged}
+          className="inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition hover:border-brand-400 hover:text-brand-600 disabled:opacity-40 dark:border-graphite-700 dark:text-gray-200"
+        >
+          <DownloadSimple className="h-4 w-4" />
+          {m.downloadSrt}
+        </button>
+        <button
+          type="button"
+          onClick={shareLrc}
+          disabled={!allTagged}
+          className="inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition hover:border-brand-400 hover:text-brand-600 disabled:opacity-40 dark:border-graphite-700 dark:text-gray-200"
+        >
+          <ShareNetwork className="h-4 w-4" />
+          {m.share}
         </button>
       </div>
 

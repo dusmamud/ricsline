@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { locales, link, type Locale } from '../../i18n/index';
+import { getDict } from '../../i18n/dicts';
+
+export async function getStaticPaths() {
+  return locales.map((locale) => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params as { locale: Locale };
+const dict = getDict(locale);
+const c = dict.contact;
+const CONTACT_EMAIL = 'hello@ricsline.com';
+---
+<BaseLayout
+  locale={locale}
+  dict={dict}
+  title={`${c.title} — Ricsline`}
+  description={c.subtitle}
+  path="/contact"
+>
+  <section class="mx-auto max-w-2xl px-4 py-10 sm:px-6 lg:py-14">
+    <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">{c.title}</h1>
+    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">{c.subtitle}</p>
+
+    <form id="contact-form" class="mt-8 space-y-5" novalidate>
+      <div>
+        <label for="cf-name" class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-300">{c.name}</label>
+        <input
+          id="cf-name"
+          type="text"
+          required
+          placeholder={c.namePh}
+          class="w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm text-gray-900 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 dark:border-graphite-700 dark:bg-graphite-800 dark:text-white"
+        />
+      </div>
+      <div>
+        <label for="cf-email" class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-300">{c.email}</label>
+        <input
+          id="cf-email"
+          type="email"
+          required
+          placeholder={c.emailPh}
+          dir="ltr"
+          class="w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm text-gray-900 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 dark:border-graphite-700 dark:bg-graphite-800 dark:text-white"
+        />
+      </div>
+      <div>
+        <label for="cf-msg" class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-300">{c.message}</label>
+        <textarea
+          id="cf-msg"
+          required
+          rows={6}
+          placeholder={c.messagePh}
+          dir="auto"
+          class="w-full resize-y rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm leading-relaxed text-gray-900 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 dark:border-graphite-700 dark:bg-graphite-800 dark:text-white"
+        ></textarea>
+      </div>
+      <button
+        type="submit"
+        class="inline-flex items-center gap-2 rounded-xl bg-brand-500 px-8 py-3 text-sm font-semibold text-white transition hover:bg-brand-600 active:scale-[0.98]"
+      >
+        {c.send}
+      </button>
+      <p id="cf-done" class="hidden rounded-xl border border-brand-300 bg-brand-50 px-4 py-3 text-sm text-gray-700 dark:border-brand-800 dark:bg-brand-950/40 dark:text-gray-200">
+        <strong class="block font-semibold">{c.sentTitle}</strong>
+        {c.sentHint}
+      </p>
+    </form>
+  </section>
+
+  <script is:inline define:vars={{ contactEmail: CONTACT_EMAIL }}>
+    (function () {
+      var form = document.getElementById('contact-form');
+      if (!form) return;
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var name = document.getElementById('cf-name').value.trim();
+        var email = document.getElementById('cf-email').value.trim();
+        var msg = document.getElementById('cf-msg').value.trim();
+        if (!name || !email || !msg) return;
+        var subject = encodeURIComponent('Ricsline contact from ' + name);
+        var body = encodeURIComponent(msg + '\n\n— ' + name + ' (' + email + ')');
+        window.location.href = 'mailto:' + contactEmail + '?subject=' + subject + '&body=' + body;
+        document.getElementById('cf-done').classList.remove('hidden');
+      });
+    })();
+  </script>
+</BaseLayout>

@@ -12,6 +12,16 @@ const { locale } = Astro.params as { locale: Locale };
 const dict = getDict(locale);
 const makerUrl = link(locale, '/maker');
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: dict.faq.items.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
 const bars = Array.from({ length: 32 }, (_, i) => ({
   h: 18 + Math.round(46 * Math.abs(Math.sin(i * 0.55) * Math.cos(i * 0.21))),
   d: (i % 12) * 0.13,
@@ -209,4 +219,5 @@ const bars = Array.from({ length: 32 }, (_, i) => ({
       </a>
     </div>
   </section>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </BaseLayout>

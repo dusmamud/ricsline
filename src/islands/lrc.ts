@@ -62,6 +62,32 @@ export function parseLyrics(raw: string): { lines: ParsedLine[]; meta: { title?:
   return { lines, meta };
 }
 
+/** SRT timestamp: HH:MM:SS,mmm */
+export function formatSrtTime(totalSeconds: number): string {
+  const totalMs = Math.max(0, Math.round(totalSeconds * 1000));
+  const hh = Math.floor(totalMs / 3600000);
+  const mm = Math.floor((totalMs % 3600000) / 60000);
+  const ss = Math.floor((totalMs % 60000) / 1000);
+  const ms = totalMs % 1000;
+  const p = (n: number, l: number) => String(n).padStart(l, '0');
+  return `${p(hh, 2)}:${p(mm, 2)}:${p(ss, 2)},${p(ms, 3)}`;
+}
+
+/** Build a standard .srt document from tagged lines.
+ *  Each cue ends at the next tagged line's start (or +2s for the last). */
+export function buildSrt(lines: ParsedLine[]): string {
+  const tagged = lines.filter((l) => l.time != null && l.text.trim());
+  const cues: string[] = [];
+  tagged.forEach((l, i) => {
+    const start = l.time as number;
+    const next = tagged[i + 1];
+    const end = next ? (next.time as number) : start + 2;
+    if (end <= start) return;
+    cues.push(`${cues.length + 1}\n${formatSrtTime(start)} --> ${formatSrtTime(end)}\n${l.text.trim()}`);
+  });
+  return cues.join('\n\n') + (cues.length ? '\n' : '');
+}
+
 export interface LrcMeta {
   title: string;
   artist: string;
