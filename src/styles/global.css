@@ -45,8 +45,9 @@
 }
 
 /* ---------- Base ---------- */
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: clip; }
 body {
+  overflow-x: clip;
   font-family: 'Inter', system-ui, 'Noto Sans Devanagari', 'Noto Sans Bengali',
     'Noto Sans SC', 'Noto Sans JP', 'Noto Sans KR', 'Noto Sans Arabic',
     'Noto Sans Thai', sans-serif;

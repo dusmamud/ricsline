@@ -115,7 +115,7 @@ const bars = Array.from({ length: 32 }, (_, i) => ({
               <span class="text-sm text-graphite-400 dark:text-graphite-500">One tap per line…</span>
             </div>
           </div>
-          <div class="mt-5 flex h-14 items-center justify-center gap-1.5" aria-hidden="true">
+          <div class="mt-5 flex h-14 items-center justify-center gap-1.5 overflow-hidden" aria-hidden="true">
             {bars.map((b) => (
               <span
                 class="wave-bar w-1.5 rounded-full bg-gradient-to-t from-brand-600 to-cyan-400"
