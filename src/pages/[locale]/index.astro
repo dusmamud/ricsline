@@ -1,0 +1,216 @@
+---
+import { Icon } from 'astro-icon/components';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { locales, type Locale } from '../../i18n/index';
+import { getDict } from '../../i18n/dicts';
+
+export async function getStaticPaths() {
+  return locales.map((locale) => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params as { locale: Locale };
+const dict = getDict(locale);
+const makerUrl = `/${locale}/maker`;
+
+const bars = Array.from({ length: 32 }, (_, i) => ({
+  h: 18 + Math.round(46 * Math.abs(Math.sin(i * 0.55) * Math.cos(i * 0.21))),
+  d: (i % 12) * 0.13,
+}));
+---
+<BaseLayout
+  locale={locale}
+  dict={dict}
+  title={dict.meta.landingTitle}
+  description={dict.meta.landingDescription}
+  path="/"
+>
+  <!-- ============ HERO ============ -->
+  <section class="relative overflow-hidden">
+    <div class="pointer-events-none absolute inset-0 -z-10">
+      <img src="/images/hero-art.jpg" alt="" class="h-full w-full object-cover opacity-30 dark:opacity-25" loading="eager" />
+      <div class="absolute inset-0 bg-gradient-to-b from-white via-white/75 to-white dark:from-graphite-950 dark:via-graphite-950/80 dark:to-graphite-950"></div>
+      <div class="absolute -top-32 start-1/4 h-96 w-96 rounded-full bg-brand-400/20 blur-3xl dark:bg-brand-500/10"></div>
+      <div class="absolute top-40 end-1/5 h-72 w-72 rounded-full bg-cyan-400/20 blur-3xl dark:bg-cyan-500/10"></div>
+    </div>
+
+    <div class="mx-auto grid max-w-7xl items-center gap-12 px-4 pb-20 pt-16 sm:px-6 lg:grid-cols-2 lg:pt-24">
+      <div>
+        <p class="reveal inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-4 py-1.5 text-xs font-semibold text-brand-700 dark:border-brand-500/30 dark:bg-brand-500/10 dark:text-brand-300">
+          <Icon name="ph:sparkle" class="h-3.5 w-3.5" />
+          {dict.hero.badge}
+        </p>
+        <h1 class="reveal reveal-d1 mt-6 font-display text-5xl font-extrabold leading-[1.05] tracking-tight text-graphite-900 sm:text-6xl dark:text-white">
+          {dict.hero.titleA}
+          <span class="bg-gradient-to-r from-brand-500 to-cyan-500 bg-clip-text text-transparent">{dict.hero.titleB}</span>
+        </h1>
+        <p class="reveal reveal-d2 mt-6 max-w-lg text-lg leading-relaxed text-graphite-500 dark:text-graphite-400">
+          {dict.hero.subtitle}
+        </p>
+        <div class="reveal reveal-d3 mt-8 flex flex-wrap items-center gap-4">
+          <a
+            href={makerUrl}
+            class="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-brand-500 to-cyan-500 px-7 py-3.5 text-base font-semibold text-white shadow-xl shadow-brand-500/30 transition hover:shadow-brand-500/50 hover:brightness-110 active:scale-[0.98]"
+          >
+            <Icon name="ph:lightning" class="h-5 w-5" />
+            {dict.hero.ctaPrimary}
+          </a>
+          <a
+            href="#how-it-works"
+            class="inline-flex items-center gap-2 rounded-2xl border border-graphite-200 px-7 py-3.5 text-base font-semibold text-graphite-700 transition hover:border-brand-400 hover:text-brand-600 dark:border-graphite-700 dark:text-graphite-200 dark:hover:border-brand-400 dark:hover:text-brand-300"
+          >
+            {dict.hero.ctaSecondary}
+            <Icon name="ph:arrow-down" class="h-4 w-4" />
+          </a>
+        </div>
+        <p class="reveal reveal-d3 mt-5 flex items-center gap-2 text-xs text-graphite-400 dark:text-graphite-500">
+          <Icon name="ph:lock-key" class="h-3.5 w-3.5" />
+          {dict.hero.note}
+        </p>
+
+        <dl class="reveal mt-10 grid max-w-md grid-cols-3 gap-6 border-t border-graphite-200 pt-6 dark:border-graphite-800">
+          {dict.hero.stats.map((s) => (
+            <div>
+              <dt class="sr-only">{s.label}</dt>
+              <dd class="font-display text-2xl font-extrabold text-graphite-900 dark:text-white">{s.value}</dd>
+              <dd class="mt-1 text-xs leading-snug text-graphite-500 dark:text-graphite-400">{s.label}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+
+      <!-- Product mockup card -->
+      <div class="reveal reveal-d2 relative">
+        <img
+          src="/images/headphones.jpg"
+          alt="Headphones"
+          loading="lazy"
+          class="animate-float absolute -top-10 end-2 z-10 hidden w-36 rotate-6 rounded-3xl border-4 border-white object-cover shadow-2xl shadow-graphite-950/30 sm:block lg:w-44 dark:border-graphite-800"
+          style="animation-delay: 1.4s"
+        />
+        <div class="animate-float rounded-3xl border border-graphite-200 bg-white p-6 shadow-2xl shadow-brand-500/10 dark:border-graphite-700 dark:bg-graphite-900">
+          <div class="flex items-center gap-4">
+            <span class="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-brand-500 to-cyan-500 text-white shadow-lg shadow-brand-500/30">
+              <Icon name="ph:play-fill" class="h-5 w-5" />
+            </span>
+            <div class="flex-1">
+              <div class="h-2.5 w-full overflow-hidden rounded-full bg-graphite-100 dark:bg-graphite-800">
+                <div class="h-full w-2/5 rounded-full bg-gradient-to-r from-brand-500 to-cyan-500"></div>
+              </div>
+              <div class="mt-1.5 flex justify-between text-[11px] font-medium tabular-nums text-graphite-400">
+                <span>00:48</span><span>02:00</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-5 space-y-2.5" dir="ltr">
+            <div class="flex items-center gap-3 rounded-xl bg-brand-50 px-4 py-3 dark:bg-brand-500/10">
+              <span class="rounded-md bg-brand-500 px-2 py-0.5 font-mono text-[11px] font-semibold text-white">[00:42.18]</span>
+              <span class="text-sm font-medium text-graphite-800 dark:text-graphite-100">Every line finds its moment</span>
+            </div>
+            <div class="flex items-center gap-3 rounded-xl px-4 py-3">
+              <span class="rounded-md bg-graphite-100 px-2 py-0.5 font-mono text-[11px] font-semibold text-graphite-500 dark:bg-graphite-800 dark:text-graphite-400">[00:00.00]</span>
+              <span class="text-sm text-graphite-400 dark:text-graphite-500">Tap to stamp the time…</span>
+            </div>
+            <div class="flex items-center gap-3 rounded-xl px-4 py-3">
+              <span class="rounded-md bg-graphite-100 px-2 py-0.5 font-mono text-[11px] font-semibold text-graphite-500 dark:bg-graphite-800 dark:text-graphite-400">[00:00.00]</span>
+              <span class="text-sm text-graphite-400 dark:text-graphite-500">One tap per line…</span>
+            </div>
+          </div>
+          <div class="mt-5 flex h-14 items-center justify-center gap-1.5" aria-hidden="true">
+            {bars.map((b) => (
+              <span
+                class="wave-bar w-1.5 rounded-full bg-gradient-to-t from-brand-600 to-cyan-400"
+                style={`height:${b.h}px; animation-delay:${b.d}s`}
+              ></span>
+            ))}
+          </div>
+        </div>
+        <div class="absolute -bottom-5 -start-4 hidden items-center gap-2 rounded-2xl border border-graphite-200 bg-white px-4 py-2.5 text-xs font-semibold text-graphite-700 shadow-xl sm:flex dark:border-graphite-700 dark:bg-graphite-900 dark:text-graphite-200">
+          <Icon name="ph:check-circle" class="h-4 w-4 text-emerald-500" />
+          6/6 lines tagged
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section id="how-it-works" class="border-t border-graphite-200/70 dark:border-graphite-800">
+    <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-28">
+      <p class="reveal text-center text-sm font-bold uppercase tracking-[0.2em] text-brand-600 dark:text-brand-400">{dict.howItWorks.eyebrow}</p>
+      <h2 class="reveal reveal-d1 mx-auto mt-4 max-w-2xl text-center font-display text-3xl font-extrabold tracking-tight text-graphite-900 sm:text-4xl dark:text-white">
+        {dict.howItWorks.title}
+      </h2>
+      <div class="mt-14 grid gap-6 md:grid-cols-3">
+        {dict.howItWorks.steps.map((s, i) => (
+          <article class="reveal group relative overflow-hidden rounded-3xl border border-graphite-200 bg-white p-8 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-brand-500/10 dark:border-graphite-800 dark:bg-graphite-900" style={`transition-delay:${i * 60}ms`}>
+            <span class="font-display text-6xl font-extrabold text-brand-100 transition group-hover:text-brand-200 dark:text-graphite-800 dark:group-hover:text-graphite-700">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <h3 class="mt-4 font-display text-xl font-bold text-graphite-900 dark:text-white">{s.title}</h3>
+            <p class="mt-3 leading-relaxed text-graphite-500 dark:text-graphite-400">{s.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURES ============ -->
+  <section class="border-t border-graphite-200/70 bg-graphite-50/60 dark:border-graphite-800 dark:bg-graphite-950/50">
+    <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-28">
+      <p class="reveal text-center text-sm font-bold uppercase tracking-[0.2em] text-brand-600 dark:text-brand-400">{dict.features.eyebrow}</p>
+      <h2 class="reveal reveal-d1 mx-auto mt-4 max-w-2xl text-center font-display text-3xl font-extrabold tracking-tight text-graphite-900 sm:text-4xl dark:text-white">
+        {dict.features.title}
+      </h2>
+      <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {dict.features.items.map((f, i) => (
+          <article class={`reveal rounded-3xl border border-graphite-200 bg-white p-7 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-brand-500/10 dark:border-graphite-800 dark:bg-graphite-900 ${i % 3 === 1 ? 'reveal-d1' : i % 3 === 2 ? 'reveal-d2' : ''}`}>
+            <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-cyan-500 text-white shadow-lg shadow-brand-500/25">
+              <Icon name={f.icon} class="h-6 w-6" />
+            </span>
+            <h3 class="mt-5 font-display text-lg font-bold text-graphite-900 dark:text-white">{f.title}</h3>
+            <p class="mt-2.5 text-sm leading-relaxed text-graphite-500 dark:text-graphite-400">{f.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section id="faq" class="border-t border-graphite-200/70 dark:border-graphite-800">
+    <div class="mx-auto max-w-3xl px-4 py-20 sm:px-6 lg:py-28">
+      <p class="reveal text-center text-sm font-bold uppercase tracking-[0.2em] text-brand-600 dark:text-brand-400">{dict.faq.eyebrow}</p>
+      <h2 class="reveal reveal-d1 mt-4 text-center font-display text-3xl font-extrabold tracking-tight text-graphite-900 sm:text-4xl dark:text-white">
+        {dict.faq.title}
+      </h2>
+      <div class="mt-12 space-y-4">
+        {dict.faq.items.map((item, i) => (
+          <details class={`reveal group rounded-2xl border border-graphite-200 bg-white open:shadow-lg open:shadow-brand-500/5 dark:border-graphite-800 dark:bg-graphite-900 ${i % 2 ? 'reveal-d1' : ''}`}>
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 font-semibold text-graphite-900 marker:hidden dark:text-white [&::-webkit-details-marker]:hidden">
+              {item.q}
+              <Icon name="ph:caret-down" class="h-5 w-5 shrink-0 text-brand-500 transition-transform group-open:rotate-180" />
+            </summary>
+            <p class="px-6 pb-6 leading-relaxed text-graphite-500 dark:text-graphite-400">{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="px-4 pb-20 sm:px-6">
+    <div class="reveal relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-gradient-to-br from-brand-600 via-brand-500 to-cyan-500 px-6 py-16 text-center sm:px-12 lg:py-20">
+      <div class="pointer-events-none absolute inset-0 opacity-20" aria-hidden="true">
+        <div class="absolute -top-20 start-10 h-64 w-64 rounded-full bg-white blur-3xl"></div>
+        <div class="absolute -bottom-24 end-10 h-64 w-64 rounded-full bg-graphite-950 blur-3xl"></div>
+      </div>
+      <h2 class="relative font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">{dict.cta.title}</h2>
+      <p class="relative mx-auto mt-4 max-w-xl text-brand-50">{dict.cta.subtitle}</p>
+      <a
+        href={makerUrl}
+        class="relative mt-8 inline-flex items-center gap-2 rounded-2xl bg-white px-8 py-4 text-base font-bold text-brand-700 shadow-xl transition hover:shadow-2xl hover:brightness-105 active:scale-[0.98]"
+      >
+        <Icon name="ph:waveform" class="h-5 w-5" />
+        {dict.cta.button}
+      </a>
+    </div>
+  </section>
+</BaseLayout>

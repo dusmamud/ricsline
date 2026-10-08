@@ -1,0 +1,54 @@
+---
+import { Icon } from 'astro-icon/components';
+import Logo from './Logo.astro';
+import { localizedPath, type Locale } from '../i18n/index';
+import type { Dict } from '../i18n/dicts';
+
+interface Props {
+  locale: Locale;
+  dict: Dict;
+}
+const { locale, dict } = Astro.props;
+---
+<footer class="border-t border-graphite-200 bg-graphite-50 dark:border-graphite-800 dark:bg-graphite-950">
+  <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6">
+    <div class="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+      <div>
+        <a href={localizedPath(locale, '/')} class="flex items-center gap-2.5">
+          <Logo size={32} />
+          <span class="font-display text-lg font-extrabold tracking-tight text-graphite-900 dark:text-white">Ricsline</span>
+        </a>
+        <p class="mt-4 max-w-xs text-sm leading-relaxed text-graphite-500 dark:text-graphite-400">
+          {dict.footer.tagline}
+        </p>
+      </div>
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-graphite-400 dark:text-graphite-500">{dict.footer.product}</h3>
+        <ul class="mt-4 space-y-2.5 text-sm">
+          <li><a href={localizedPath(locale, '/maker')} class="text-graphite-600 hover:text-brand-600 dark:text-graphite-300 dark:hover:text-brand-300">{dict.nav.maker}</a></li>
+          <li><a href={localizedPath(locale, '/about')} class="text-graphite-600 hover:text-brand-600 dark:text-graphite-300 dark:hover:text-brand-300">{dict.nav.about}</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-graphite-400 dark:text-graphite-500">{dict.footer.resources}</h3>
+        <ul class="mt-4 space-y-2.5 text-sm">
+          <li><a href={localizedPath(locale, '/#faq')} class="text-graphite-600 hover:text-brand-600 dark:text-graphite-300 dark:hover:text-brand-300">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-graphite-400 dark:text-graphite-500">{dict.footer.legal}</h3>
+        <ul class="mt-4 space-y-2.5 text-sm">
+          <li><a href={localizedPath(locale, '/privacy')} class="text-graphite-600 hover:text-brand-600 dark:text-graphite-300 dark:hover:text-brand-300">Privacy</a></li>
+          <li><a href={localizedPath(locale, '/terms')} class="text-graphite-600 hover:text-brand-600 dark:text-graphite-300 dark:hover:text-brand-300">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-12 flex flex-col items-center justify-between gap-3 border-t border-graphite-200 pt-6 text-xs text-graphite-400 sm:flex-row dark:border-graphite-800 dark:text-graphite-500">
+      <p>© 2026 Ricsline. {dict.footer.rights}</p>
+      <p class="flex items-center gap-1.5">
+        <Icon name="ph:music-note" class="h-3.5 w-3.5" />
+        {dict.footer.madeWith}
+      </p>
+    </div>
+  </div>
+</footer>

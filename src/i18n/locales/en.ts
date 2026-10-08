@@ -1,0 +1,274 @@
+const en = {
+  dir: 'ltr' as 'ltr' | 'rtl',
+  meta: {
+    siteName: 'Ricsline',
+    landingTitle: 'Ricsline — Free LRC Maker: Create Synced Lyrics in Minutes',
+    landingDescription:
+      'Ricsline is a free online LRC maker. Play your song, tap each lyric line as you hear it, and download a perfectly timed .lrc file — right in your browser. Your MP3 never leaves your device.',
+    makerTitle: 'LRC Maker — Ricsline',
+    makerDescription:
+      'Sync lyrics with Ricsline: tap each line as you hear it, fine-tune timings, then download your .lrc file. Free, no sign-up, MP3 stays on your device.',
+    aboutTitle: 'About — Ricsline',
+    aboutDescription: 'What Ricsline is, how LRC synced lyrics work, and why your music files never leave your device.',
+    privacyTitle: 'Privacy Policy — Ricsline',
+    privacyDescription: 'Ricsline privacy policy: your MP3 files are never uploaded. Everything happens in your browser.',
+    termsTitle: 'Terms of Service — Ricsline',
+    termsDescription: 'Ricsline terms of service for the free LRC maker tool.',
+  },
+  nav: {
+    maker: 'LRC Maker',
+    about: 'About',
+    theme: 'Theme',
+    themeLight: 'Light',
+    themeDark: 'Dark',
+    themeSystem: 'System',
+    language: 'Language',
+    startFree: 'Start free',
+  },
+  hero: {
+    badge: 'Free · No sign-up · 100% private',
+    titleA: 'Every line,',
+    titleB: 'on time.',
+    subtitle:
+      'Ricsline is a free LRC maker. Play your song, tap each lyric line as you hear it, and download a perfectly timed .lrc file — right in your browser.',
+    ctaPrimary: 'Start syncing — it’s free',
+    ctaSecondary: 'How it works',
+    note: 'MP3 only — stays on your device, never uploaded',
+    stats: [
+      { value: '20', label: 'Languages' },
+      { value: '0', label: 'Uploads — files stay local' },
+      { value: '100%', label: 'Free, no account needed' },
+    ],
+  },
+  howItWorks: {
+    eyebrow: 'How it works',
+    title: 'From plain lyrics to synced LRC in 3 steps',
+    steps: [
+      {
+        title: 'Add your song & lyrics',
+        text: 'Drop in an MP3 and paste your lyrics — one line per row. Or paste an existing .lrc file to fix its timings.',
+      },
+      {
+        title: 'Tap to sync',
+        text: 'Play the song and tap the big button each time a line starts. Ricsline stamps the exact time — down to the centisecond.',
+      },
+      {
+        title: 'Fine-tune & download',
+        text: 'Shift all timings at once, re-tap or edit any line, then download your .lrc file or copy it to the clipboard.',
+      },
+    ],
+  },
+  features: {
+    eyebrow: 'Features',
+    title: 'Everything you need to sync lyrics like a pro',
+    items: [
+      {
+        icon: 'ph:hand-tap',
+        title: 'Tap-to-sync engine',
+        text: 'Stamp each lyric line with the current playback time with one tap — or just press your spacebar.',
+      },
+      {
+        icon: 'ph:sliders-horizontal',
+        title: 'Offset all timings',
+        text: 'Vocals start a little late? Shift every timestamp by ± seconds in a single click.',
+      },
+      {
+        icon: 'ph:lock-key',
+        title: '100% private by design',
+        text: 'Your MP3 is played locally and never uploaded. No account, no tracking of your files.',
+      },
+      {
+        icon: 'ph:pencil-line',
+        title: 'Edit anything',
+        text: 'Re-tap a line, type a time by hand, or fix lyric text inline. Full control, always.',
+      },
+      {
+        icon: 'ph:download-simple',
+        title: 'One-click export',
+        text: 'Download the .lrc file, copy the text, or grab the JSON structure for your own apps.',
+      },
+      {
+        icon: 'ph:translate',
+        title: '20 languages',
+        text: 'The whole site — landing page, tool, everything — translated into 20 languages.',
+      },
+    ],
+  },
+  faq: {
+    eyebrow: 'FAQ',
+    title: 'Frequently asked questions',
+    items: [
+      {
+        q: 'What is an LRC file?',
+        a: 'LRC is a simple text format that pairs each lyric line with a timestamp, like [01:23.45]. Music players read these timestamps to highlight each line in sync with the song — the karaoke effect you see in most player apps.',
+      },
+      {
+        q: 'Is Ricsline really free?',
+        a: 'Yes — completely free, no account, no watermarks, no limits on how many LRC files you create.',
+      },
+      {
+        q: 'Do you upload my MP3?',
+        a: 'No. Your audio file is played directly from your device in your browser and is never sent to any server. You can even disconnect from the internet after the page loads and keep syncing.',
+      },
+      {
+        q: 'Which music players support LRC files?',
+        a: 'Most popular players support LRC — just place the .lrc file next to your MP3 with the same file name. Desktop players, Android players, and many car stereos pick it up automatically.',
+      },
+      {
+        q: 'Can I fix the timings of an existing LRC file?',
+        a: 'Yes. Paste the full .lrc content into the lyrics box and Ricsline will detect the time tags. Then re-tap lines or shift all timings with the offset tool.',
+      },
+      {
+        q: 'Do I need to create an account?',
+        a: 'No. There are no accounts on Ricsline at all — open the maker and start syncing right away.',
+      },
+    ],
+  },
+  cta: {
+    title: 'Ready to sync your first song?',
+    subtitle: 'Paste your lyrics, drop your MP3, and tap along. Your first synced LRC is two minutes away.',
+    button: 'Open the LRC Maker',
+  },
+  footer: {
+    tagline: 'Free LRC maker for perfectly synced lyrics.',
+    product: 'Product',
+    resources: 'Resources',
+    legal: 'Legal',
+    rights: 'All rights reserved.',
+    madeWith: 'Made for music lovers everywhere.',
+  },
+  maker: {
+    backToForm: 'Back to form',
+    linesTagged: '{done}/{total} lines tagged',
+    formTitle: 'New synced lyrics',
+    formSubtitle: 'Add your song details, paste the lyrics, and attach the MP3 you want to sync.',
+    labelTitle: 'Title',
+    labelArtist: 'Artist',
+    labelAuthor: 'Author (your name)',
+    titlePlaceholder: 'Song title',
+    artistPlaceholder: 'Artist name',
+    authorPlaceholder: 'Your name',
+    lyricsLabel: 'Song lyrics',
+    lyricsHint: 'Start a new line for every lyric line — or paste a whole .lrc file to edit its time tags.',
+    lyricsPlaceholder: 'Paste the lyrics, one line per row...',
+    dropTitle: 'Drag & drop the MP3 here',
+    dropTitleEdit: 'Drag & drop the MP3 here (optional)',
+    dropSub: 'MP3 only — stays on your device, never uploaded',
+    dropSubEdit: 'MP3 only — optional when editing an existing LRC, stays on your device',
+    chooseFile: 'Choose MP3 file',
+    replaceFile: 'Replace MP3 file',
+    removeAudio: 'Remove audio',
+    startSyncing: 'Start Syncing',
+    tapHint:
+      'Tap the time tag on each line as you hear it start. Tap it again to overwrite it, or click an already-tagged line to jump the player back and give it another listen. The floating button always tags the next untagged line for you. Tip: press Space.',
+    offsetLabel: 'Offset all tags',
+    seconds: 'seconds',
+    apply: 'Apply',
+    offsetHint: 'Positive pushes the lyrics later (your song’s singing starts later), negative pulls them earlier.',
+    offsetApplied: 'Shifted {n} tags by {s}.',
+    linesNeedTag: '{n} lines still need a time tag.',
+    saveLrc: 'Save LRC',
+    saved: 'Saved',
+    downloadLrc: 'Download .lrc',
+    copyContent: 'Copy content',
+    copyJson: 'Copy JSON structure',
+    tagNext: 'Tag the next line with the current time',
+    editLine: 'Edit line',
+    needTwoLines: 'At least 2 lines need a time tag after 00:00.00 — this isn’t a synced LRC yet.',
+    needTitle: 'Add a title to save this LRC.',
+    needArtist: 'Add an artist to save this LRC.',
+    needAudio: 'Attach the MP3 to start syncing.',
+    savedLocal: 'LRC saved in this browser.',
+    copied: 'LRC content copied to clipboard.',
+    jsonCopied: 'LRC JSON structure copied to clipboard.',
+    cantTagAfter: 'Can’t tag the next line — it would come after a later line that’s already tagged.',
+    cantSetTime: 'Can’t set that time — a later line is already tagged earlier than it.',
+    allTagged: 'Every line is already tagged.',
+    confirmDiscard: 'You have tagged lines. Discard them and load new lyrics?',
+    editTimeTitle: 'Type a time as mm:ss.xx',
+    mute: 'Mute',
+    unmute: 'Unmute',
+  },
+  about: {
+    title: 'About Ricsline',
+    intro:
+      'Ricsline is a free, privacy-first LRC maker. It helps musicians, karaoke lovers, and playlist curators create perfectly synced lyrics for their songs — without uploading anything, anywhere.',
+    sections: [
+      {
+        title: 'What is an LRC file?',
+        text: 'LRC is the most widely supported synced-lyrics format in the world. It’s plain text: each lyric line is preceded by a timestamp like [01:23.45]. When your music player sees a matching .lrc file next to your MP3, it highlights each line exactly when it’s sung — the karaoke effect.',
+      },
+      {
+        title: 'How Ricsline works',
+        text: 'You paste your lyrics and play your song. Each time a line starts, you tap — Ricsline records that exact playback moment as the line’s timestamp. Made a mistake? Tap again to overwrite, or shift every timestamp at once with the offset tool. When every line is tagged, download the .lrc file and place it beside your MP3 with the same file name.',
+      },
+      {
+        title: 'Private by design',
+        text: 'Your MP3 is decoded and played entirely inside your browser. It is never uploaded to our servers — there isn’t even an upload endpoint. We don’t ask for accounts, emails, or personal details. The only things stored on your device are your theme and language preferences.',
+      },
+      {
+        title: 'Free, in 20 languages',
+        text: 'Ricsline is free for everyone, and the entire site — from the landing page to the sync tool — is translated into 20 languages, so anyone can create synced lyrics in their own language.',
+      },
+    ],
+  },
+  privacy: {
+    title: 'Privacy Policy',
+    updated: 'Last updated: October 2026',
+    intro:
+      'Ricsline is built to be private by design. This policy explains, in plain language, what we do and don’t collect.',
+    sections: [
+      {
+        title: 'Your music files never leave your device',
+        text: 'When you attach an MP3 to the LRC maker, it is decoded and played entirely inside your browser. It is never uploaded to our servers — there is no upload endpoint at all. We cannot see, hear, or store your audio files.',
+      },
+      {
+        title: 'No accounts, no personal data',
+        text: 'Ricsline has no sign-ups and no accounts. We don’t ask for your name, email, or any personal details, and we don’t set tracking cookies for your files.',
+      },
+      {
+        title: 'What is stored on your device',
+        text: 'Only two small preferences are stored in your browser’s local storage: your theme choice (light/dark/system) and your language choice. You can clear them at any time by clearing your browser’s site data.',
+      },
+      {
+        title: 'Anonymous analytics',
+        text: 'We may use privacy-friendly, aggregated analytics (such as page views per language) to understand which parts of Ricsline are useful. This never includes your files, lyrics, or anything that identifies you.',
+      },
+      {
+        title: 'Contact',
+        text: 'If you have any privacy questions, reach us at privacy@ricsline.com.',
+      },
+    ],
+  },
+  terms: {
+    title: 'Terms of Service',
+    updated: 'Last updated: October 2026',
+    intro: 'By using Ricsline, you agree to these simple terms.',
+    sections: [
+      {
+        title: 'The service',
+        text: 'Ricsline provides a free, browser-based tool for creating synced-lyrics (.lrc) files. The service is provided “as is”, without warranties of any kind.',
+      },
+      {
+        title: 'Your content, your responsibility',
+        text: 'Lyrics you paste and audio you play belong to you or their respective rights holders. You are responsible for having the rights to use them. Ricsline does not host, store, or distribute your files.',
+      },
+      {
+        title: 'Acceptable use',
+        text: 'Don’t misuse the service — no attempts to disrupt it, scrape it aggressively, or use it for anything unlawful.',
+      },
+      {
+        title: 'Changes',
+        text: 'We may update these terms occasionally; continued use of Ricsline means you accept the current version.',
+      },
+    ],
+  },
+  notFound: {
+    title: 'Lost in the music?',
+    text: 'This page doesn’t exist — but your next synced lyric is one click away.',
+    button: 'Back to home',
+  },
+};
+
+export type Dict = typeof en;
+export default en;

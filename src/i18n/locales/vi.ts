@@ -1,0 +1,274 @@
+import type { Dict } from './en';
+
+const dict: Dict = {
+  dir: 'ltr' as const,
+  meta: {
+    siteName: 'Ricsline',
+    landingTitle: 'Ricsline — Công cụ tạo LRC miễn phí: Lời chuẩn từng giây chỉ trong vài phút',
+    landingDescription:
+      'Ricsline — công cụ tạo LRC trực tuyến miễn phí. Phát nhạc, chạm từng dòng lời khi nghe thấy, tải file .lrc chuẩn xác trên trình duyệt. MP3 không rời thiết bị.',
+    makerTitle: 'Công cụ tạo LRC — Ricsline',
+    makerDescription:
+      'Đồng bộ lời với Ricsline: chạm từng dòng khi nghe thấy, tinh chỉnh thời gian, rồi tải file .lrc. Miễn phí, không cần đăng ký, MP3 ở yên trên thiết bị.',
+    aboutTitle: 'Giới thiệu — Ricsline',
+    aboutDescription: 'Ricsline là gì, lời bài hát đồng bộ LRC hoạt động ra sao, và vì sao file nhạc của bạn không bao giờ rời khỏi thiết bị.',
+    privacyTitle: 'Chính sách quyền riêng tư — Ricsline',
+    privacyDescription: 'Chính sách quyền riêng tư của Ricsline: file MP3 của bạn không bao giờ được tải lên. Mọi thứ diễn ra ngay trên trình duyệt.',
+    termsTitle: 'Điều khoản dịch vụ — Ricsline',
+    termsDescription: 'Điều khoản dịch vụ của công cụ tạo LRC miễn phí Ricsline.',
+  },
+  nav: {
+    maker: 'Tạo LRC',
+    about: 'Giới thiệu',
+    theme: 'Giao diện',
+    themeLight: 'Sáng',
+    themeDark: 'Tối',
+    themeSystem: 'Theo hệ thống',
+    language: 'Ngôn ngữ',
+    startFree: 'Bắt đầu miễn phí',
+  },
+  hero: {
+    badge: 'Miễn phí · Không cần đăng ký · Riêng tư 100%',
+    titleA: 'Mỗi dòng lời,',
+    titleB: 'chuẩn từng giây.',
+    subtitle:
+      'Ricsline là công cụ tạo LRC miễn phí. Phát bài hát, chạm vào từng dòng lời khi nghe thấy, và tải file .lrc chuẩn xác ngay trên trình duyệt.',
+    ctaPrimary: 'Bắt đầu đồng bộ — miễn phí',
+    ctaSecondary: 'Cách hoạt động',
+    note: 'Chỉ MP3 — ở yên trên thiết bị, không bao giờ tải lên',
+    stats: [
+      { value: '20', label: 'Ngôn ngữ' },
+      { value: '0', label: 'Lượt tải lên — file ở yên trên máy' },
+      { value: '100%', label: 'Miễn phí, không cần tài khoản' },
+    ],
+  },
+  howItWorks: {
+    eyebrow: 'Cách hoạt động',
+    title: 'Từ lời thô thành LRC chuẩn chỉ trong 3 bước',
+    steps: [
+      {
+        title: 'Thêm bài hát & lời',
+        text: 'Thả file MP3 vào và dán lời bài hát — mỗi dòng một câu. Hoặc dán cả file .lrc có sẵn để chỉnh lại thời gian.',
+      },
+      {
+        title: 'Chạm để đồng bộ',
+        text: 'Phát bài hát và chạm nút lớn mỗi khi một câu bắt đầu. Ricsline ghi lại chính xác thời điểm đó — chính xác đến từng phần trăm giây.',
+      },
+      {
+        title: 'Tinh chỉnh & tải về',
+        text: 'Dời toàn bộ mốc thời gian cùng lúc, chạm lại hoặc sửa từng dòng, rồi tải file .lrc hoặc sao chép vào clipboard.',
+      },
+    ],
+  },
+  features: {
+    eyebrow: 'Tính năng',
+    title: 'Mọi thứ bạn cần để đồng bộ lời như dân chuyên',
+    items: [
+      {
+        icon: 'ph:hand-tap',
+        title: 'Chạm để đồng bộ',
+        text: 'Một chạm để gắn thời điểm phát hiện tại cho từng dòng lời — hoặc chỉ cần nhấn phím cách.',
+      },
+      {
+        icon: 'ph:sliders-horizontal',
+        title: 'Dời toàn bộ thời gian',
+        text: 'Giọng hát vào hơi trễ? Dời mọi mốc thời gian ± vài giây chỉ trong một cú nhấp.',
+      },
+      {
+        icon: 'ph:lock-key',
+        title: 'Riêng tư 100% từ thiết kế',
+        text: 'MP3 chỉ phát trên máy bạn, không bao giờ tải lên. Không tài khoản, không theo dõi file của bạn.',
+      },
+      {
+        icon: 'ph:pencil-line',
+        title: 'Sửa mọi thứ',
+        text: 'Chạm lại một dòng, gõ thời gian bằng tay, hoặc sửa thẳng chữ lời bài hát. Toàn quyền luôn trong tay bạn.',
+      },
+      {
+        icon: 'ph:download-simple',
+        title: 'Xuất file một chạm',
+        text: 'Tải file .lrc, sao chép nội dung, hoặc lấy cấu trúc JSON cho ứng dụng của riêng bạn.',
+      },
+      {
+        icon: 'ph:translate',
+        title: '20 ngôn ngữ',
+        text: 'Toàn bộ trang web — từ trang chủ đến công cụ — đã được dịch sang 20 ngôn ngữ.',
+      },
+    ],
+  },
+  faq: {
+    eyebrow: 'Câu hỏi thường gặp',
+    title: 'Câu hỏi thường gặp',
+    items: [
+      {
+        q: 'File LRC là gì?',
+        a: 'LRC là định dạng văn bản đơn giản ghép mỗi dòng lời với một mốc thời gian, ví dụ [01:23.45]. Trình phát nhạc đọc các mốc này để tô sáng từng dòng đúng lúc bài hát vang lên — hiệu ứng karaoke bạn thấy trong hầu hết ứng dụng nghe nhạc.',
+      },
+      {
+        q: 'Ricsline có thực sự miễn phí?',
+        a: 'Có — hoàn toàn miễn phí, không tài khoản, không watermark, không giới hạn số file LRC bạn tạo.',
+      },
+      {
+        q: 'Các bạn có tải MP3 của tôi lên không?',
+        a: 'Không. File nhạc được phát trực tiếp từ thiết bị của bạn ngay trên trình duyệt và không bao giờ gửi đến máy chủ nào. Bạn thậm chí có thể ngắt mạng sau khi trang tải xong mà vẫn đồng bộ tiếp được.',
+      },
+      {
+        q: 'Trình phát nhạc nào hỗ trợ file LRC?',
+        a: 'Hầu hết trình phát phổ biến đều hỗ trợ LRC — chỉ cần đặt file .lrc cạnh file MP3 với cùng tên. Trình phát trên máy tính, Android và nhiều đầu xe hơi đều tự nhận.',
+      },
+      {
+        q: 'Tôi có thể sửa thời gian của file LRC có sẵn không?',
+        a: 'Có. Dán toàn bộ nội dung .lrc vào ô lời bài hát, Ricsline sẽ tự nhận diện các mốc thời gian. Sau đó chạm lại từng dòng hoặc dùng công cụ dời toàn bộ thời gian.',
+      },
+      {
+        q: 'Tôi có cần tạo tài khoản không?',
+        a: 'Không. Ricsline hoàn toàn không có tài khoản — mở công cụ lên là đồng bộ ngay.',
+      },
+    ],
+  },
+  cta: {
+    title: 'Sẵn sàng đồng bộ bài hát đầu tiên?',
+    subtitle: 'Dán lời, thả MP3, và chạm theo nhịp. File LRC chuẩn đầu tiên của bạn chỉ cách hai phút.',
+    button: 'Mở công cụ tạo LRC',
+  },
+  footer: {
+    tagline: 'Công cụ tạo LRC miễn phí cho lời bài hát chuẩn từng giây.',
+    product: 'Sản phẩm',
+    resources: 'Tài nguyên',
+    legal: 'Pháp lý',
+    rights: 'Bảo lưu mọi quyền.',
+    madeWith: 'Dành cho những người yêu nhạc khắp nơi.',
+  },
+  maker: {
+    backToForm: 'Về biểu mẫu',
+    linesTagged: 'Đã gắn {done}/{total} dòng',
+    formTitle: 'Lời đồng bộ mới',
+    formSubtitle: 'Nhập thông tin bài hát, dán lời, và đính kèm file MP3 bạn muốn đồng bộ.',
+    labelTitle: 'Tiêu đề',
+    labelArtist: 'Nghệ sĩ',
+    labelAuthor: 'Tác giả (tên bạn)',
+    titlePlaceholder: 'Tên bài hát',
+    artistPlaceholder: 'Tên nghệ sĩ',
+    authorPlaceholder: 'Tên của bạn',
+    lyricsLabel: 'Lời bài hát',
+    lyricsHint: 'Mỗi dòng lời một hàng mới — hoặc dán cả file .lrc để sửa các mốc thời gian.',
+    lyricsPlaceholder: 'Dán lời bài hát, mỗi dòng một câu…',
+    dropTitle: 'Kéo & thả file MP3 vào đây',
+    dropTitleEdit: 'Kéo & thả file MP3 vào đây (không bắt buộc)',
+    dropSub: 'Chỉ MP3 — ở yên trên thiết bị, không bao giờ tải lên',
+    dropSubEdit: 'Chỉ MP3 — không bắt buộc khi sửa LRC có sẵn, ở yên trên thiết bị',
+    chooseFile: 'Chọn file MP3',
+    replaceFile: 'Đổi file MP3',
+    removeAudio: 'Gỡ âm thanh',
+    startSyncing: 'Bắt đầu đồng bộ',
+    tapHint:
+      'Chạm vào mốc thời gian của từng dòng ngay khi nghe câu đó bắt đầu. Chạm lại để ghi đè, hoặc nhấp vào dòng đã gắn để tua trình phát về nghe lại. Nút nổi luôn gắn cho dòng chưa có mốc tiếp theo. Mẹo: nhấn phím cách.',
+    offsetLabel: 'Dời tất cả mốc thời gian',
+    seconds: 'giây',
+    apply: 'Áp dụng',
+    offsetHint: 'Số dương đẩy lời trễ lại (bài hát vào giọng trễ), số âm kéo lời sớm lên.',
+    offsetApplied: 'Đã dời {n} mốc thời gian {s}.',
+    linesNeedTag: 'Còn {n} dòng cần gắn mốc thời gian.',
+    saveLrc: 'Lưu LRC',
+    saved: 'Đã lưu',
+    downloadLrc: 'Tải .lrc',
+    copyContent: 'Sao chép nội dung',
+    copyJson: 'Sao chép cấu trúc JSON',
+    tagNext: 'Gắn dòng tiếp theo với thời điểm hiện tại',
+    editLine: 'Sửa dòng',
+    needTwoLines: 'Cần ít nhất 2 dòng có mốc thời gian sau 00:00.00 — đây chưa phải file LRC đã đồng bộ.',
+    needTitle: 'Thêm tiêu đề để lưu LRC này.',
+    needArtist: 'Thêm nghệ sĩ để lưu LRC này.',
+    needAudio: 'Đính kèm MP3 để bắt đầu đồng bộ.',
+    savedLocal: 'Đã lưu LRC trong trình duyệt này.',
+    copied: 'Đã sao chép nội dung LRC vào clipboard.',
+    jsonCopied: 'Đã sao chép cấu trúc JSON của LRC vào clipboard.',
+    cantTagAfter: 'Không thể gắn dòng tiếp theo — nó sẽ nằm sau một dòng đã gắn ở phía sau.',
+    cantSetTime: 'Không thể đặt thời gian này — dòng phía sau đã gắn thời gian sớm hơn.',
+    allTagged: 'Mọi dòng đã được gắn mốc.',
+    confirmDiscard: 'Bạn đã gắn mốc cho một số dòng. Bỏ chúng và tải lời mới?',
+    editTimeTitle: 'Nhập thời gian dạng mm:ss.xx',
+    mute: 'Tắt tiếng',
+    unmute: 'Bật tiếng',
+  },
+  about: {
+    title: 'Giới thiệu Ricsline',
+    intro:
+      'Ricsline là công cụ tạo LRC miễn phí, đặt quyền riêng tư lên hàng đầu. Công cụ giúp nhạc sĩ, người yêu karaoke và người làm playlist tạo lời bài hát đồng bộ hoàn hảo — mà không tải bất cứ thứ gì lên đâu cả.',
+    sections: [
+      {
+        title: 'File LRC là gì?',
+        text: 'LRC là định dạng lời đồng bộ được hỗ trợ rộng rãi nhất thế giới. Đó là văn bản thuần túy: mỗi dòng lời có mốc thời gian đứng trước, ví dụ [01:23.45]. Khi trình phát nhạc thấy file .lrc cùng tên nằm cạnh file MP3, nó sẽ tô sáng từng dòng đúng lúc câu đó vang lên — hiệu ứng karaoke.',
+      },
+      {
+        title: 'Ricsline hoạt động thế nào',
+        text: 'Bạn dán lời và phát bài hát. Mỗi khi một câu bắt đầu, bạn chạm — Ricsline ghi lại chính xác thời điểm phát đó làm mốc thời gian của dòng. Chạm nhầm? Chạm lại để ghi đè, hoặc dùng công cụ dời để xê dịch mọi mốc thời gian cùng lúc. Khi mọi dòng đã gắn mốc, tải file .lrc về và đặt cạnh file MP3 với cùng tên file.',
+      },
+      {
+        title: 'Riêng tư từ thiết kế',
+        text: 'File MP3 của bạn được giải mã và phát hoàn toàn trong trình duyệt. Nó không bao giờ tải lên máy chủ của chúng tôi — thậm chí không có chỗ nào để tải lên. Chúng tôi không yêu cầu tài khoản, email hay thông tin cá nhân. Thứ duy nhất lưu trên thiết bị của bạn là tùy chọn giao diện và ngôn ngữ.',
+      },
+      {
+        title: 'Miễn phí, 20 ngôn ngữ',
+        text: 'Ricsline miễn phí cho mọi người, và toàn bộ trang web — từ trang chủ đến công cụ đồng bộ — đã được dịch sang 20 ngôn ngữ, để ai cũng tạo được lời đồng bộ bằng ngôn ngữ của mình.',
+      },
+    ],
+  },
+  privacy: {
+    title: 'Chính sách quyền riêng tư',
+    updated: 'Cập nhật lần cuối: tháng 10 năm 2026',
+    intro: 'Ricsline được xây dựng với quyền riêng tư làm cốt lõi. Chính sách này giải thích bằng ngôn ngữ đơn giản về những gì chúng tôi thu thập — và không thu thập.',
+    sections: [
+      {
+        title: 'File nhạc của bạn không bao giờ rời khỏi thiết bị',
+        text: 'Khi bạn đính kèm MP3 vào công cụ tạo LRC, nó được giải mã và phát hoàn toàn trong trình duyệt. Nó không bao giờ tải lên máy chủ của chúng tôi — thậm chí không có nơi nào để tải lên. Chúng tôi không thể xem, nghe hay lưu trữ file nhạc của bạn.',
+      },
+      {
+        title: 'Không tài khoản, không dữ liệu cá nhân',
+        text: 'Ricsline không có đăng ký, không có tài khoản. Chúng tôi không hỏi tên, email hay bất kỳ thông tin cá nhân nào, và không đặt cookie theo dõi cho file của bạn.',
+      },
+      {
+        title: 'Những gì lưu trên thiết bị của bạn',
+        text: 'Chỉ hai tùy chọn nhỏ được lưu trong bộ nhớ cục bộ của trình duyệt: lựa chọn giao diện (sáng/tối/theo hệ thống) và lựa chọn ngôn ngữ. Bạn có thể xóa chúng bất cứ lúc nào bằng cách xóa dữ liệu trang web của trình duyệt.',
+      },
+      {
+        title: 'Phân tích ẩn danh',
+        text: 'Chúng tôi có thể dùng phân tích tổng hợp, tôn trọng quyền riêng tư (như lượt xem trang theo ngôn ngữ) để hiểu phần nào của Ricsline hữu ích. Việc này không bao giờ bao gồm file, lời bài hát hay bất cứ thứ gì định danh bạn.',
+      },
+      {
+        title: 'Liên hệ',
+        text: 'Mọi thắc mắc về quyền riêng tư, liên hệ privacy@ricsline.com.',
+      },
+    ],
+  },
+  terms: {
+    title: 'Điều khoản dịch vụ',
+    updated: 'Cập nhật lần cuối: tháng 10 năm 2026',
+    intro: 'Khi dùng Ricsline, bạn đồng ý với các điều khoản đơn giản sau.',
+    sections: [
+      {
+        title: 'Dịch vụ',
+        text: 'Ricsline cung cấp công cụ miễn phí trên trình duyệt để tạo file lời đồng bộ (.lrc). Dịch vụ được cung cấp "nguyên trạng", không kèm bất kỳ bảo đảm nào.',
+      },
+      {
+        title: 'Nội dung của bạn, trách nhiệm của bạn',
+        text: 'Lời bạn dán và nhạc bạn phát thuộc về bạn hoặc chủ sở hữu quyền tương ứng. Bạn chịu trách nhiệm về quyền sử dụng chúng. Ricsline không lưu trữ, không lưu giữ, không phân phối file của bạn.',
+      },
+      {
+        title: 'Sử dụng hợp lệ',
+        text: 'Đừng lạm dụng dịch vụ — không phá hoại, không thu thập dữ liệu ồ ạt, không dùng vào việc trái pháp luật.',
+      },
+      {
+        title: 'Thay đổi',
+        text: 'Chúng tôi có thể cập nhật điều khoản này theo thời gian; việc tiếp tục dùng Ricsline nghĩa là bạn chấp nhận phiên bản hiện hành.',
+      },
+    ],
+  },
+  notFound: {
+    title: 'Lạc giữa âm nhạc?',
+    text: 'Trang này không tồn tại — nhưng lời đồng bộ tiếp theo của bạn chỉ cách một cú nhấp.',
+    button: 'Về trang chủ',
+  },
+};
+
+export default dict;

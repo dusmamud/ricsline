@@ -1,0 +1,275 @@
+import type { Dict } from './en';
+
+const dict: Dict = {
+  dir: 'ltr' as const,
+  meta: {
+    siteName: 'Ricsline',
+    landingTitle: 'Ricsline — Ücretsiz LRC Maker: Dakikalar İçinde Senkron Şarkı Sözleri',
+    landingDescription:
+      'Ücretsiz çevrimiçi LRC maker: şarkınızı çalın, her söz satırını duyduğunuzda dokunun, mükemmel zamanlamalı .lrc dosyanızı indirin. MP3’iniz cihazınızdan ayrılmaz.',
+    makerTitle: 'LRC Maker — Ricsline',
+    makerDescription:
+      'Ricsline ile sözleri senkronize edin: her satıra duyduğunuzda dokunun, zamanlamaları ince ayarlayın ve .lrc dosyanızı indirin. Ücretsiz, kayıtsız, MP3 cihazınızda kalır.',
+    aboutTitle: 'Hakkında — Ricsline',
+    aboutDescription: 'Ricsline nedir, LRC senkron sözler nasıl çalışır ve müzik dosyalarınız neden cihazınızdan asla ayrılmaz.',
+    privacyTitle: 'Gizlilik Politikası — Ricsline',
+    privacyDescription: 'Ricsline gizlilik politikası: MP3 dosyalarınız asla yüklenmez. Her şey tarayıcınızda gerçekleşir.',
+    termsTitle: 'Hizmet Şartları — Ricsline',
+    termsDescription: 'Ücretsiz LRC maker aracı için Ricsline hizmet şartları.',
+  },
+  nav: {
+    maker: 'LRC Maker',
+    about: 'Hakkında',
+    theme: 'Tema',
+    themeLight: 'Açık',
+    themeDark: 'Koyu',
+    themeSystem: 'Sistem',
+    language: 'Dil',
+    startFree: 'Ücretsiz başla',
+  },
+  hero: {
+    badge: 'Ücretsiz · Kayıt yok · %100 gizli',
+    titleA: 'Her satır,',
+    titleB: 'zamanında.',
+    subtitle:
+      'Ricsline ücretsiz bir LRC maker’dır. Şarkınızı çalın, her söz satırını duyduğunuzda dokunun ve mükemmel zamanlamalı .lrc dosyanızı indirin — doğrudan tarayıcınızda.',
+    ctaPrimary: 'Senkronize etmeye başla — ücretsiz',
+    ctaSecondary: 'Nasıl çalışır',
+    note: 'Yalnızca MP3 — cihazınızda kalır, asla yüklenmez',
+    stats: [
+      { value: '20', label: 'Dil' },
+      { value: '0', label: 'Yükleme — dosyalar yerelde kalır' },
+      { value: '100%', label: 'Ücretsiz, hesap gerekmez' },
+    ],
+  },
+  howItWorks: {
+    eyebrow: 'Nasıl çalışır',
+    title: 'Düz sözlerden senkron LRC’ye 3 adımda',
+    steps: [
+      {
+        title: 'Şarkınızı ve sözlerinizi ekleyin',
+        text: 'Bir MP3 bırakın ve sözlerinizi yapıştırın — her satır ayrı satırda. Ya da zamanlamalarını düzeltmek için mevcut bir .lrc dosyasını yapıştırın.',
+      },
+      {
+        title: 'Senkronize etmek için dokunun',
+        text: 'Şarkıyı çalın ve her satır başladığında büyük düğmeye dokunun. Ricsline tam zamanı kaydeder — salisenin yüzde birine kadar.',
+      },
+      {
+        title: 'İnce ayar yapın ve indirin',
+        text: 'Tüm zamanlamaları tek seferde kaydırın, istediğiniz satıra yeniden dokunun veya düzenleyin, ardından .lrc dosyanızı indirin ya da panoya kopyalayın.',
+      },
+    ],
+  },
+  features: {
+    eyebrow: 'Özellikler',
+    title: 'Şarkı sözlerini profesyonel gibi senkronize etmek için ihtiyacınız olan her şey',
+    items: [
+      {
+        icon: 'ph:hand-tap',
+        title: 'Dokunarak senkron motoru',
+        text: 'Tek dokunuşla her söz satırına o anki çalma zamanını damgalayın — ya da boşluk tuşuna basın.',
+      },
+      {
+        icon: 'ph:sliders-horizontal',
+        title: 'Tüm zamanlamaları kaydır',
+        text: 'Vokal biraz geç mi başlıyor? Tüm zaman damgalarını tek tıkla ± saniye kaydırın.',
+      },
+      {
+        icon: 'ph:lock-key',
+        title: 'Tasarım gereği %100 gizli',
+        text: 'MP3’iniz yerelde çalınır ve asla yüklenmez. Hesap yok, dosyalarınızın takibi yok.',
+      },
+      {
+        icon: 'ph:pencil-line',
+        title: 'Her şeyi düzenleyin',
+        text: 'Bir satıra yeniden dokunun, zamanı elle yazın ya da söz metnini satır içinde düzeltin. Tam kontrol, her zaman.',
+      },
+      {
+        icon: 'ph:download-simple',
+        title: 'Tek tıkla dışa aktarma',
+        text: '.lrc dosyasını indirin, metni kopyalayın ya da kendi uygulamalarınız için JSON yapısını alın.',
+      },
+      {
+        icon: 'ph:translate',
+        title: '20 dil',
+        text: 'Sitenin tamamı — açılış sayfası, araç, her şey — 20 dile çevrildi.',
+      },
+    ],
+  },
+  faq: {
+    eyebrow: 'SSS',
+    title: 'Sık sorulan sorular',
+    items: [
+      {
+        q: 'LRC dosyası nedir?',
+        a: 'LRC, her söz satırını bir zaman damgasıyla eşleştiren basit bir metin formatıdır, örneğin [01:23.45]. Müzik çalarlar bu damgaları okuyarak her satırı şarkıyla senkron şekilde vurgular — çoğu çalar uygulamasında gördüğünüz karaoke efekti.',
+      },
+      {
+        q: 'Ricsline gerçekten ücretsiz mi?',
+        a: 'Evet — tamamen ücretsiz, hesap yok, filigran yok, oluşturacağınız LRC dosyası sayısında sınır yok.',
+      },
+      {
+        q: 'MP3’imi yüklüyor musunuz?',
+        a: 'Hayır. Ses dosyanız tarayıcınızda doğrudan cihazınızdan çalınır ve hiçbir sunucuya gönderilmez. Sayfa yüklendikten sonra interneti kesip senkronizasyona devam bile edebilirsiniz.',
+      },
+      {
+        q: 'Hangi müzik çalarlar LRC dosyalarını destekler?',
+        a: 'Popüler çalarların çoğu LRC’yi destekler — .lrc dosyasını MP3’inizin yanına aynı dosya adıyla koymanız yeterli. Masaüstü çalarlar, Android çalarlar ve birçok araç multimedya sistemi otomatik olarak tanır.',
+      },
+      {
+        q: 'Mevcut bir LRC dosyasının zamanlamalarını düzeltebilir miyim?',
+        a: 'Evet. .lrc içeriğinin tamamını söz kutusuna yapıştırın, Ricsline zaman damgalarını algılar. Ardından satırlara yeniden dokunun ya da tüm zamanlamaları kaydırma aracıyla kaydırın.',
+      },
+      {
+        q: 'Hesap oluşturmam gerekiyor mu?',
+        a: 'Hayır. Ricsline’da hiç hesap yok — yapımcıyı açın ve hemen senkronize etmeye başlayın.',
+      },
+    ],
+  },
+  cta: {
+    title: 'İlk şarkınızı senkronize etmeye hazır mısınız?',
+    subtitle: 'Sözlerinizi yapıştırın, MP3’inizi bırakın ve şarkıyla birlikte dokunun. İlk senkron LRC’niz iki dakika uzakta.',
+    button: 'LRC Maker’ı aç',
+  },
+  footer: {
+    tagline: 'Mükemmel senkron sözler için ücretsiz LRC maker.',
+    product: 'Ürün',
+    resources: 'Kaynaklar',
+    legal: 'Yasal',
+    rights: 'Tüm hakları saklıdır.',
+    madeWith: 'Dünyanın her yerindeki müzikseverler için yapıldı.',
+  },
+  maker: {
+    backToForm: 'Forma dön',
+    linesTagged: '{done}/{total} satır damgalandı',
+    formTitle: 'Yeni senkron sözler',
+    formSubtitle: 'Şarkı bilgilerinizi ekleyin, sözleri yapıştırın ve senkronize etmek istediğiniz MP3’i ekleyin.',
+    labelTitle: 'Başlık',
+    labelArtist: 'Sanatçı',
+    labelAuthor: 'Yazar (adınız)',
+    titlePlaceholder: 'Şarkı başlığı',
+    artistPlaceholder: 'Sanatçı adı',
+    authorPlaceholder: 'Adınız',
+    lyricsLabel: 'Şarkı sözleri',
+    lyricsHint: 'Her söz satırı için yeni satır başlatın — ya da zaman damgalarını düzenlemek için bütün bir .lrc dosyası yapıştırın.',
+    lyricsPlaceholder: 'Sözleri yapıştırın, her satır ayrı...',
+    dropTitle: 'MP3’i buraya sürükleyip bırakın',
+    dropTitleEdit: 'MP3’i buraya sürükleyip bırakın (isteğe bağlı)',
+    dropSub: 'Yalnızca MP3 — cihazınızda kalır, asla yüklenmez',
+    dropSubEdit: 'Yalnızca MP3 — mevcut bir LRC düzenlerken isteğe bağlı, cihazınızda kalır',
+    chooseFile: 'MP3 dosyası seç',
+    replaceFile: 'MP3 dosyasını değiştir',
+    removeAudio: 'Sesi kaldır',
+    startSyncing: 'Senkronizasyonu Başlat',
+    tapHint:
+      'Her satırın başlangıcını duyduğunuzda zaman damgasına dokunun. Üzerine yazmak için tekrar dokunun ya da damgalanmış bir satıra tıklayarak çaları geri sarıp tekrar dinleyin. Yüzen düğme her zaman damgalanmamış sonraki satırı damgalar. İpucu: Boşluk tuşuna basın.',
+    offsetLabel: 'Tüm damgaları kaydır',
+    seconds: 'saniye',
+    apply: 'Uygula',
+    offsetHint: 'Pozitif değer sözleri ileriye iter (şarkınızın vokali daha geç başlar), negatif değer geriye çeker.',
+    offsetApplied: '{n} damga {s} kaydırıldı.',
+    linesNeedTag: '{n} satırın hâlâ zaman damgasına ihtiyacı var.',
+    saveLrc: 'LRC’yi Kaydet',
+    saved: 'Kaydedildi',
+    downloadLrc: '.lrc İndir',
+    copyContent: 'İçeriği kopyala',
+    copyJson: 'JSON yapısını kopyala',
+    tagNext: 'Sonraki satırı o anki zamanla damgala',
+    editLine: 'Satırı düzenle',
+    needTwoLines: '00:00.00’dan sonra en az 2 satırın zaman damgası olmalı — bu henüz senkron bir LRC değil.',
+    needTitle: 'Bu LRC’yi kaydetmek için bir başlık ekleyin.',
+    needArtist: 'Bu LRC’yi kaydetmek için bir sanatçı ekleyin.',
+    needAudio: 'Senkronizasyona başlamak için MP3 ekleyin.',
+    savedLocal: 'LRC bu tarayıcıya kaydedildi.',
+    copied: 'LRC içeriği panoya kopyalandı.',
+    jsonCopied: 'LRC JSON yapısı panoya kopyalandı.',
+    cantTagAfter: 'Sonraki satır damgalanamıyor — zaten damgalanmış daha sonraki bir satırdan sonra gelirdi.',
+    cantSetTime: 'Bu zaman ayarlanamıyor — sonraki bir satır zaten daha erken bir zamanla damgalanmış.',
+    allTagged: 'Tüm satırlar zaten damgalandı.',
+    confirmDiscard: 'Damgalanmış satırlarınız var. Bunları atıp yeni sözler yükleyeyim mi?',
+    editTimeTitle: 'Zamanı mm:ss.xx olarak yazın',
+    mute: 'Sessize al',
+    unmute: 'Sesi aç',
+  },
+  about: {
+    title: 'Ricsline Hakkında',
+    intro:
+      'Ricsline, gizliliği ön planda tutan ücretsiz bir LRC maker’dır. Müzisyenlerin, karaoke severlerin ve liste hazırlayanların şarkılarına mükemmel senkron sözler oluşturmasına yardımcı olur — hiçbir şeyi hiçbir yere yüklemeden.',
+    sections: [
+      {
+        title: 'LRC dosyası nedir?',
+        text: 'LRC, dünyanın en yaygın desteklenen senkron söz formatıdır. Düz metindir: her söz satırının önünde [01:23.45] gibi bir zaman damgası bulunur. Müzik çalarınız MP3’inizin yanında eşleşen bir .lrc dosyası gördüğünde, her satırı tam söylendiği anda vurgular — karaoke efekti.',
+      },
+      {
+        title: 'Ricsline nasıl çalışır',
+        text: 'Sözlerinizi yapıştırır ve şarkınızı çalarsınız. Bir satır her başladığında dokunursunuz — Ricsline o anki çalma anını satırın zaman damgası olarak kaydeder. Hata mı yaptınız? Üzerine yazmak için tekrar dokunun ya da kaydırma aracıyla tüm damgaları tek seferde kaydırın. Tüm satırlar damgalandığında .lrc dosyasını indirin ve MP3’inizin yanına aynı dosya adıyla koyun.',
+      },
+      {
+        title: 'Tasarım gereği gizli',
+        text: 'MP3’inizin kodu tamamen tarayıcınızın içinde çözülür ve çalınır. Sunucularımıza asla yüklenmez — yükleme noktası bile yok. Hesap, e-posta ya da kişisel bilgi istemeyiz. Cihazınızda saklanan tek şey tema ve dil tercihlerinizdir.',
+      },
+      {
+        title: 'Ücretsiz, 20 dilde',
+        text: 'Ricsline herkes için ücretsizdir ve sitenin tamamı — açılış sayfasından senkron aracına — 20 dile çevrilmiştir; böylece herkes kendi dilinde senkron sözler oluşturabilir.',
+      },
+    ],
+  },
+  privacy: {
+    title: 'Gizlilik Politikası',
+    updated: 'Son güncelleme: Ekim 2026',
+    intro:
+      'Ricsline, tasarım gereği gizli olacak şekilde inşa edildi. Bu politika, sade bir dille neyi toplayıp neyi toplamadığımızı açıklar.',
+    sections: [
+      {
+        title: 'Müzik dosyalarınız cihazınızdan asla ayrılmaz',
+        text: 'LRC yapımcısına bir MP3 eklediğinizde, dosyanın kodu tamamen tarayıcınızın içinde çözülür ve çalınır. Sunucularımıza asla yüklenmez — yükleme noktası hiç yoktur. Ses dosyalarınızı göremeyiz, duyamayız ya da saklayamayız.',
+      },
+      {
+        title: 'Hesap yok, kişisel veri yok',
+        text: 'Ricsline’da kayıt ve hesap yoktur. Adınızı, e-postanızı ya da herhangi bir kişisel bilginizi istemeyiz ve dosyalarınız için takip çerezi koymayız.',
+      },
+      {
+        title: 'Cihazınızda saklananlar',
+        text: 'Tarayıcınızın yerel deposunda yalnızca iki küçük tercih saklanır: tema seçiminiz (açık/koyu/sistem) ve dil seçiminiz. Tarayıcınızın site verilerini temizleyerek bunları istediğiniz zaman silebilirsiniz.',
+      },
+      {
+        title: 'Anonim analitik',
+        text: 'Ricsline’ın hangi bölümlerinin yararlı olduğunu anlamak için gizlilik dostu, toplu analitik (örneğin dile göre sayfa görüntülemeleri) kullanabiliriz. Buna dosyalarınız, sözleriniz ya da sizi tanımlayan hiçbir şey dahil değildir.',
+      },
+      {
+        title: 'İletişim',
+        text: 'Gizlilikle ilgili sorularınız için bize privacy@ricsline.com adresinden ulaşın.',
+      },
+    ],
+  },
+  terms: {
+    title: 'Hizmet Şartları',
+    updated: 'Son güncelleme: Ekim 2026',
+    intro: 'Ricsline’ı kullanarak bu basit şartları kabul etmiş olursunuz.',
+    sections: [
+      {
+        title: 'Hizmet',
+        text: 'Ricsline, senkron söz (.lrc) dosyaları oluşturmak için ücretsiz, tarayıcı tabanlı bir araç sunar. Hizmet “olduğu gibi”, herhangi bir garanti olmaksızın sağlanır.',
+      },
+      {
+        title: 'İçeriğiniz, sorumluluğunuz',
+        text: 'Yapıştırdığınız sözler ve çaldığınız ses size ya da ilgili hak sahiplerine aittir. Bunları kullanma hakkına sahip olmaktan siz sorumlusunuz. Ricsline dosyalarınızı barındırmaz, saklamaz ya da dağıtmaz.',
+      },
+      {
+        title: 'Kabul edilebilir kullanım',
+        text: 'Hizmeti kötüye kullanmayın — hizmeti aksatmaya çalışmak, agresif şekilde kazımak ya da yasa dışı amaçlarla kullanmak yasaktır.',
+      },
+      {
+        title: 'Değişiklikler',
+        text: 'Bu şartları zaman zaman güncelleyebiliriz; Ricsline’ı kullanmaya devam etmeniz güncel sürümü kabul ettiğiniz anlamına gelir.',
+      },
+    ],
+  },
+  notFound: {
+    title: 'Müzikte mi kayboldunuz?',
+    text: 'Bu sayfa yok — ama sonraki senkron sözünüz bir tık uzakta.',
+    button: 'Ana sayfaya dön',
+  },
+};
+
+export default dict;

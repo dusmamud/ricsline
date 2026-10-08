@@ -1,0 +1,34 @@
+---
+import { Icon } from 'astro-icon/components';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { locales, type Locale } from '../../i18n/index';
+import { getDict } from '../../i18n/dicts';
+
+export async function getStaticPaths() {
+  return locales.map((locale) => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params as { locale: Locale };
+const dict = getDict(locale);
+const page = dict.terms;
+---
+<BaseLayout locale={locale} dict={dict} title={dict.meta.termsTitle} description={dict.meta.termsDescription} path="/terms">
+  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:py-24">
+    <p class="reveal inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-4 py-1.5 text-xs font-semibold text-brand-700 dark:border-brand-500/30 dark:bg-brand-500/10 dark:text-brand-300">
+      <Icon name="ph:scroll" class="h-3.5 w-3.5" />
+      {page.updated}
+    </p>
+    <h1 class="reveal reveal-d1 mt-6 font-display text-4xl font-extrabold tracking-tight text-graphite-900 sm:text-5xl dark:text-white">
+      {page.title}
+    </h1>
+    <p class="reveal reveal-d2 mt-6 text-lg leading-relaxed text-graphite-500 dark:text-graphite-400">{page.intro}</p>
+    <div class="mt-10 space-y-6">
+      {page.sections.map((s) => (
+        <article class="reveal rounded-3xl border border-graphite-200 bg-white p-8 dark:border-graphite-800 dark:bg-graphite-900">
+          <h2 class="font-display text-lg font-bold text-graphite-900 dark:text-white">{s.title}</h2>
+          <p class="mt-2.5 leading-relaxed text-graphite-500 dark:text-graphite-400">{s.text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,98 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { alternateLinks, isRtl, localizedPath, type Locale } from '../i18n/index';
+import type { Dict } from '../i18n/dicts';
+
+interface Props {
+  locale: Locale;
+  dict: Dict;
+  title: string;
+  description: string;
+  /** Path without locale prefix, e.g. "/maker" or "/" */
+  path: string;
+  ogImage?: string;
+}
+
+const { locale, dict, title, description, path, ogImage = '/images/og-bg.jpg' } = Astro.props;
+const site = Astro.site?.toString().replace(/\/$/, '') ?? 'https://ricsline.com';
+const canonical = `${site}${localizedPath(locale, path)}`;
+const alternates = alternateLinks(site, path);
+const dir = isRtl(locale) ? 'rtl' : 'ltr';
+---
+<!doctype html>
+<html lang={locale} dir={dir} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {alternates.map((a) => (
+      <link rel="alternate" hreflang={a.locale} href={a.href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={`${site}/en${path === '/' ? '/' : path}`} />
+
+    <meta property="og:site_name" content="Ricsline" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={`${site}${ogImage}`} />
+    <meta property="og:locale" content={locale} />
+    {alternates.filter((a) => a.locale !== locale).map((a) => (
+      <meta property="og:locale:alternate" content={a.locale} />
+    ))}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${site}${ogImage}`} />
+
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#14161B" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link rel="preload" href="/fonts/sora-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin />
+
+    <script is:inline>
+      (function () {
+        try {
+          var t = localStorage.getItem('ricsline-theme');
+          var dark = t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (dark) document.documentElement.classList.add('dark');
+          document.documentElement.classList.add('theme-ready');
+        } catch (e) {}
+      })();
+    </script>
+    <ClientRouter />
+  </head>
+  <body class="min-h-screen bg-white text-graphite-900 antialiased dark:bg-graphite-950 dark:text-graphite-100">
+    <Navbar locale={locale} path={path} dict={dict} />
+    <main>
+      <slot />
+    </main>
+    <Footer locale={locale} dict={dict} />
+
+    <script is:inline>
+      (function () {
+        var io;
+        function initReveals() {
+          if (!('IntersectionObserver' in window)) {
+            document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+            return;
+          }
+          io = io || new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) {
+              if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+            });
+          }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+          document.querySelectorAll('.reveal:not(.in)').forEach(function (el) { io.observe(el); });
+        }
+        document.addEventListener('astro:page-load', initReveals);
+        initReveals();
+      })();
+    </script>
+  </body>
+</html>

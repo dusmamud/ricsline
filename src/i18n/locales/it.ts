@@ -1,0 +1,275 @@
+import type { Dict } from './en';
+
+const dict: Dict = {
+  dir: 'ltr' as const,
+  meta: {
+    siteName: 'Ricsline',
+    landingTitle: 'Ricsline — Creatore LRC gratuito: testi sincronizzati in pochi minuti',
+    landingDescription:
+      'Crea testi sincronizzati gratis: avvia la tua canzone, tocca ogni riga del testo e scarica il tuo file .lrc. Il tuo MP3 resta sul tuo dispositivo.',
+    makerTitle: 'Creatore LRC — Ricsline',
+    makerDescription:
+      'Sincronizza i testi con Ricsline: tocca ogni riga mentre la ascolti, regola i tempi e scarica il tuo file .lrc. Gratis, senza registrazione; il tuo MP3 resta sul tuo dispositivo.',
+    aboutTitle: 'Chi siamo — Ricsline',
+    aboutDescription: 'Cos’è Ricsline, come funzionano i testi sincronizzati LRC e perché i tuoi file musicali non lasciano mai il tuo dispositivo.',
+    privacyTitle: 'Informativa sulla privacy — Ricsline',
+    privacyDescription: 'Informativa sulla privacy di Ricsline: i tuoi file MP3 non vengono mai caricati. Tutto avviene nel tuo browser.',
+    termsTitle: 'Termini di servizio — Ricsline',
+    termsDescription: 'Termini di servizio di Ricsline per il creatore LRC gratuito.',
+  },
+  nav: {
+    maker: 'Creatore LRC',
+    about: 'Chi siamo',
+    theme: 'Tema',
+    themeLight: 'Chiaro',
+    themeDark: 'Scuro',
+    themeSystem: 'Sistema',
+    language: 'Lingua',
+    startFree: 'Inizia gratis',
+  },
+  hero: {
+    badge: 'Gratis · Senza registrazione · 100% privato',
+    titleA: 'Ogni riga,',
+    titleB: 'al momento giusto.',
+    subtitle:
+      'Ricsline è un creatore LRC gratuito. Avvia la tua canzone, tocca ogni riga del testo mentre la ascolti e scarica un file .lrc perfettamente sincronizzato — direttamente nel tuo browser.',
+    ctaPrimary: 'Inizia a sincronizzare — è gratis',
+    ctaSecondary: 'Come funziona',
+    note: 'Solo MP3 — resta sul tuo dispositivo, mai caricato',
+    stats: [
+      { value: '20', label: 'Lingue' },
+      { value: '0', label: 'Caricamenti — i file restano in locale' },
+      { value: '100%', label: 'Gratis, senza account' },
+    ],
+  },
+  howItWorks: {
+    eyebrow: 'Come funziona',
+    title: 'Da semplice testo a LRC sincronizzato in 3 passi',
+    steps: [
+      {
+        title: 'Aggiungi canzone e testo',
+        text: 'Trascina un MP3 e incolla il testo — una riga per riga. Oppure incolla un file .lrc esistente per correggerne i tempi.',
+      },
+      {
+        title: 'Tocca per sincronizzare',
+        text: 'Avvia la canzone e tocca il grande pulsante ogni volta che inizia una riga. Ricsline registra l’istante esatto — al centesimo di secondo.',
+      },
+      {
+        title: 'Regola e scarica',
+        text: 'Sposta tutti i tempi in una volta, ritocca o modifica qualsiasi riga, poi scarica il tuo file .lrc o copialo negli appunti.',
+      },
+    ],
+  },
+  features: {
+    eyebrow: 'Funzionalità',
+    title: 'Tutto ciò che serve per sincronizzare i testi come un professionista',
+    items: [
+      {
+        icon: 'ph:hand-tap',
+        title: 'Motore di sincronizzazione touch',
+        text: 'Assegna a ogni riga il momento attuale di riproduzione con un tocco — oppure premi la barra spaziatrice.',
+      },
+      {
+        icon: 'ph:sliders-horizontal',
+        title: 'Sposta tutti i tempi',
+        text: 'La voce inizia un po’ in ritardo? Sposta tutte le marcature di ± secondi con un clic.',
+      },
+      {
+        icon: 'ph:lock-key',
+        title: '100% privato per progettazione',
+        text: 'Il tuo MP3 viene riprodotto in locale e mai caricato. Nessun account, nessun tracciamento dei tuoi file.',
+      },
+      {
+        icon: 'ph:pencil-line',
+        title: 'Modifica tutto',
+        text: 'Ritocca una riga, digita un tempo a mano o correggi il testo. Controllo totale, sempre.',
+      },
+      {
+        icon: 'ph:download-simple',
+        title: 'Esportazione in un clic',
+        text: 'Scarica il file .lrc, copia il testo o prendi la struttura JSON per le tue app.',
+      },
+      {
+        icon: 'ph:translate',
+        title: '20 lingue',
+        text: 'L’intero sito — landing page, strumento, tutto — tradotto in 20 lingue.',
+      },
+    ],
+  },
+  faq: {
+    eyebrow: 'FAQ',
+    title: 'Domande frequenti',
+    items: [
+      {
+        q: 'Cos’è un file LRC?',
+        a: 'LRC è un semplice formato di testo che associa ogni riga del testo a una marcatura temporale, come [01:23.45]. I lettori usano queste marcature per evidenziare ogni riga a ritmo di musica — l’effetto karaoke che vedi nella maggior parte delle app.',
+      },
+      {
+        q: 'Ricsline è davvero gratis?',
+        a: 'Sì — completamente gratis, senza account, senza watermark e senza limiti ai file LRC che puoi creare.',
+      },
+      {
+        q: 'Caricate il mio MP3?',
+        a: 'No. Il tuo file audio viene riprodotto direttamente dal tuo dispositivo nel tuo browser e non viene mai inviato ad alcun server. Puoi persino disconnetterti da internet dopo aver caricato la pagina e continuare a sincronizzare.',
+      },
+      {
+        q: 'Quali lettori supportano i file LRC?',
+        a: 'La maggior parte dei lettori più diffusi supporta gli LRC: basta mettere il file .lrc accanto al tuo MP3 con lo stesso nome. Lettori desktop, lettori Android e molte autoradio lo rilevano automaticamente.',
+      },
+      {
+        q: 'Posso correggere i tempi di un LRC esistente?',
+        a: 'Sì. Incolla l’intero contenuto del .lrc nella casella del testo e Ricsline rileverà le marcature temporali. Poi ritocca le righe o sposta tutti i tempi con lo strumento di spostamento.',
+      },
+      {
+        q: 'Devo creare un account?',
+        a: 'No. Su Ricsline non esistono account: apri il creatore e inizia subito a sincronizzare.',
+      },
+    ],
+  },
+  cta: {
+    title: 'Pronto a sincronizzare la tua prima canzone?',
+    subtitle: 'Incolla il testo, trascina il tuo MP3 e tocca a ritmo. Il tuo primo LRC sincronizzato è a due minuti da qui.',
+    button: 'Apri il creatore LRC',
+  },
+  footer: {
+    tagline: 'Creatore LRC gratuito per testi perfettamente sincronizzati.',
+    product: 'Prodotto',
+    resources: 'Risorse',
+    legal: 'Note legali',
+    rights: 'Tutti i diritti riservati.',
+    madeWith: 'Fatto per gli amanti della musica di tutto il mondo.',
+  },
+  maker: {
+    backToForm: 'Torna al modulo',
+    linesTagged: '{done}/{total} righe marcate',
+    formTitle: 'Nuovo testo sincronizzato',
+    formSubtitle: 'Aggiungi i dettagli della canzone, incolla il testo e allega l’MP3 da sincronizzare.',
+    labelTitle: 'Titolo',
+    labelArtist: 'Artista',
+    labelAuthor: 'Autore (il tuo nome)',
+    titlePlaceholder: 'Titolo della canzone',
+    artistPlaceholder: 'Nome dell’artista',
+    authorPlaceholder: 'Il tuo nome',
+    lyricsLabel: 'Testo della canzone',
+    lyricsHint: 'Inizia una nuova riga per ogni riga del testo — oppure incolla un intero file .lrc per modificarne le marcature temporali.',
+    lyricsPlaceholder: 'Incolla il testo, una riga per riga...',
+    dropTitle: 'Trascina qui l’MP3',
+    dropTitleEdit: 'Trascina qui l’MP3 (facoltativo)',
+    dropSub: 'Solo MP3 — resta sul tuo dispositivo, mai caricato',
+    dropSubEdit: 'Solo MP3 — facoltativo quando modifichi un LRC esistente, resta sul tuo dispositivo',
+    chooseFile: 'Scegli file MP3',
+    replaceFile: 'Sostituisci file MP3',
+    removeAudio: 'Rimuovi audio',
+    startSyncing: 'Inizia a sincronizzare',
+    tapHint:
+      'Tocca la marcatura temporale di ogni riga quando inizia a sentirsi. Toccala di nuovo per sovrascriverla, oppure fai clic su una riga già marcata per far tornare indietro il lettore e riascoltarla. Il pulsante mobile marca sempre la prossima riga non marcata. Suggerimento: premi Spazio.',
+    offsetLabel: 'Sposta tutte le marcature',
+    seconds: 'secondi',
+    apply: 'Applica',
+    offsetHint: 'Positivo ritarda il testo (il canto della tua canzone inizia più tardi), negativo lo anticipa.',
+    offsetApplied: '{n} marcature spostate di {s}.',
+    linesNeedTag: 'Restano {n} righe da marcare.',
+    saveLrc: 'Salva LRC',
+    saved: 'Salvato',
+    downloadLrc: 'Scarica .lrc',
+    copyContent: 'Copia contenuto',
+    copyJson: 'Copia struttura JSON',
+    tagNext: 'Marca la prossima riga con il tempo attuale',
+    editLine: 'Modifica riga',
+    needTwoLines: 'Almeno 2 righe devono avere una marcatura dopo 00:00.00 — non è ancora un LRC sincronizzato.',
+    needTitle: 'Aggiungi un titolo per salvare questo LRC.',
+    needArtist: 'Aggiungi un artista per salvare questo LRC.',
+    needAudio: 'Allega l’MP3 per iniziare a sincronizzare.',
+    savedLocal: 'LRC salvato in questo browser.',
+    copied: 'Contenuto LRC copiato negli appunti.',
+    jsonCopied: 'Struttura JSON dell’LRC copiata negli appunti.',
+    cantTagAfter: 'Impossibile marcare la prossima riga: verrebbe dopo una riga successiva già marcata.',
+    cantSetTime: 'Impossibile impostare questo tempo: una riga successiva è già marcata con un tempo precedente.',
+    allTagged: 'Tutte le righe sono già marcate.',
+    confirmDiscard: 'Hai righe marcate. Scartarle e caricare un nuovo testo?',
+    editTimeTitle: 'Digita un tempo come mm:ss.xx',
+    mute: 'Silenzia',
+    unmute: 'Riattiva audio',
+  },
+  about: {
+    title: 'Chi è Ricsline',
+    intro:
+      'Ricsline è un creatore LRC gratuito che mette la privacy al primo posto. Aiuta musicisti, amanti del karaoke e curatori di playlist a creare testi perfettamente sincronizzati — senza caricare nulla, da nessuna parte.',
+    sections: [
+      {
+        title: 'Cos’è un file LRC?',
+        text: 'LRC è il formato di testi sincronizzati più supportato al mondo. È semplice testo: ogni riga del testo è preceduta da una marcatura temporale come [01:23.45]. Quando il tuo lettore trova un file .lrc accanto al tuo MP3, evidenzia ogni riga nel momento esatto in cui viene cantata — l’effetto karaoke.',
+      },
+      {
+        title: 'Come funziona Ricsline',
+        text: 'Incolli il testo e avvii la canzone. Ogni volta che inizia una riga, tocchi: Ricsline registra quell’istante esatto come marcatura della riga. Hai sbagliato? Tocca di nuovo per sovrascrivere, oppure sposta tutte le marcature in una volta con lo strumento di spostamento. Quando ogni riga è marcata, scarica il file .lrc e mettilo accanto al tuo MP3 con lo stesso nome.',
+      },
+      {
+        title: 'Privato per progettazione',
+        text: 'Il tuo MP3 viene decodificato e riprodotto interamente dentro il tuo browser. Non viene mai caricato sui nostri server — non esiste nemmeno un punto di caricamento. Non chiediamo account, email o dati personali. L’unica cosa salvata sul tuo dispositivo sono le tue preferenze di tema e lingua.',
+      },
+      {
+        title: 'Gratis, in 20 lingue',
+        text: 'Ricsline è gratis per tutti, e l’intero sito — dalla landing page allo strumento di sincronizzazione — è tradotto in 20 lingue, così chiunque può creare testi sincronizzati nella propria lingua.',
+      },
+    ],
+  },
+  privacy: {
+    title: 'Informativa sulla privacy',
+    updated: 'Ultimo aggiornamento: ottobre 2026',
+    intro:
+      'Ricsline è progettato per essere privato per progettazione. Questa informativa spiega, in parole semplici, cosa raccogliamo e cosa no.',
+    sections: [
+      {
+        title: 'I tuoi file musicali non lasciano mai il tuo dispositivo',
+        text: 'Quando alleghi un MP3 al creatore LRC, viene decodificato e riprodotto interamente dentro il tuo browser. Non viene mai caricato sui nostri server — non esiste alcun punto di caricamento. Non possiamo vedere, ascoltare né conservare i tuoi file audio.',
+      },
+      {
+        title: 'Nessun account, nessun dato personale',
+        text: 'Ricsline non ha registrazioni né account. Non chiediamo il tuo nome, la tua email o alcun dato personale, e non usiamo cookie di tracciamento per i tuoi file.',
+      },
+      {
+        title: 'Cosa viene salvato sul tuo dispositivo',
+        text: 'Solo due piccole preferenze vengono salvate nello storage locale del tuo browser: la scelta del tema (chiaro/scuro/sistema) e la lingua. Puoi cancellarle in qualsiasi momento dai dati del sito del browser.',
+      },
+      {
+        title: 'Analitiche anonime',
+        text: 'Potremmo usare analitiche aggregate e rispettose della privacy (come le visualizzazioni per lingua) per capire quali parti di Ricsline sono utili. Non includono mai i tuoi file, i tuoi testi né nulla che ti identifichi.',
+      },
+      {
+        title: 'Contatti',
+        text: 'Per domande sulla privacy, scrivici a privacy@ricsline.com.',
+      },
+    ],
+  },
+  terms: {
+    title: 'Termini di servizio',
+    updated: 'Ultimo aggiornamento: ottobre 2026',
+    intro: 'Usando Ricsline, accetti questi semplici termini.',
+    sections: [
+      {
+        title: 'Il servizio',
+        text: 'Ricsline offre uno strumento gratuito nel browser per creare file di testi sincronizzati (.lrc). Il servizio è fornito “così com’è”, senza garanzie di alcun tipo.',
+      },
+      {
+        title: 'I tuoi contenuti, la tua responsabilità',
+        text: 'I testi che incolli e l’audio che riproduci appartengono a te o ai rispettivi titolari dei diritti. Sei responsabile di avere i diritti per utilizzarli. Ricsline non ospita, conserva né distribuisce i tuoi file.',
+      },
+      {
+        title: 'Uso accettabile',
+        text: 'Non abusare del servizio: nessun tentativo di comprometterlo, di sottoporlo a scraping aggressivo o di usarlo per scopi illeciti.',
+      },
+      {
+        title: 'Modifiche',
+        text: 'Potremmo aggiornare questi termini di tanto in tanto; continuare a usare Ricsline significa accettare la versione vigente.',
+      },
+    ],
+  },
+  notFound: {
+    title: 'Perso nella musica?',
+    text: 'Questa pagina non esiste — ma il tuo prossimo testo sincronizzato è a un clic di distanza.',
+    button: 'Torna alla home',
+  },
+};
+
+export default dict;

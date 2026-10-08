@@ -1,0 +1,32 @@
+---
+interface Props {
+  size?: number;
+  class?: string;
+}
+const { size = 36, class: cls = '' } = Astro.props;
+---
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 48 48"
+  fill="none"
+  class={cls}
+  role="img"
+  aria-label="Ricsline logo"
+>
+  <defs>
+    <linearGradient id="ricsline-g" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#38BDF8"></stop>
+      <stop offset="1" stop-color="#0284C7"></stop>
+    </linearGradient>
+  </defs>
+  <rect width="48" height="48" rx="13" fill="url(#ricsline-g)"></rect>
+  <g fill="#fff">
+    <rect x="11" y="19" width="4.5" height="10" rx="2.25"></rect>
+    <rect x="18.5" y="14" width="4.5" height="20" rx="2.25"></rect>
+    <rect x="26" y="9" width="4.5" height="30" rx="2.25"></rect>
+    <rect x="33.5" y="16" width="4.5" height="16" rx="2.25"></rect>
+  </g>
+  <circle cx="28.25" cy="9" r="3.4" fill="#fff"></circle>
+  <circle cx="28.25" cy="9" r="1.5" fill="#0284C7"></circle>
+</svg>

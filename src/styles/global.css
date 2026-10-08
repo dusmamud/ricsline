@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- Self-hosted fonts (no CDN) ---------- */
+@font-face {
+  font-family: 'Sora';
+  src: url('/fonts/sora-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Sora';
+  src: url('/fonts/sora-600.woff2') format('woff2');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Sora';
+  src: url('/fonts/sora-700.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Sora';
+  src: url('/fonts/sora-800.woff2') format('woff2');
+  font-weight: 800; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-500.woff2') format('woff2');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-600.woff2') format('woff2');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-700.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* ---------- Base ---------- */
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, 'Noto Sans Devanagari', 'Noto Sans Bengali',
+    'Noto Sans SC', 'Noto Sans JP', 'Noto Sans KR', 'Noto Sans Arabic',
+    'Noto Sans Thai', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+::selection { background: #0EA5E9; color: #fff; }
+
+/* Theme transition (not on first paint) */
+html.theme-ready, html.theme-ready * {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.15s ease;
+}
+
+/* ---------- Scroll reveal ---------- */
+.reveal { opacity: 0; transform: translateY(28px); }
+.reveal.in {
+  opacity: 1; transform: none;
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-d1.in { transition-delay: 0.08s; }
+.reveal-d2.in { transition-delay: 0.16s; }
+.reveal-d3.in { transition-delay: 0.24s; }
+
+/* ---------- Hero waveform bars ---------- */
+.wave-bar {
+  transform-origin: center;
+  animation: wave-bar 1.6s ease-in-out infinite;
+}
+
+/* ---------- Range slider (maker) ---------- */
+input[type='range'].slider {
+  -webkit-appearance: none; appearance: none;
+  height: 6px; border-radius: 9999px; outline: none; cursor: pointer;
+  background: linear-gradient(to right, #0EA5E9 var(--fill, 0%), #343B48 var(--fill, 0%));
+}
+.dark input[type='range'].slider {
+  background: linear-gradient(to right, #38BDF8 var(--fill, 0%), #343B48 var(--fill, 0%));
+}
+input[type='range'].slider::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 16px; height: 16px; border-radius: 9999px;
+  background: #fff; border: 3px solid #0EA5E9;
+  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.45);
+}
+input[type='range'].slider::-moz-range-thumb {
+  width: 16px; height: 16px; border-radius: 9999px;
+  background: #fff; border: 3px solid #0EA5E9;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; }
+  .wave-bar, .animate-float, .animate-pulse-ring { animation: none !important; }
+  html.theme-ready, html.theme-ready * { transition: none; }
+}
+
+/* ---------- Thin scrollbars ---------- */
+* { scrollbar-width: thin; scrollbar-color: #4A5468 transparent; }
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-thumb { background: #4A5468; border-radius: 9999px; }

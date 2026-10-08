@@ -1,0 +1,275 @@
+import type { Dict } from './en';
+
+const dict: Dict = {
+  dir: 'ltr' as const,
+  meta: {
+    siteName: 'Ricsline',
+    landingTitle: 'Ricsline — Créateur LRC gratuit : des paroles synchronisées en quelques minutes',
+    landingDescription:
+      'Créez des paroles synchronisées gratuitement : lancez votre chanson, touchez chaque ligne et téléchargez votre .lrc. Votre MP3 reste sur votre appareil.',
+    makerTitle: 'Créateur LRC — Ricsline',
+    makerDescription:
+      'Synchronisez vos paroles avec Ricsline : touchez chaque ligne à son début, ajustez les minutages, puis téléchargez votre fichier .lrc. Gratuit, sans inscription ; votre MP3 reste sur votre appareil.',
+    aboutTitle: 'À propos — Ricsline',
+    aboutDescription: 'Ce qu’est Ricsline, comment fonctionnent les paroles synchronisées LRC et pourquoi vos fichiers musicaux ne quittent jamais votre appareil.',
+    privacyTitle: 'Politique de confidentialité — Ricsline',
+    privacyDescription: 'Politique de confidentialité de Ricsline : vos fichiers MP3 ne sont jamais téléversés. Tout se passe dans votre navigateur.',
+    termsTitle: 'Conditions d’utilisation — Ricsline',
+    termsDescription: 'Conditions d’utilisation de Ricsline pour le créateur LRC gratuit.',
+  },
+  nav: {
+    maker: 'Créateur LRC',
+    about: 'À propos',
+    theme: 'Thème',
+    themeLight: 'Clair',
+    themeDark: 'Sombre',
+    themeSystem: 'Système',
+    language: 'Langue',
+    startFree: 'Commencer gratuitement',
+  },
+  hero: {
+    badge: 'Gratuit · Sans inscription · 100 % privé',
+    titleA: 'Chaque ligne,',
+    titleB: 'à temps.',
+    subtitle:
+      'Ricsline est un créateur LRC gratuit. Lancez votre chanson, touchez chaque ligne de paroles dès que vous l’entendez et téléchargez un fichier .lrc parfaitement synchronisé — dans votre navigateur.',
+    ctaPrimary: 'Commencer à synchroniser — c’est gratuit',
+    ctaSecondary: 'Comment ça marche',
+    note: 'MP3 uniquement — reste sur votre appareil, jamais téléversé',
+    stats: [
+      { value: '20', label: 'Langues' },
+      { value: '0', label: 'Téléversements — les fichiers restent en local' },
+      { value: '100%', label: 'Gratuit, sans compte' },
+    ],
+  },
+  howItWorks: {
+    eyebrow: 'Comment ça marche',
+    title: 'De simples paroles à un LRC synchronisé en 3 étapes',
+    steps: [
+      {
+        title: 'Ajoutez votre chanson et vos paroles',
+        text: 'Déposez un MP3 et collez vos paroles — une ligne par rangée. Ou collez un fichier .lrc existant pour corriger ses minutages.',
+      },
+      {
+        title: 'Touchez pour synchroniser',
+        text: 'Lancez la chanson et touchez le grand bouton à chaque début de ligne. Ricsline enregistre l’instant exact — à la centième de seconde près.',
+      },
+      {
+        title: 'Ajustez et téléchargez',
+        text: 'Décalez tous les minutages d’un coup, retouchez ou modifiez n’importe quelle ligne, puis téléchargez votre fichier .lrc ou copiez-le dans le presse-papiers.',
+      },
+    ],
+  },
+  features: {
+    eyebrow: 'Fonctionnalités',
+    title: 'Tout pour synchroniser vos paroles comme un pro',
+    items: [
+      {
+        icon: 'ph:hand-tap',
+        title: 'Moteur de synchro tactile',
+        text: 'Horodatez chaque ligne de paroles avec l’instant de lecture actuel en un toucher — ou appuyez simplement sur la barre d’espace.',
+      },
+      {
+        icon: 'ph:sliders-horizontal',
+        title: 'Décalez tous les minutages',
+        text: 'La voix démarre un peu tard ? Déplacez tous les horodatages de ± quelques secondes en un clic.',
+      },
+      {
+        icon: 'ph:lock-key',
+        title: '100 % privé par conception',
+        text: 'Votre MP3 est lu localement et jamais téléversé. Ni compte, ni suivi de vos fichiers.',
+      },
+      {
+        icon: 'ph:pencil-line',
+        title: 'Modifiez tout',
+        text: 'Retouchez une ligne, saisissez un temps à la main ou corrigez le texte. Contrôle total, toujours.',
+      },
+      {
+        icon: 'ph:download-simple',
+        title: 'Export en un clic',
+        text: 'Téléchargez le fichier .lrc, copiez le texte ou récupérez la structure JSON pour vos propres applis.',
+      },
+      {
+        icon: 'ph:translate',
+        title: '20 langues',
+        text: 'Tout le site — page d’accueil, outil, tout — traduit en 20 langues.',
+      },
+    ],
+  },
+  faq: {
+    eyebrow: 'FAQ',
+    title: 'Questions fréquentes',
+    items: [
+      {
+        q: 'Qu’est-ce qu’un fichier LRC ?',
+        a: 'Le LRC est un format texte simple qui associe chaque ligne de paroles à un horodatage, comme [01:23.45]. Les lecteurs utilisent ces horodatages pour surligner chaque ligne au rythme de la chanson — l’effet karaoké que vous voyez dans la plupart des applis.',
+      },
+      {
+        q: 'Ricsline est-il vraiment gratuit ?',
+        a: 'Oui — entièrement gratuit, sans compte, sans filigrane et sans limite de fichiers LRC.',
+      },
+      {
+        q: 'Téléversez-vous mon MP3 ?',
+        a: 'Non. Votre fichier audio est lu directement depuis votre appareil dans votre navigateur et n’est jamais envoyé à un serveur. Vous pouvez même vous déconnecter d’Internet une fois la page chargée et continuer à synchroniser.',
+      },
+      {
+        q: 'Quels lecteurs prennent en charge les fichiers LRC ?',
+        a: 'La plupart des lecteurs populaires prennent en charge le LRC : placez simplement le fichier .lrc à côté de votre MP3 avec le même nom. Lecteurs de bureau, lecteurs Android et de nombreux autoradios le détectent automatiquement.',
+      },
+      {
+        q: 'Puis-je corriger les minutages d’un LRC existant ?',
+        a: 'Oui. Collez tout le contenu du .lrc dans la zone de paroles et Ricsline détectera les balises temporelles. Retouchez ensuite les lignes ou décalez tous les minutages avec l’outil de décalage.',
+      },
+      {
+        q: 'Dois-je créer un compte ?',
+        a: 'Non. Il n’y a aucun compte sur Ricsline — ouvrez le créateur et commencez à synchroniser aussitôt.',
+      },
+    ],
+  },
+  cta: {
+    title: 'Prêt à synchroniser votre première chanson ?',
+    subtitle: 'Collez vos paroles, déposez votre MP3 et touchez au rythme. Votre premier LRC synchronisé est à deux minutes.',
+    button: 'Ouvrir le créateur LRC',
+  },
+  footer: {
+    tagline: 'Créateur LRC gratuit pour des paroles parfaitement synchronisées.',
+    product: 'Produit',
+    resources: 'Ressources',
+    legal: 'Mentions légales',
+    rights: 'Tous droits réservés.',
+    madeWith: 'Fait pour les amoureux de musique du monde entier.',
+  },
+  maker: {
+    backToForm: 'Retour au formulaire',
+    linesTagged: '{done}/{total} lignes horodatées',
+    formTitle: 'Nouvelles paroles synchronisées',
+    formSubtitle: 'Ajoutez les infos de votre chanson, collez les paroles et joignez le MP3 à synchroniser.',
+    labelTitle: 'Titre',
+    labelArtist: 'Artiste',
+    labelAuthor: 'Auteur (votre nom)',
+    titlePlaceholder: 'Titre de la chanson',
+    artistPlaceholder: 'Nom de l’artiste',
+    authorPlaceholder: 'Votre nom',
+    lyricsLabel: 'Paroles de la chanson',
+    lyricsHint: 'Commencez une nouvelle ligne pour chaque ligne de paroles — ou collez un fichier .lrc entier pour modifier ses balises temporelles.',
+    lyricsPlaceholder: 'Collez les paroles, une ligne par rangée...',
+    dropTitle: 'Glissez-déposez le MP3 ici',
+    dropTitleEdit: 'Glissez-déposez le MP3 ici (facultatif)',
+    dropSub: 'MP3 uniquement — reste sur votre appareil, jamais téléversé',
+    dropSubEdit: 'MP3 uniquement — facultatif pour modifier un LRC existant, reste sur votre appareil',
+    chooseFile: 'Choisir un fichier MP3',
+    replaceFile: 'Remplacer le fichier MP3',
+    removeAudio: 'Retirer l’audio',
+    startSyncing: 'Commencer la synchro',
+    tapHint:
+      'Touchez la balise temporelle de chaque ligne dès qu’elle commence. Touchez-la à nouveau pour l’écraser, ou cliquez sur une ligne déjà horodatée pour reculer le lecteur et la réécouter. Le bouton flottant horodate toujours la prochaine ligne non horodatée. Astuce : appuyez sur Espace.',
+    offsetLabel: 'Décaler toutes les balises',
+    seconds: 'secondes',
+    apply: 'Appliquer',
+    offsetHint: 'Positif retarde les paroles (le chant de votre chanson commence plus tard), négatif les avance.',
+    offsetApplied: '{n} balises décalées de {s}.',
+    linesNeedTag: 'Il reste {n} lignes à horodater.',
+    saveLrc: 'Enregistrer le LRC',
+    saved: 'Enregistré',
+    downloadLrc: 'Télécharger le .lrc',
+    copyContent: 'Copier le contenu',
+    copyJson: 'Copier la structure JSON',
+    tagNext: 'Horodater la prochaine ligne avec le temps actuel',
+    editLine: 'Modifier la ligne',
+    needTwoLines: 'Au moins 2 lignes doivent avoir une balise après 00:00.00 — ce n’est pas encore un LRC synchronisé.',
+    needTitle: 'Ajoutez un titre pour enregistrer ce LRC.',
+    needArtist: 'Ajoutez un artiste pour enregistrer ce LRC.',
+    needAudio: 'Joignez le MP3 pour commencer la synchronisation.',
+    savedLocal: 'LRC enregistré dans ce navigateur.',
+    copied: 'Contenu du LRC copié dans le presse-papiers.',
+    jsonCopied: 'Structure JSON du LRC copiée dans le presse-papiers.',
+    cantTagAfter: 'Impossible d’horodater la ligne suivante — elle viendrait après une ligne ultérieure déjà horodatée.',
+    cantSetTime: 'Impossible de définir ce temps — une ligne ultérieure est déjà horodatée plus tôt.',
+    allTagged: 'Toutes les lignes sont déjà horodatées.',
+    confirmDiscard: 'Vous avez des lignes horodatées. Les abandonner et charger de nouvelles paroles ?',
+    editTimeTitle: 'Saisissez un temps au format mm:ss.xx',
+    mute: 'Couper le son',
+    unmute: 'Rétablir le son',
+  },
+  about: {
+    title: 'À propos de Ricsline',
+    intro:
+      'Ricsline est un créateur LRC gratuit qui place la confidentialité au premier plan. Il aide musiciens, amateurs de karaoké et curateurs de playlists à créer des paroles parfaitement synchronisées — sans rien téléverser nulle part.',
+    sections: [
+      {
+        title: 'Qu’est-ce qu’un fichier LRC ?',
+        text: 'Le LRC est le format de paroles synchronisées le plus répandu au monde. C’est du texte brut : chaque ligne de paroles est précédée d’un horodatage comme [01:23.45]. Quand votre lecteur trouve un fichier .lrc à côté de votre MP3, il surligne chaque ligne au moment exact où elle est chantée — l’effet karaoké.',
+      },
+      {
+        title: 'Comment Ricsline fonctionne',
+        text: 'Vous collez vos paroles et lancez votre chanson. À chaque début de ligne, vous touchez — Ricsline enregistre cet instant précis comme l’horodatage de la ligne. Une erreur ? Touchez à nouveau pour écraser, ou décalez tous les horodatages d’un coup avec l’outil de décalage. Quand chaque ligne est horodatée, téléchargez le fichier .lrc et placez-le à côté de votre MP3 avec le même nom.',
+      },
+      {
+        title: 'Privé par conception',
+        text: 'Votre MP3 est décodé et lu entièrement dans votre navigateur. Il n’est jamais téléversé sur nos serveurs — il n’existe même pas de point de téléversement. Nous ne demandons ni comptes, ni e-mails, ni données personnelles. Les seules choses stockées sur votre appareil sont vos préférences de thème et de langue.',
+      },
+      {
+        title: 'Gratuit, en 20 langues',
+        text: 'Ricsline est gratuit pour tous, et tout le site — de la page d’accueil à l’outil de synchronisation — est traduit en 20 langues, pour que chacun crée des paroles synchronisées dans sa propre langue.',
+      },
+    ],
+  },
+  privacy: {
+    title: 'Politique de confidentialité',
+    updated: 'Dernière mise à jour : octobre 2026',
+    intro:
+      'Ricsline est conçu pour être privé par conception. Cette politique explique, en langage simple, ce que nous collectons — et ce que nous ne collectons pas.',
+    sections: [
+      {
+        title: 'Vos fichiers musicaux ne quittent jamais votre appareil',
+        text: 'Quand vous joignez un MP3 au créateur LRC, il est décodé et lu entièrement dans votre navigateur. Il n’est jamais téléversé sur nos serveurs — il n’existe aucun point de téléversement. Nous ne pouvons ni voir, ni entendre, ni stocker vos fichiers audio.',
+      },
+      {
+        title: 'Ni comptes, ni données personnelles',
+        text: 'Ricsline n’a ni inscriptions ni comptes. Nous ne demandons ni votre nom, ni votre e-mail, ni aucune donnée personnelle, et nous n’utilisons pas de cookies de suivi pour vos fichiers.',
+      },
+      {
+        title: 'Ce qui est stocké sur votre appareil',
+        text: 'Seules deux petites préférences sont stockées dans le stockage local de votre navigateur : votre choix de thème (clair/sombre/système) et votre langue. Vous pouvez les effacer à tout moment en effaçant les données du site.',
+      },
+      {
+        title: 'Statistiques anonymes',
+        text: 'Nous pouvons utiliser des statistiques agrégées et respectueuses de la vie privée (comme les pages vues par langue) pour comprendre quelles parties de Ricsline sont utiles. Cela n’inclut jamais vos fichiers, vos paroles ni rien qui vous identifie.',
+      },
+      {
+        title: 'Contact',
+        text: 'Pour toute question sur la confidentialité, écrivez-nous à privacy@ricsline.com.',
+      },
+    ],
+  },
+  terms: {
+    title: 'Conditions d’utilisation',
+    updated: 'Dernière mise à jour : octobre 2026',
+    intro: 'En utilisant Ricsline, vous acceptez ces conditions simples.',
+    sections: [
+      {
+        title: 'Le service',
+        text: 'Ricsline fournit un outil gratuit dans le navigateur pour créer des fichiers de paroles synchronisées (.lrc). Le service est fourni « tel quel », sans garantie d’aucune sorte.',
+      },
+      {
+        title: 'Votre contenu, votre responsabilité',
+        text: 'Les paroles que vous collez et l’audio que vous lisez vous appartiennent ou appartiennent à leurs ayants droit. Vous êtes responsable de disposer des droits d’utilisation. Ricsline n’héberge, ne stocke ni ne distribue vos fichiers.',
+      },
+      {
+        title: 'Usage acceptable',
+        text: 'N’abusez pas du service — aucune tentative de le perturber, de l’aspirer agressivement ou de l’utiliser à des fins illicites.',
+      },
+      {
+        title: 'Modifications',
+        text: 'Nous pouvons mettre à jour ces conditions occasionnellement ; continuer à utiliser Ricsline vaut acceptation de la version en vigueur.',
+      },
+    ],
+  },
+  notFound: {
+    title: 'Perdu dans la musique ?',
+    text: 'Cette page n’existe pas — mais votre prochaine parole synchronisée est à un clic.',
+    button: 'Retour à l’accueil',
+  },
+};
+
+export default dict;

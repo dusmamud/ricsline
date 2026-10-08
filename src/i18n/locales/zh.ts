@@ -1,0 +1,274 @@
+import type { Dict } from './en';
+
+const dict: Dict = {
+  dir: 'ltr' as const,
+  meta: {
+    siteName: 'Ricsline',
+    landingTitle: 'Ricsline — 免费 LRC 制作工具：几分钟搞定同步歌词',
+    landingDescription:
+      'Ricsline 是免费的在线 LRC 制作工具。播放歌曲，听到每句歌词时轻点一下，即可在浏览器中下载精准同步的 .lrc 文件——你的 MP3 绝不离开设备。',
+    makerTitle: 'LRC 制作工具 — Ricsline',
+    makerDescription:
+      '用 Ricsline 同步歌词：听到每句歌词时轻点标记，微调时间轴，然后下载 .lrc 文件。免费、无需注册，MP3 保留在你的设备上。',
+    aboutTitle: '关于 — Ricsline',
+    aboutDescription: '了解 Ricsline 是什么、LRC 同步歌词如何工作，以及为什么你的音乐文件永远不会离开设备。',
+    privacyTitle: '隐私政策 — Ricsline',
+    privacyDescription: 'Ricsline 隐私政策：你的 MP3 文件永远不会被上传，一切都在你的浏览器中完成。',
+    termsTitle: '服务条款 — Ricsline',
+    termsDescription: 'Ricsline 免费 LRC 制作工具的服务条款。',
+  },
+  nav: {
+    maker: 'LRC 制作工具',
+    about: '关于',
+    theme: '主题',
+    themeLight: '浅色',
+    themeDark: '深色',
+    themeSystem: '跟随系统',
+    language: '语言',
+    startFree: '免费开始',
+  },
+  hero: {
+    badge: '免费 · 无需注册 · 100% 私密',
+    titleA: '每一句歌词，',
+    titleB: '都精准卡点。',
+    subtitle:
+      'Ricsline 是免费的 LRC 制作工具。播放歌曲，听到每句歌词时轻点一下，即可在浏览器中下载精准同步的 .lrc 文件。',
+    ctaPrimary: '开始同步——完全免费',
+    ctaSecondary: '了解用法',
+    note: '仅支持 MP3——文件保留在你的设备上，绝不上传',
+    stats: [
+      { value: '20', label: '种语言' },
+      { value: '0', label: '上传——文件保留在本地' },
+      { value: '100%', label: '免费，无需账号' },
+    ],
+  },
+  howItWorks: {
+    eyebrow: '使用方法',
+    title: '三步，从纯文本歌词到同步 LRC',
+    steps: [
+      {
+        title: '添加歌曲和歌词',
+        text: '拖入 MP3，粘贴歌词——每行一句。也可以粘贴已有的 .lrc 文件来修正时间轴。',
+      },
+      {
+        title: '轻点同步',
+        text: '播放歌曲，每当一句歌词开始时轻点大按钮。Ricsline 会精确记录时间，精确到百分之一秒。',
+      },
+      {
+        title: '微调并下载',
+        text: '一键整体平移时间轴，重新标记或编辑任意行，然后下载 .lrc 文件或复制到剪贴板。',
+      },
+    ],
+  },
+  features: {
+    eyebrow: '功能',
+    title: '像专业人士一样同步歌词，所需功能一应俱全',
+    items: [
+      {
+        icon: 'ph:hand-tap',
+        title: '轻点同步引擎',
+        text: '轻点一下，即为当前歌词行打上播放时间戳——也可以直接按空格键。',
+      },
+      {
+        icon: 'ph:sliders-horizontal',
+        title: '整体时间偏移',
+        text: '人声进得稍晚？一键将所有时间戳整体前后平移 ± 秒。',
+      },
+      {
+        icon: 'ph:lock-key',
+        title: '天生 100% 私密',
+        text: 'MP3 仅在本地播放，绝不上传。无需账号，也不追踪你的文件。',
+      },
+      {
+        icon: 'ph:pencil-line',
+        title: '随心编辑',
+        text: '重新标记某一行、手动输入时间，或直接修改歌词文本，完全由你掌控。',
+      },
+      {
+        icon: 'ph:download-simple',
+        title: '一键导出',
+        text: '下载 .lrc 文件、复制文本，或获取 JSON 结构用于你自己的应用。',
+      },
+      {
+        icon: 'ph:translate',
+        title: '20 种语言',
+        text: '整个网站——落地页、工具，所有内容——均已翻译成 20 种语言。',
+      },
+    ],
+  },
+  faq: {
+    eyebrow: '常见问题',
+    title: '常见问题解答',
+    items: [
+      {
+        q: '什么是 LRC 文件？',
+        a: 'LRC 是一种简单的文本格式，将每句歌词与时间戳配对，例如 [01:23.45]。音乐播放器读取这些时间戳，随歌曲高亮每一行歌词——就是你在大多数播放器 App 里看到的卡拉 OK 效果。',
+      },
+      {
+        q: 'Ricsline 真的免费吗？',
+        a: '是的——完全免费，无需账号，没有水印，创建 LRC 文件数量不限。',
+      },
+      {
+        q: '你们会上传我的 MP3 吗？',
+        a: '不会。音频文件直接在你的浏览器中从设备播放，绝不会发送到任何服务器。页面加载后即使断网，也可以继续同步。',
+      },
+      {
+        q: '哪些音乐播放器支持 LRC 文件？',
+        a: '大多数主流播放器都支持 LRC——只需把 .lrc 文件和 MP3 放在同一目录并使用相同文件名。桌面播放器、安卓播放器和许多车载音响都能自动识别。',
+      },
+      {
+        q: '可以修正已有 LRC 文件的时间轴吗？',
+        a: '可以。把完整的 .lrc 内容粘贴到歌词框中，Ricsline 会自动识别时间标签，然后重新标记各行，或用偏移工具整体平移时间。',
+      },
+      {
+        q: '需要注册账号吗？',
+        a: '不需要。Ricsline 根本没有账号系统——打开制作工具即可直接开始同步。',
+      },
+    ],
+  },
+  cta: {
+    title: '准备好同步你的第一首歌了吗？',
+    subtitle: '粘贴歌词，拖入 MP3，跟着节奏轻点。两分钟后，你的第一份同步 LRC 就完成了。',
+    button: '打开 LRC 制作工具',
+  },
+  footer: {
+    tagline: '免费 LRC 制作工具，打造精准同步歌词。',
+    product: '产品',
+    resources: '资源',
+    legal: '法律',
+    rights: '版权所有。',
+    madeWith: '为全世界的音乐爱好者而造。',
+  },
+  maker: {
+    backToForm: '返回表单',
+    linesTagged: '{done}/{total} 行已标记',
+    formTitle: '新建同步歌词',
+    formSubtitle: '填写歌曲信息，粘贴歌词，并附上要同步的 MP3。',
+    labelTitle: '标题',
+    labelArtist: '歌手',
+    labelAuthor: '作者（你的名字）',
+    titlePlaceholder: '歌曲标题',
+    artistPlaceholder: '歌手名',
+    authorPlaceholder: '你的名字',
+    lyricsLabel: '歌词',
+    lyricsHint: '每句歌词另起一行——也可以粘贴整个 .lrc 文件来编辑其时间标签。',
+    lyricsPlaceholder: '粘贴歌词，每行一句……',
+    dropTitle: '把 MP3 拖到这里',
+    dropTitleEdit: '把 MP3 拖到这里（可选）',
+    dropSub: '仅支持 MP3——文件保留在你的设备上，绝不上传',
+    dropSubEdit: '仅支持 MP3——编辑已有 LRC 时可选，文件保留在你的设备上',
+    chooseFile: '选择 MP3 文件',
+    replaceFile: '更换 MP3 文件',
+    removeAudio: '移除音频',
+    startSyncing: '开始同步',
+    tapHint:
+      '听到每句歌词开始时，轻点该行的时间标签；再点一次可覆盖，或点击已标记的行让播放器跳回重听。悬浮按钮总是为下一句未标记的歌词打时间。小贴士：按空格键。',
+    offsetLabel: '整体偏移时间标签',
+    seconds: '秒',
+    apply: '应用',
+    offsetHint: '正数让歌词延后（歌曲的人声进得较晚），负数让歌词提前。',
+    offsetApplied: '已将 {n} 个标签平移 {s}。',
+    linesNeedTag: '还有 {n} 行需要标记时间。',
+    saveLrc: '保存 LRC',
+    saved: '已保存',
+    downloadLrc: '下载 .lrc',
+    copyContent: '复制内容',
+    copyJson: '复制 JSON 结构',
+    tagNext: '用当前时间为下一行打时间标签',
+    editLine: '编辑行',
+    needTwoLines: '至少需要 2 行在 00:00.00 之后有时间标签——这还不是一份同步 LRC。',
+    needTitle: '请填写标题后再保存 LRC。',
+    needArtist: '请填写歌手后再保存 LRC。',
+    needAudio: '请附上 MP3 后再开始同步。',
+    savedLocal: 'LRC 已保存在此浏览器中。',
+    copied: 'LRC 内容已复制到剪贴板。',
+    jsonCopied: 'LRC 的 JSON 结构已复制到剪贴板。',
+    cantTagAfter: '无法标记下一行——它会排在已标记的后续行之后。',
+    cantSetTime: '无法设置该时间——后面的行已经标记了更早的时间。',
+    allTagged: '所有行都已标记。',
+    confirmDiscard: '你已标记了一些行。确定要丢弃并载入新歌词吗？',
+    editTimeTitle: '输入时间，格式 mm:ss.xx',
+    mute: '静音',
+    unmute: '取消静音',
+  },
+  about: {
+    title: '关于 Ricsline',
+    intro:
+      'Ricsline 是免费、注重隐私的 LRC 制作工具。它帮助音乐人、卡拉 OK 爱好者和歌单整理者为歌曲制作精准同步的歌词——无需上传任何内容到任何地方。',
+    sections: [
+      {
+        title: '什么是 LRC 文件？',
+        text: 'LRC 是全球支持最广泛的同步歌词格式。它是纯文本：每句歌词前带有一个时间戳，如 [01:23.45]。当音乐播放器在 MP3 旁边发现同名的 .lrc 文件，就会在唱到每一句时高亮显示——即卡拉 OK 效果。',
+      },
+      {
+        title: 'Ricsline 如何工作',
+        text: '粘贴歌词并播放歌曲。每当一句歌词开始，你轻点一下——Ricsline 就把这一刻的播放时间记录为该行的时间戳。点错了？再点一次覆盖，或用偏移工具一次性平移所有时间戳。所有行标记完成后，下载 .lrc 文件，与 MP3 同名放在一起即可。',
+      },
+      {
+        title: '天生私密',
+        text: '你的 MP3 完全在浏览器内解码和播放，绝不会上传到我们的服务器——我们甚至没有上传接口。我们不要求注册账号，不索取邮箱或个人信息。设备上只保存你的主题和语言偏好。',
+      },
+      {
+        title: '免费，支持 20 种语言',
+        text: 'Ricsline 对所有人免费，整个网站——从落地页到同步工具——都已翻译成 20 种语言，任何人都可以用自己的语言制作同步歌词。',
+      },
+    ],
+  },
+  privacy: {
+    title: '隐私政策',
+    updated: '最后更新：2026 年 10 月',
+    intro: 'Ricsline 以私密为设计初衷。本政策用通俗的语言说明我们收集什么、不收集什么。',
+    sections: [
+      {
+        title: '你的音乐文件永远不会离开设备',
+        text: '在 LRC 制作工具中添加 MP3 后，它完全在你的浏览器内解码和播放，绝不会上传到我们的服务器——根本不存在上传接口。我们看不到、听不到，也无法存储你的音频文件。',
+      },
+      {
+        title: '无账号，无个人数据',
+        text: 'Ricsline 没有注册和账号系统。我们不索取你的姓名、邮箱或任何个人信息，也不会为你的文件设置追踪 Cookie。',
+      },
+      {
+        title: '设备上存储的内容',
+        text: '浏览器的本地存储中只保存两个小偏好：主题选择（浅色/深色/跟随系统）和语言选择。你可以随时清除浏览器站点数据来删除它们。',
+      },
+      {
+        title: '匿名统计',
+        text: '我们可能使用注重隐私的汇总统计（如各语言的页面浏览量）来了解 Ricsline 哪些功能有用。其中绝不包含你的文件、歌词或任何可识别你身份的信息。',
+      },
+      {
+        title: '联系我们',
+        text: '如有任何隐私问题，请联系 privacy@ricsline.com。',
+      },
+    ],
+  },
+  terms: {
+    title: '服务条款',
+    updated: '最后更新：2026 年 10 月',
+    intro: '使用 Ricsline 即表示你同意以下简单条款。',
+    sections: [
+      {
+        title: '服务内容',
+        text: 'Ricsline 提供免费的、基于浏览器的同步歌词（.lrc）文件制作工具。服务按“现状”提供，不作任何形式的保证。',
+      },
+      {
+        title: '你的内容，你负责',
+        text: '你粘贴的歌词和播放的音频属于你或其各自的权利人，你有责任确保拥有使用它们的权利。Ricsline 不托管、不存储、不分发你的文件。',
+      },
+      {
+        title: '合理使用',
+        text: '请勿滥用本服务——不得试图破坏服务、恶意抓取，或将其用于任何非法用途。',
+      },
+      {
+        title: '条款变更',
+        text: '我们可能偶尔更新这些条款；继续使用 Ricsline 即表示你接受当前版本。',
+      },
+    ],
+  },
+  notFound: {
+    title: '在音乐中迷路了？',
+    text: '这个页面不存在——但你的下一份同步歌词只需一次点击。',
+    button: '返回首页',
+  },
+};
+
+export default dict;

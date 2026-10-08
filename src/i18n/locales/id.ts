@@ -1,0 +1,275 @@
+import type { Dict } from './en';
+
+const dict: Dict = {
+  dir: 'ltr' as const,
+  meta: {
+    siteName: 'Ricsline',
+    landingTitle: 'Ricsline — Pembuat LRC Gratis: Buat Lirik Tersinkron dalam Hitungan Menit',
+    landingDescription:
+      'Pembuat LRC online gratis: putar lagu Anda, ketuk setiap baris lirik saat mendengarnya, unduh file .lrc dengan timing sempurna. MP3 tidak pernah meninggalkan perangkat.',
+    makerTitle: 'Pembuat LRC — Ricsline',
+    makerDescription:
+      'Sinkronkan lirik dengan Ricsline: ketuk setiap baris saat Anda mendengarnya, sempurnakan timing, lalu unduh file .lrc Anda. Gratis, tanpa daftar, MP3 tetap di perangkat Anda.',
+    aboutTitle: 'Tentang — Ricsline',
+    aboutDescription: 'Apa itu Ricsline, cara kerja lirik tersinkron LRC, dan mengapa file musik Anda tidak pernah meninggalkan perangkat.',
+    privacyTitle: 'Kebijakan Privasi — Ricsline',
+    privacyDescription: 'Kebijakan privasi Ricsline: file MP3 Anda tidak pernah diunggah. Semua terjadi di browser Anda.',
+    termsTitle: 'Syarat Layanan — Ricsline',
+    termsDescription: 'Syarat layanan Ricsline untuk alat pembuat LRC gratis.',
+  },
+  nav: {
+    maker: 'Pembuat LRC',
+    about: 'Tentang',
+    theme: 'Tema',
+    themeLight: 'Terang',
+    themeDark: 'Gelap',
+    themeSystem: 'Sistem',
+    language: 'Bahasa',
+    startFree: 'Mulai gratis',
+  },
+  hero: {
+    badge: 'Gratis · Tanpa daftar · 100% privat',
+    titleA: 'Setiap baris,',
+    titleB: 'tepat waktu.',
+    subtitle:
+      'Ricsline adalah pembuat LRC gratis. Putar lagu Anda, ketuk setiap baris lirik saat Anda mendengarnya, dan unduh file .lrc dengan timing sempurna — langsung di browser Anda.',
+    ctaPrimary: 'Mulai sinkronisasi — gratis',
+    ctaSecondary: 'Cara kerja',
+    note: 'Hanya MP3 — tetap di perangkat Anda, tidak pernah diunggah',
+    stats: [
+      { value: '20', label: 'Bahasa' },
+      { value: '0', label: 'Unggahan — file tetap lokal' },
+      { value: '100%', label: 'Gratis, tanpa akun' },
+    ],
+  },
+  howItWorks: {
+    eyebrow: 'Cara kerja',
+    title: 'Dari lirik biasa menjadi LRC tersinkron dalam 3 langkah',
+    steps: [
+      {
+        title: 'Tambahkan lagu & lirik Anda',
+        text: 'Seret masuk file MP3 dan tempel lirik Anda — satu baris per baris. Atau tempel file .lrc yang sudah ada untuk memperbaiki timing-nya.',
+      },
+      {
+        title: 'Ketuk untuk sinkronisasi',
+        text: 'Putar lagu dan ketuk tombol besar setiap kali baris dimulai. Ricsline mencatat waktu yang tepat — hingga seperseratus detik.',
+      },
+      {
+        title: 'Sempurnakan & unduh',
+        text: 'Geser semua timing sekaligus, ketuk ulang atau edit baris mana pun, lalu unduh file .lrc Anda atau salin ke clipboard.',
+      },
+    ],
+  },
+  features: {
+    eyebrow: 'Fitur',
+    title: 'Semua yang Anda butuhkan untuk sinkronisasi lirik seperti pro',
+    items: [
+      {
+        icon: 'ph:hand-tap',
+        title: 'Mesin ketuk-untuk-sinkron',
+        text: 'Tandai setiap baris lirik dengan waktu pemutaran saat ini dalam satu ketukan — atau cukup tekan spasi.',
+      },
+      {
+        icon: 'ph:sliders-horizontal',
+        title: 'Geser semua timing',
+        text: 'Vokal mulai agak terlambat? Geser semua penanda waktu ± detik dalam sekali klik.',
+      },
+      {
+        icon: 'ph:lock-key',
+        title: '100% privat sejak awal',
+        text: 'MP3 Anda diputar secara lokal dan tidak pernah diunggah. Tanpa akun, tanpa pelacakan file Anda.',
+      },
+      {
+        icon: 'ph:pencil-line',
+        title: 'Edit apa saja',
+        text: 'Ketuk ulang sebuah baris, ketik waktu secara manual, atau perbaiki teks lirik langsung. Kendali penuh, selalu.',
+      },
+      {
+        icon: 'ph:download-simple',
+        title: 'Ekspor sekali klik',
+        text: 'Unduh file .lrc, salin teksnya, atau ambil struktur JSON untuk aplikasi Anda sendiri.',
+      },
+      {
+        icon: 'ph:translate',
+        title: '20 bahasa',
+        text: 'Seluruh situs — halaman utama, alat, semuanya — diterjemahkan ke 20 bahasa.',
+      },
+    ],
+  },
+  faq: {
+    eyebrow: 'FAQ',
+    title: 'Pertanyaan yang sering diajukan',
+    items: [
+      {
+        q: 'Apa itu file LRC?',
+        a: 'LRC adalah format teks sederhana yang memasangkan setiap baris lirik dengan penanda waktu, seperti [01:23.45]. Pemutar musik membaca penanda ini untuk menyorot setiap baris selaras dengan lagu — efek karaoke yang Anda lihat di sebagian besar aplikasi pemutar.',
+      },
+      {
+        q: 'Apakah Ricsline benar-benar gratis?',
+        a: 'Ya — sepenuhnya gratis, tanpa akun, tanpa watermark, tanpa batas jumlah file LRC yang Anda buat.',
+      },
+      {
+        q: 'Apakah MP3 saya diunggah?',
+        a: 'Tidak. File audio Anda diputar langsung dari perangkat di browser Anda dan tidak pernah dikirim ke server mana pun. Anda bahkan bisa memutus internet setelah halaman dimuat dan tetap melanjutkan sinkronisasi.',
+      },
+      {
+        q: 'Pemutar musik apa yang mendukung file LRC?',
+        a: 'Sebagian besar pemutar populer mendukung LRC — cukup letakkan file .lrc di samping MP3 Anda dengan nama file yang sama. Pemutar desktop, pemutar Android, dan banyak head unit mobil mengenalinya secara otomatis.',
+      },
+      {
+        q: 'Bisakah saya memperbaiki timing file LRC yang sudah ada?',
+        a: 'Ya. Tempel seluruh isi .lrc ke kotak lirik dan Ricsline akan mendeteksi penanda waktunya. Lalu ketuk ulang baris atau geser semua timing dengan alat offset.',
+      },
+      {
+        q: 'Apakah saya perlu membuat akun?',
+        a: 'Tidak. Tidak ada akun sama sekali di Ricsline — buka pembuatnya dan langsung mulai sinkronisasi.',
+      },
+    ],
+  },
+  cta: {
+    title: 'Siap sinkronkan lagu pertama Anda?',
+    subtitle: 'Tempel lirik Anda, seret MP3 Anda, dan ketuk mengikuti lagu. LRC tersinkron pertama Anda hanya dua menit lagi.',
+    button: 'Buka Pembuat LRC',
+  },
+  footer: {
+    tagline: 'Pembuat LRC gratis untuk lirik yang tersinkron sempurna.',
+    product: 'Produk',
+    resources: 'Sumber daya',
+    legal: 'Legal',
+    rights: 'Hak cipta dilindungi.',
+    madeWith: 'Dibuat untuk pecinta musik di mana pun.',
+  },
+  maker: {
+    backToForm: 'Kembali ke formulir',
+    linesTagged: '{done}/{total} baris ditandai',
+    formTitle: 'Lirik tersinkron baru',
+    formSubtitle: 'Tambahkan detail lagu Anda, tempel liriknya, dan lampirkan MP3 yang ingin disinkronkan.',
+    labelTitle: 'Judul',
+    labelArtist: 'Artis',
+    labelAuthor: 'Penulis (nama Anda)',
+    titlePlaceholder: 'Judul lagu',
+    artistPlaceholder: 'Nama artis',
+    authorPlaceholder: 'Nama Anda',
+    lyricsLabel: 'Lirik lagu',
+    lyricsHint: 'Mulai baris baru untuk setiap baris lirik — atau tempel seluruh file .lrc untuk mengedit penanda waktunya.',
+    lyricsPlaceholder: 'Tempel lirik, satu baris per baris...',
+    dropTitle: 'Seret & letakkan MP3 di sini',
+    dropTitleEdit: 'Seret & letakkan MP3 di sini (opsional)',
+    dropSub: 'Hanya MP3 — tetap di perangkat Anda, tidak pernah diunggah',
+    dropSubEdit: 'Hanya MP3 — opsional saat mengedit LRC yang sudah ada, tetap di perangkat Anda',
+    chooseFile: 'Pilih file MP3',
+    replaceFile: 'Ganti file MP3',
+    removeAudio: 'Hapus audio',
+    startSyncing: 'Mulai Sinkronisasi',
+    tapHint:
+      'Ketuk penanda waktu setiap baris saat Anda mendengar awalnya. Ketuk lagi untuk menimpanya, atau klik baris yang sudah ditandai untuk memundurkan pemutar dan mendengarkannya lagi. Tombol melayang selalu menandai baris berikutnya yang belum ditandai. Tips: tekan Spasi.',
+    offsetLabel: 'Geser semua penanda',
+    seconds: 'detik',
+    apply: 'Terapkan',
+    offsetHint: 'Nilai positif menggeser lirik lebih lambat (vokal lagu Anda mulai lebih lambat), negatif menggesernya lebih cepat.',
+    offsetApplied: 'Menggeser {n} penanda sebesar {s}.',
+    linesNeedTag: '{n} baris masih perlu penanda waktu.',
+    saveLrc: 'Simpan LRC',
+    saved: 'Tersimpan',
+    downloadLrc: 'Unduh .lrc',
+    copyContent: 'Salin konten',
+    copyJson: 'Salin struktur JSON',
+    tagNext: 'Tandai baris berikutnya dengan waktu saat ini',
+    editLine: 'Edit baris',
+    needTwoLines: 'Setidaknya 2 baris perlu penanda waktu setelah 00:00.00 — ini belum LRC tersinkron.',
+    needTitle: 'Tambahkan judul untuk menyimpan LRC ini.',
+    needArtist: 'Tambahkan artis untuk menyimpan LRC ini.',
+    needAudio: 'Lampirkan MP3 untuk mulai sinkronisasi.',
+    savedLocal: 'LRC tersimpan di browser ini.',
+    copied: 'Konten LRC disalin ke clipboard.',
+    jsonCopied: 'Struktur JSON LRC disalin ke clipboard.',
+    cantTagAfter: 'Tidak dapat menandai baris berikutnya — posisinya akan setelah baris berikutnya yang sudah ditandai.',
+    cantSetTime: 'Tidak dapat mengatur waktu itu — baris berikutnya sudah ditandai lebih awal darinya.',
+    allTagged: 'Semua baris sudah ditandai.',
+    confirmDiscard: 'Anda memiliki baris yang ditandai. Buang dan muat lirik baru?',
+    editTimeTitle: 'Ketik waktu sebagai mm:ss.xx',
+    mute: 'Bisukan',
+    unmute: 'Bunyikan',
+  },
+  about: {
+    title: 'Tentang Ricsline',
+    intro:
+      'Ricsline adalah pembuat LRC gratis yang mengutamakan privasi. Ini membantu musisi, pecinta karaoke, dan kurator playlist membuat lirik yang tersinkron sempurna untuk lagu mereka — tanpa mengunggah apa pun, ke mana pun.',
+    sections: [
+      {
+        title: 'Apa itu file LRC?',
+        text: 'LRC adalah format lirik tersinkron yang paling banyak didukung di dunia. Ini teks biasa: setiap baris lirik diawali penanda waktu seperti [01:23.45]. Saat pemutar musik Anda melihat file .lrc yang cocok di samping MP3 Anda, ia menyorot setiap baris tepat saat dinyanyikan — efek karaoke.',
+      },
+      {
+        title: 'Cara kerja Ricsline',
+        text: 'Anda menempel lirik dan memutar lagu Anda. Setiap kali sebuah baris dimulai, Anda mengetuk — Ricsline mencatat momen pemutaran yang tepat itu sebagai penanda waktu baris tersebut. Salah ketuk? Ketuk lagi untuk menimpa, atau geser semua penanda waktu sekaligus dengan alat offset. Saat setiap baris ditandai, unduh file .lrc dan letakkan di samping MP3 Anda dengan nama file yang sama.',
+      },
+      {
+        title: 'Privat sejak awal',
+        text: 'MP3 Anda di-decode dan diputar seluruhnya di dalam browser Anda. Tidak pernah diunggah ke server kami — bahkan tidak ada endpoint unggahan. Kami tidak meminta akun, email, atau data pribadi. Satu-satunya yang tersimpan di perangkat Anda adalah preferensi tema dan bahasa.',
+      },
+      {
+        title: 'Gratis, dalam 20 bahasa',
+        text: 'Ricsline gratis untuk semua orang, dan seluruh situs — dari halaman utama hingga alat sinkronisasi — diterjemahkan ke 20 bahasa, sehingga siapa pun dapat membuat lirik tersinkron dalam bahasanya sendiri.',
+      },
+    ],
+  },
+  privacy: {
+    title: 'Kebijakan Privasi',
+    updated: 'Terakhir diperbarui: Oktober 2026',
+    intro:
+      'Ricsline dibangun privat sejak awal. Kebijakan ini menjelaskan, dengan bahasa sederhana, apa yang kami kumpulkan dan tidak kumpulkan.',
+    sections: [
+      {
+        title: 'File musik Anda tidak pernah meninggalkan perangkat',
+        text: 'Saat Anda melampirkan MP3 ke pembuat LRC, file tersebut di-decode dan diputar seluruhnya di dalam browser Anda. Tidak pernah diunggah ke server kami — bahkan tidak ada endpoint unggahan sama sekali. Kami tidak dapat melihat, mendengar, atau menyimpan file audio Anda.',
+      },
+      {
+        title: 'Tanpa akun, tanpa data pribadi',
+        text: 'Ricsline tidak memiliki pendaftaran dan akun. Kami tidak meminta nama, email, atau detail pribadi apa pun, dan kami tidak memasang cookie pelacakan untuk file Anda.',
+      },
+      {
+        title: 'Apa yang tersimpan di perangkat Anda',
+        text: 'Hanya dua preferensi kecil yang tersimpan di penyimpanan lokal browser Anda: pilihan tema (terang/gelap/sistem) dan pilihan bahasa. Anda dapat menghapusnya kapan saja dengan menghapus data situs di browser.',
+      },
+      {
+        title: 'Analitik anonim',
+        text: 'Kami dapat menggunakan analitik agregat yang ramah privasi (seperti tampilan halaman per bahasa) untuk memahami bagian Ricsline mana yang bermanfaat. Ini tidak pernah mencakup file, lirik, atau apa pun yang mengidentifikasi Anda.',
+      },
+      {
+        title: 'Kontak',
+        text: 'Jika Anda memiliki pertanyaan privasi, hubungi kami di privacy@ricsline.com.',
+      },
+    ],
+  },
+  terms: {
+    title: 'Syarat Layanan',
+    updated: 'Terakhir diperbarui: Oktober 2026',
+    intro: 'Dengan menggunakan Ricsline, Anda menyetujui syarat sederhana ini.',
+    sections: [
+      {
+        title: 'Layanan',
+        text: 'Ricsline menyediakan alat berbasis browser gratis untuk membuat file lirik tersinkron (.lrc). Layanan ini disediakan "apa adanya", tanpa jaminan apa pun.',
+      },
+      {
+        title: 'Konten Anda, tanggung jawab Anda',
+        text: 'Lirik yang Anda tempel dan audio yang Anda putar milik Anda atau pemegang hak masing-masing. Anda bertanggung jawab memiliki hak untuk menggunakannya. Ricsline tidak meng-host, menyimpan, atau mendistribusikan file Anda.',
+      },
+      {
+        title: 'Penggunaan yang dapat diterima',
+        text: 'Jangan menyalahgunakan layanan — tidak ada upaya mengganggu, scraping agresif, atau menggunakannya untuk hal yang melanggar hukum.',
+      },
+      {
+        title: 'Perubahan',
+        text: 'Kami dapat memperbarui syarat ini sesekali; terus menggunakan Ricsline berarti Anda menerima versi saat ini.',
+      },
+    ],
+  },
+  notFound: {
+    title: 'Tersesat dalam musik?',
+    text: 'Halaman ini tidak ada — tetapi lirik tersinkron berikutnya hanya sekali klik.',
+    button: 'Kembali ke beranda',
+  },
+};
+
+export default dict;

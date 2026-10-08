@@ -1,0 +1,63 @@
+---
+import { Icon } from 'astro-icon/components';
+import { locales, localeNames, localizedPath, type Locale } from '../i18n/index';
+import type { Dict } from '../i18n/dicts';
+
+interface Props {
+  locale: Locale;
+  path: string;
+  dict: Dict;
+}
+const { locale, path, dict } = Astro.props;
+---
+<div class="relative" data-lang-root>
+  <button
+    type="button"
+    data-lang-btn
+    aria-label={dict.nav.language}
+    title={dict.nav.language}
+    class="inline-flex h-10 items-center gap-1.5 rounded-xl border border-graphite-200 px-3 text-sm font-medium text-graphite-600 transition hover:border-brand-400 hover:text-brand-600 dark:border-graphite-700 dark:text-graphite-300 dark:hover:border-brand-400 dark:hover:text-brand-300"
+  >
+    <Icon name="ph:globe" class="h-5 w-5" />
+    <span class="hidden sm:inline">{localeNames[locale]}</span>
+    <Icon name="ph:caret-down" class="h-3.5 w-3.5 opacity-60" />
+  </button>
+  <div
+    data-lang-list
+    class="absolute end-0 z-50 mt-2 hidden max-h-80 w-52 overflow-y-auto rounded-xl border border-graphite-200 bg-white py-1 shadow-xl dark:border-graphite-700 dark:bg-graphite-900"
+  >
+    {locales.map((l) => (
+      <a
+        href={localizedPath(l, path)}
+        hreflang={l}
+        class:list={[
+          'flex items-center justify-between px-4 py-2 text-sm transition hover:bg-graphite-100 dark:hover:bg-graphite-800',
+          l === locale
+            ? 'font-semibold text-brand-600 dark:text-brand-300'
+            : 'text-graphite-700 dark:text-graphite-200',
+        ]}
+      >
+        <span>{localeNames[l]}</span>
+        {l === locale && <Icon name="ph:check" class="h-4 w-4" />}
+      </a>
+    ))}
+  </div>
+</div>
+
+<script>
+  function initLang() {
+    document.querySelectorAll('[data-lang-root]').forEach((root) => {
+      const btn = root.querySelector('[data-lang-btn]');
+      const list = root.querySelector('[data-lang-list]');
+      btn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        list?.classList.toggle('hidden');
+      });
+    });
+    document.addEventListener('click', () => {
+      document.querySelectorAll('[data-lang-list]').forEach((l) => l.classList.add('hidden'));
+    });
+  }
+  document.addEventListener('astro:page-load', initLang);
+  initLang();
+</script>
