@@ -45,7 +45,7 @@ dirty = sh(['git', 'status', '--porcelain'])
 if dirty:
     print('working tree dirty, skipping')
     sys.exit(0)
-sh(['git', 'fetch', 'origin', 'main'])
+sh(['git', 'fetch', 'origin'])
 sh(['git', 'reset', '--hard', 'origin/main'])
 
 # build
