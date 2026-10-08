@@ -87,7 +87,7 @@ const bars = Array.from({ length: 32 }, (_, i) => ({
           class="animate-float absolute -top-10 end-2 z-10 hidden w-36 rotate-6 rounded-3xl border-4 border-white object-cover shadow-2xl shadow-graphite-950/30 sm:block lg:w-44 dark:border-graphite-800"
           style="animation-delay: 1.4s"
         />
-        <div class="animate-float rounded-3xl border border-graphite-200 bg-white p-6 shadow-2xl shadow-brand-500/10 dark:border-graphite-700 dark:bg-graphite-900">
+        <div class="animate-float min-w-0 rounded-3xl border border-graphite-200 bg-white p-6 shadow-2xl shadow-brand-500/10 dark:border-graphite-700 dark:bg-graphite-900">
           <div class="flex items-center gap-4">
             <span class="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-brand-500 to-cyan-500 text-white shadow-lg shadow-brand-500/30">
               <Icon name="ph:play-fill" class="h-5 w-5" />
@@ -115,7 +115,7 @@ const bars = Array.from({ length: 32 }, (_, i) => ({
               <span class="text-sm text-graphite-400 dark:text-graphite-500">One tap per line…</span>
             </div>
           </div>
-          <div class="mt-5 flex h-14 items-center justify-center gap-1.5 overflow-hidden" aria-hidden="true">
+          <div class="mt-5 flex h-14 min-w-0 items-center justify-center gap-1.5 overflow-hidden" aria-hidden="true">
             {bars.map((b) => (
               <span
                 class="wave-bar w-1.5 rounded-full bg-gradient-to-t from-brand-600 to-cyan-400"
