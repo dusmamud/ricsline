@@ -597,19 +597,22 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
         </h1>
 
         {draftAvailable && (
-          <div className="mt-6 flex flex-wrap items-center gap-3 rounded-xl border border-brand-300 bg-brand-50 px-4 py-3 dark:border-brand-800 dark:bg-brand-950/40">
-            <p className="flex-1 text-sm text-gray-700 dark:text-gray-200">{m.draftFound}</p>
+          <div className="mt-6 flex flex-wrap items-center gap-3 rounded-xl border border-brand-200 bg-brand-50 px-4 py-3 dark:border-brand-400/25 dark:bg-graphite-800 dark:shadow-[0_0_28px_-10px_rgba(14,165,233,0.5)]">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-500/15 text-brand-600 dark:bg-brand-500/20 dark:text-brand-300">
+              <ArrowCounterClockwise className="h-5 w-5" />
+            </span>
+            <p className="min-w-0 flex-1 text-sm font-medium text-gray-700 dark:text-gray-100">{m.draftFound}</p>
             <button
               type="button"
               onClick={resumeDraft}
-              className="rounded-lg bg-brand-500 px-4 py-2 text-xs font-semibold text-white transition hover:bg-brand-600"
+              className="rounded-lg bg-brand-500 px-4 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-brand-600"
             >
               {m.resumeDraft}
             </button>
             <button
               type="button"
               onClick={discardDraft}
-              className="rounded-lg border border-gray-300 px-4 py-2 text-xs font-medium text-gray-600 transition hover:border-red-400 hover:text-red-600 dark:border-graphite-700 dark:text-gray-300"
+              className="rounded-lg border border-gray-300 bg-white/50 px-4 py-2 text-xs font-medium text-gray-600 transition hover:border-red-400 hover:text-red-600 dark:border-graphite-600 dark:bg-transparent dark:text-gray-300 dark:hover:border-red-500 dark:hover:text-red-400"
             >
               {m.discardDraft}
             </button>
