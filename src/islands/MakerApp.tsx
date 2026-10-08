@@ -11,7 +11,6 @@ import {
   BracketsCurly,
   FloppyDisk,
   ArrowLeft,
-  UploadSimple,
   CloudArrowUp,
   TagSimple,
   Plus,
@@ -220,7 +219,8 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
   };
 
   // ---- export ----
-  const taggedCount = lines.filter((l) => l.time != null && l.time > 0).length;
+  // NB: a line tagged at exactly 0.00s still counts as tagged (time != null)
+  const taggedCount = lines.filter((l) => l.time != null).length;
   const totalCount = lines.length;
   const untaggedCount = totalCount - taggedCount;
   const allTagged = totalCount > 0 && taggedCount === totalCount;
