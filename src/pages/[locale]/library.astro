@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LibraryApp from '../../islands/LibraryApp';
+import { locales, link, type Locale } from '../../i18n/index';
+import { getDict } from '../../i18n/dicts';
+
+export async function getStaticPaths() {
+  return locales.map((locale) => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params as { locale: Locale };
+const dict = getDict(locale);
+---
+<BaseLayout
+  locale={locale}
+  dict={dict}
+  title={`${dict.library.title} — Ricsline`}
+  description={dict.library.subtitle}
+  path="/library"
+>
+  <section class="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:py-14">
+    <LibraryApp dict={dict} locale={locale} makerUrl={link(locale, '/maker')} client:only="react" />
+  </section>
+</BaseLayout>

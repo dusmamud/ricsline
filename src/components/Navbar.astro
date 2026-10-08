@@ -14,6 +14,7 @@ interface Props {
 const { locale, path, dict } = Astro.props;
 const links = [
   { href: link(locale, '/maker'), label: dict.nav.maker, icon: 'ph:waveform' },
+  { href: link(locale, '/library'), label: dict.nav.library, icon: 'ph:books' },
   { href: link(locale, '/about'), label: dict.nav.about, icon: 'ph:info' },
 ];
 ---

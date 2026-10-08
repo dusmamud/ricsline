@@ -95,6 +95,29 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
     return () => cancelAnimationFrame(raf);
   }, [phase]);
 
+  // ---- load a saved entry from My Library ----
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem('ricsline-load-entry');
+      if (!raw) return;
+      localStorage.removeItem('ricsline-load-entry');
+      const entry = JSON.parse(raw) as { title?: string; artist?: string; author?: string; lrc?: string };
+      if (!entry || typeof entry.lrc !== 'string') return;
+      const { lines: parsed, meta } = parseLyrics(entry.lrc);
+      if (parsed.length === 0) return;
+      setTitle(entry.title || meta.title || '');
+      setArtist(entry.artist || meta.artist || '');
+      setAuthor(entry.author || meta.author || '');
+      setLines(parsed.map((l) => ({ ...l, id: nid() })));
+      setCurrentTime(0);
+      setSavedFlag(true);
+      setPhase('sync');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch {
+      /* ignore */
+    }
+  }, []);
+
   // ---- file handling ----
   const acceptFile = (f: File | undefined | null) => {
     if (!f) return;
@@ -563,6 +586,21 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
           aria-label="Volume"
         />
       </div>
+
+      {/* no-audio notice (e.g. opened from My Library) */}
+      {!audioUrl && (
+        <div className="mt-3 flex flex-wrap items-center gap-3 rounded-xl border border-dashed border-gray-300 bg-gray-50 px-4 py-3 dark:border-graphite-700 dark:bg-graphite-800/50">
+          <p className="text-sm text-gray-600 dark:text-gray-300">{m.needAudioForPlayback}</p>
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            className="inline-flex items-center gap-1.5 rounded-lg bg-brand-500 px-4 py-2 text-xs font-semibold text-white transition hover:bg-brand-600"
+          >
+            <CloudArrowUp className="h-4 w-4" />
+            {m.chooseFile}
+          </button>
+        </div>
+      )}
 
       {/* instructions */}
       <p className="mt-4 text-sm leading-relaxed text-gray-600 dark:text-gray-400">{m.tapHint}</p>
