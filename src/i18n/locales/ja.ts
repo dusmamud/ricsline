@@ -202,6 +202,10 @@ const dict: Dict = {
     moveUp: '上へ',
     moveDown: '下へ',
     deleteLine: '削除',
+    copyPlain: '歌詞をコピー',
+    preview: 'プレビュー',
+    closePreview: 'プレビューを閉じる',
+    emptyLinesWarn: '空行 {n} 行',
     savedLocal: 'LRCをこのブラウザに保存しました。',
     copied: 'LRCの内容をクリップボードにコピーしました。',
     jsonCopied: 'LRCのJSON構造をクリップボードにコピーしました。',
@@ -227,7 +231,10 @@ const dict: Dict = {
     copy: 'コピー',
     copied: 'クリップボードにコピーしました',
     delete: '削除',
-    deleted: '削除しました',
+    deleted: '削除しました',    confirmDelete: '保存した歌詞を削除しますか？元に戻せません。',
+    searchPlaceholder: 'タイトル・アーティストで検索...',
+    noResults: '該当な歌詞がありません。',
+
   },
   about: {
     title: 'Ricslineについて',

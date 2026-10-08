@@ -202,6 +202,10 @@ const dict: Dict = {
     moveUp: 'Yukarı',
     moveDown: 'Aşağı',
     deleteLine: 'Sil',
+    copyPlain: 'Şarkı sözlerini kopyala',
+    preview: 'Önizleme',
+    closePreview: 'Önizlemeyi kapat',
+    emptyLinesWarn: '{n} boş satır',
     savedLocal: 'LRC bu tarayıcıya kaydedildi.',
     copied: 'LRC içeriği panoya kopyalandı.',
     jsonCopied: 'LRC JSON yapısı panoya kopyalandı.',
@@ -227,7 +231,10 @@ const dict: Dict = {
     copy: 'Kopyala',
     copied: 'Panoya kopyalandı',
     delete: 'Sil',
-    deleted: 'Silindi',
+    deleted: 'Silindi',    confirmDelete: 'Bu kayıtlı şarkıyı sil? Geri alınamaz.',
+    searchPlaceholder: 'Başlık veya sanatçıya göre ara...',
+    noResults: 'Eşleşen şarkı bulunamadı.',
+
   },
   about: {
     title: 'Ricsline Hakkında',

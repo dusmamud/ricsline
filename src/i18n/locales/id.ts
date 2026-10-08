@@ -202,6 +202,10 @@ const dict: Dict = {
     moveUp: 'Ke atas',
     moveDown: 'Ke bawah',
     deleteLine: 'Hapus',
+    copyPlain: 'Salin lirik',
+    preview: 'Pratinjau',
+    closePreview: 'Tutup pratinjau',
+    emptyLinesWarn: '{n} baris kosong',
     savedLocal: 'LRC tersimpan di browser ini.',
     copied: 'Konten LRC disalin ke clipboard.',
     jsonCopied: 'Struktur JSON LRC disalin ke clipboard.',
@@ -227,7 +231,10 @@ const dict: Dict = {
     copy: 'Salin',
     copied: 'Disalin ke papan klip',
     delete: 'Hapus',
-    deleted: 'Dihapus',
+    deleted: 'Dihapus',    confirmDelete: 'Hapus lirik tersimpan ini? Tidak bisa dibatalkan.',
+    searchPlaceholder: 'Cari berdasarkan judul atau artis...',
+    noResults: 'Tidak ada lirik yang cocok.',
+
   },
   about: {
     title: 'Tentang Ricsline',

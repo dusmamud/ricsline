@@ -202,6 +202,10 @@ const dict: Dict = {
     moveUp: 'لأعلى',
     moveDown: 'لأسفل',
     deleteLine: 'حذف',
+    copyPlain: 'نسخ الكلمات',
+    preview: 'معاينة',
+    closePreview: 'إغلاق المعاينة',
+    emptyLinesWarn: '{n} أسطر فارغة',
     savedLocal: 'تم حفظ LRC في هذا المتصفح.',
     copied: 'تم نسخ محتوى LRC إلى الحافظة.',
     jsonCopied: 'تم نسخ بنية LRC بصيغة JSON إلى الحافظة.',
@@ -227,7 +231,10 @@ const dict: Dict = {
     copy: 'نسخ',
     copied: 'تم النسخ إلى الحافظة',
     delete: 'حذف',
-    deleted: 'تم الحذف',
+    deleted: 'تم الحذف',    confirmDelete: 'حذف هذه الكلمات المحفوظة؟ لا يمكن التراجع.',
+    searchPlaceholder: 'ابحث بالعنوان أو الفنان...',
+    noResults: 'لم يتم العثور على كلمات.',
+
   },
   about: {
     title: 'حول Ricsline',

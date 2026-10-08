@@ -202,6 +202,10 @@ const dict: Dict = {
     moveUp: 'Lên trên',
     moveDown: 'Xuống dưới',
     deleteLine: 'Xóa',
+    copyPlain: 'Sao chép lời',
+    preview: 'Xem trước',
+    closePreview: 'Đóng xem trước',
+    emptyLinesWarn: '{n} dòng trống',
     savedLocal: 'Đã lưu LRC trong trình duyệt này.',
     copied: 'Đã sao chép nội dung LRC vào clipboard.',
     jsonCopied: 'Đã sao chép cấu trúc JSON của LRC vào clipboard.',
@@ -227,7 +231,10 @@ const dict: Dict = {
     copy: 'Sao chép',
     copied: 'Đã sao chép vào clipboard',
     delete: 'Xóa',
-    deleted: 'Đã xóa',
+    deleted: 'Đã xóa',    confirmDelete: 'Xóa lời bài hát đã lưu này? Không thể hoàn tác.',
+    searchPlaceholder: 'Tìm theo tiêu đề hoặc nghệ sĩ...',
+    noResults: 'Không tìm thấy lời nào.',
+
   },
   about: {
     title: 'Giới thiệu Ricsline',

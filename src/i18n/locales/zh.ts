@@ -202,6 +202,10 @@ const dict: Dict = {
     moveUp: '上移',
     moveDown: '下移',
     deleteLine: '删除',
+    copyPlain: '复制歌词',
+    preview: '预览',
+    closePreview: '关闭预览',
+    emptyLinesWarn: '{n} 个空行',
     savedLocal: 'LRC 已保存在此浏览器中。',
     copied: 'LRC 内容已复制到剪贴板。',
     jsonCopied: 'LRC 的 JSON 结构已复制到剪贴板。',
@@ -227,7 +231,10 @@ const dict: Dict = {
     copy: '复制',
     copied: '已复制到剪贴板',
     delete: '删除',
-    deleted: '已删除',
+    deleted: '已删除',    confirmDelete: '删除这首已保存的歌词？无法撤销。',
+    searchPlaceholder: '按标题或艺术家搜索...',
+    noResults: '未找到匹配的歌词。',
+
   },
   about: {
     title: '关于 Ricsline',

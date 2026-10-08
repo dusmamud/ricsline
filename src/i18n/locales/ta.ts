@@ -202,6 +202,10 @@ const dict: Dict = {
     moveUp: 'மேலே',
     moveDown: 'கீழே',
     deleteLine: 'நீக்கு',
+    copyPlain: 'பாடல் வரிகளை நகலெடு',
+    preview: 'முன்னோட்டம்',
+    closePreview: 'முன்னோட்டத்தை மூடு',
+    emptyLinesWarn: '{n} காலி வரிகள்',
     savedLocal: 'LRC இந்த உலாவியில் சேமிக்கப்பட்டது.',
     copied: 'LRC உள்ளடக்கம் கிளிப்போர்டில் நகலெடுக்கப்பட்டது.',
     jsonCopied: 'LRC JSON கட்டமைப்பு கிளிப்போர்டில் நகலெடுக்கப்பட்டது.',
@@ -227,7 +231,10 @@ const dict: Dict = {
     copy: 'நகலெடு',
     copied: 'கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது',
     delete: 'நீக்கு',
-    deleted: 'நீக்கப்பட்டது',
+    deleted: 'நீக்கப்பட்டது',    confirmDelete: 'சேமிக்கப்பட்ட பாடல் வரிகளை நீக்கவா? மீள்லி பெற முடியாது.',
+    searchPlaceholder: 'தலைப்பு அல்லது கலைஞர் மூலம் தேடு...',
+    noResults: 'பொருந்தும் பாடல் வரிகளும் இல்லை.',
+
   },
   about: {
     title: 'Ricsline பற்றி',

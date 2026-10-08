@@ -202,6 +202,10 @@ const dict: Dict = {
     moveUp: 'Sposta su',
     moveDown: 'Sposta giù',
     deleteLine: 'Elimina',
+    copyPlain: 'Copia testo',
+    preview: 'Anteprima',
+    closePreview: 'Chiudi anteprima',
+    emptyLinesWarn: '{n} righe vuote',
     savedLocal: 'LRC salvato in questo browser.',
     copied: 'Contenuto LRC copiato negli appunti.',
     jsonCopied: 'Struttura JSON dell’LRC copiata negli appunti.',
@@ -227,7 +231,10 @@ const dict: Dict = {
     copy: 'Copia',
     copied: 'Copiato negli appunti',
     delete: 'Elimina',
-    deleted: 'Eliminato',
+    deleted: 'Eliminato',    confirmDelete: 'Eliminare questo testo salvato? Irreversibile.',
+    searchPlaceholder: 'Cerca per titolo o artista...',
+    noResults: 'Nessun testo trovato.',
+
   },
   about: {
     title: 'Chi è Ricsline',

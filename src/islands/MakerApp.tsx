@@ -85,6 +85,7 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
   const [speed, setSpeed] = useState(1);
   const [showShortcuts, setShowShortcuts] = useState(false);
   const [draftAvailable, setDraftAvailable] = useState(false);
+  const [previewOpen, setPreviewOpen] = useState(false);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -445,6 +446,21 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
       showToast(m.copied);
     }
   };
+
+  const copyPlain = async () => {
+    const text = lines
+      .map((l) => l.text.trim())
+      .filter(Boolean)
+      .join('\n');
+    try {
+      await navigator.clipboard.writeText(text);
+      showToast(m.copied);
+    } catch {
+      showToast(m.copied);
+    }
+  };
+
+  const emptyCount = lines.filter((l) => !l.text.trim()).length;
 
   const copyJson = async () => {
     if (!guardAllTagged()) return;
@@ -1055,6 +1071,11 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
       )}
 
       {/* export row */}
+      {emptyCount > 0 && (
+        <p className="mb-2 text-xs text-amber-600 dark:text-amber-400">
+          {m.emptyLinesWarn.replace('{n}', String(emptyCount))}
+        </p>
+      )}
       <div className="mt-4 flex flex-wrap gap-2">
         <button
           type="button"
@@ -1087,6 +1108,15 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
         </button>
         <button
           type="button"
+          onClick={copyPlain}
+          disabled={lines.length === 0}
+          className="inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition hover:border-brand-400 hover:text-brand-600 disabled:opacity-40 dark:border-graphite-700 dark:text-gray-200"
+        >
+          <CopySimple className="h-4 w-4" />
+          {m.copyPlain}
+        </button>
+        <button
+          type="button"
           onClick={copyJson}
           disabled={!allTagged}
           className="inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition hover:border-brand-400 hover:text-brand-600 disabled:opacity-40 dark:border-graphite-700 dark:text-gray-200"
@@ -1112,7 +1142,96 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
           <ShareNetwork className="h-4 w-4" />
           {m.share}
         </button>
+        <button
+          type="button"
+          onClick={() => setPreviewOpen(true)}
+          disabled={!allTagged}
+          className="inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition hover:border-brand-400 hover:text-brand-600 disabled:opacity-40 dark:border-graphite-700 dark:text-gray-200"
+        >
+          <Play className="h-4 w-4" weight="fill" />
+          {m.preview}
+        </button>
       </div>
+
+      {/* karaoke preview modal */}
+      {previewOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
+          onClick={() => setPreviewOpen(false)}
+        >
+          <div
+            className="flex max-h-[85vh] w-full max-w-lg flex-col overflow-hidden rounded-2xl bg-white shadow-2xl dark:bg-graphite-900"
+            onClick={(e) => e.stopPropagation()}
+            dir={rtl ? 'rtl' : 'ltr'}
+          >
+            <div className="flex items-center justify-between border-b border-gray-200 px-5 py-4 dark:border-graphite-700">
+              <div className="min-w-0">
+                <h3 className="truncate font-bold text-gray-900 dark:text-white">
+                  {title || 'Untitled'}
+                </h3>
+                {artist && (
+                  <p className="truncate text-sm text-gray-500 dark:text-gray-400">{artist}</p>
+                )}
+              </div>
+              <button
+                type="button"
+                onClick={() => setPreviewOpen(false)}
+                aria-label={m.closePreview}
+                title={m.closePreview}
+                className="shrink-0 rounded-lg p-2 text-gray-500 transition hover:bg-gray-100 hover:text-gray-800 dark:text-gray-400 dark:hover:bg-graphite-800 dark:hover:text-gray-200"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+            <div className="flex-1 overflow-y-auto px-5 py-6" data-preview-scroll>
+              <div className="space-y-4 text-center">
+                {lines.map((line, i) => {
+                  const isActive = i === activeIdx && line.time != null;
+                  const isPast = line.time != null && line.time < currentTime - 0.001;
+                  return (
+                    <p
+                      key={line.id}
+                      ref={(el) => {
+                        if (isActive && el) {
+                          el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+                        }
+                      }}
+                      className={`transition-all duration-300 ${
+                        isActive
+                          ? 'scale-105 font-extrabold text-brand-600 dark:text-brand-400'
+                          : isPast
+                            ? 'text-gray-400 dark:text-graphite-500'
+                            : 'font-medium text-gray-700 dark:text-gray-200'
+                      } ${isActive ? 'text-xl' : 'text-base'}`}
+                      dir="auto"
+                    >
+                      {line.text || '· · ·'}
+                    </p>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="flex items-center justify-center gap-4 border-t border-gray-200 px-5 py-4 dark:border-graphite-700">
+              <button
+                type="button"
+                onClick={togglePlay}
+                disabled={!audioUrl}
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-500 text-white shadow-lg transition hover:bg-brand-600 disabled:opacity-40"
+                aria-label={isPlaying ? 'Pause' : 'Play'}
+              >
+                {isPlaying ? (
+                  <Pause className="h-5 w-5" weight="fill" />
+                ) : (
+                  <Play className="h-5 w-5" weight="fill" />
+                )}
+              </button>
+              <span className="text-sm tabular-nums text-gray-500 dark:text-gray-400">
+                {fmtClock(currentTime)} / {fmtClock(duration)}
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* floating tag button */}
       <button

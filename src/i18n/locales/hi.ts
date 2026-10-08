@@ -202,6 +202,10 @@ const dict: Dict = {
     moveUp: 'ऊपर ले जाएं',
     moveDown: 'नीचे ले जाएं',
     deleteLine: 'हटाएं',
+    copyPlain: 'लिरिक्स कॉपि करें',
+    preview: 'प्रीव्यू',
+    closePreview: 'प्रीव्यू बंद करें',
+    emptyLinesWarn: '{n} खाली लाइनें',
     savedLocal: 'LRC इस ब्राउज़र में सेव हो गई।',
     copied: 'LRC कंटेंट क्लिपबोर्ड पर कॉपी हो गया।',
     jsonCopied: 'LRC JSON स्ट्रक्चर क्लिपबोर्ड पर कॉपी हो गया।',
@@ -227,7 +231,10 @@ const dict: Dict = {
     copy: 'कॉपी करें',
     copied: 'क्लिपबोर्ड में कॉपी हो गया',
     delete: 'हटाएं',
-    deleted: 'हटा दिया गया',
+    deleted: 'हटा दिया गया',    confirmDelete: 'यह सेव किया गाना हटाएं? यह वापस नहीं आएगा।',
+    searchPlaceholder: 'टाइटल या आर्टिस्ट से खोजें...',
+    noResults: 'कोई गाना नहीं मिला।',
+
   },
   about: {
     title: 'Ricsline के बारे में',

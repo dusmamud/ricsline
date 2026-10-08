@@ -47,6 +47,7 @@ export default function LibraryApp({
   const [entries, setEntries] = useState<SavedEntry[]>([]);
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const [toast, setToast] = useState<string | null>(null);
+  const [query, setQuery] = useState('');
   const toastTimer = useRef<number | null>(null);
 
   useEffect(() => {
@@ -67,6 +68,7 @@ export default function LibraryApp({
   };
 
   const remove = (id: number) => {
+    if (!window.confirm(t.confirmDelete)) return;
     persist(entries.filter((e) => e.id !== id));
     if (expandedId === id) setExpandedId(null);
     showToast(t.deleted);
@@ -103,6 +105,13 @@ export default function LibraryApp({
   const lineCount = (e: SavedEntry) =>
     e.lrc.split('\n').filter((l) => l.trim() && !/^\s*\[[a-z]{2,}:[^\]]*\]\s*$/i.test(l.trim())).length;
 
+  const q = query.trim().toLowerCase();
+  const visible = q
+    ? entries.filter(
+        (e) => e.title.toLowerCase().includes(q) || e.artist.toLowerCase().includes(q)
+      )
+    : entries;
+
   return (
     <div dir={rtl ? 'rtl' : 'ltr'}>
       <div className="mb-8">
@@ -111,6 +120,19 @@ export default function LibraryApp({
         </h1>
         <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">{t.subtitle}</p>
       </div>
+
+      {entries.length > 0 && (
+        <div className="mb-6">
+          <input
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder={t.searchPlaceholder}
+            dir="auto"
+            className="w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm text-gray-900 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 dark:border-graphite-700 dark:bg-graphite-800 dark:text-white"
+          />
+        </div>
+      )}
 
       {entries.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-gray-300 bg-white px-6 py-16 text-center dark:border-graphite-700 dark:bg-graphite-900">
@@ -125,9 +147,14 @@ export default function LibraryApp({
             {t.emptyCta}
           </a>
         </div>
+      ) : visible.length === 0 ? (
+        <div className="rounded-2xl border border-dashed border-gray-300 bg-white px-6 py-16 text-center dark:border-graphite-700 dark:bg-graphite-900">
+          <MusicNotes className="mx-auto h-10 w-10 text-gray-300 dark:text-graphite-600" />
+          <h2 className="mt-4 text-lg font-bold text-gray-900 dark:text-white">{t.noResults}</h2>
+        </div>
       ) : (
         <div className="space-y-4">
-          {entries.map((e) => {
+          {visible.map((e) => {
             const expanded = expandedId === e.id;
             const n = lineCount(e);
             let date = '';

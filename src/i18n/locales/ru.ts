@@ -202,6 +202,10 @@ const dict: Dict = {
     moveUp: 'Вверх',
     moveDown: 'Вниз',
     deleteLine: 'Удалить',
+    copyPlain: 'Копировать текст',
+    preview: 'Предпросмотр',
+    closePreview: 'Закрыть',
+    emptyLinesWarn: '{n} пустых строк',
     savedLocal: 'LRC сохранён в этом браузере.',
     copied: 'Содержимое LRC скопировано в буфер обмена.',
     jsonCopied: 'JSON-структура LRC скопирована в буфер обмена.',
@@ -227,7 +231,10 @@ const dict: Dict = {
     copy: 'Копировать',
     copied: 'Скопировано в буфер обмена',
     delete: 'Удалить',
-    deleted: 'Удалено',
+    deleted: 'Удалено',    confirmDelete: 'Удалить сохранённый текст? Это необратимо.',
+    searchPlaceholder: 'Поиск по названию или исполнителю...',
+    noResults: 'Ничего не найдено.',
+
   },
   about: {
     title: 'О Ricsline',

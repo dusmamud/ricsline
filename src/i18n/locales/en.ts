@@ -200,6 +200,10 @@ const en = {
     moveUp: 'Move up',
     moveDown: 'Move down',
     deleteLine: 'Delete',
+    copyPlain: 'Copy lyrics',
+    preview: 'Preview',
+    closePreview: 'Close preview',
+    emptyLinesWarn: '{n} empty lines',
     savedLocal: 'LRC saved in this browser.',
     copied: 'LRC content copied to clipboard.',
     jsonCopied: 'LRC JSON structure copied to clipboard.',
@@ -225,7 +229,10 @@ const en = {
     copy: 'Copy',
     copied: 'Copied to clipboard',
     delete: 'Delete',
-    deleted: 'Deleted',
+    deleted: 'Deleted',    confirmDelete: 'Delete this saved lyric? This cannot be undone.',
+    searchPlaceholder: 'Search by title or artist...',
+    noResults: 'No matching lyrics found.',
+
   },
   about: {
     title: 'About Ricsline',

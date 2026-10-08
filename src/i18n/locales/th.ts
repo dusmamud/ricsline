@@ -202,6 +202,10 @@ const dict: Dict = {
     moveUp: 'ขึ้นบน',
     moveDown: 'ลงล่าง',
     deleteLine: 'ลบ',
+    copyPlain: 'คัดลออนืเพื',
+    preview: 'ตัวตย่วง่าตแ',
+    closePreview: 'ปิตตัวตย่วง่าตแ',
+    emptyLinesWarn: 'บรททด่าา {n} บรทท',
     savedLocal: 'บันทึก LRC ในเบราว์เซอร์นี้แล้ว',
     copied: 'คัดลอกเนื้อหา LRC ไปยังคลิปบอร์ดแล้ว',
     jsonCopied: 'คัดลอกโครงสร้าง JSON ของ LRC ไปยังคลิปบอร์ดแล้ว',
@@ -227,7 +231,10 @@ const dict: Dict = {
     copy: 'คัดลอก',
     copied: 'คัดลอกไปยังคลิปบอร์ดแล้ว',
     delete: 'ลบ',
-    deleted: 'ลบแล้ว',
+    deleted: 'ลบแล้ว',    confirmDelete: 'ลบเพลง่ที่บันที่ไวบันี้หรี้หแี้?',
+    searchPlaceholder: 'ค้นหาตาามานขหควาหย...',
+    noResults: 'ต่พรบเพืตที่ตรงต่ไหัไท่ไป่ว',
+
   },
   about: {
     title: 'เกี่ยวกับ Ricsline',

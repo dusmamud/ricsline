@@ -202,6 +202,10 @@ const dict: Dict = {
     moveUp: 'Subir',
     moveDown: 'Bajar',
     deleteLine: 'Eliminar',
+    copyPlain: 'Copiar letra',
+    preview: 'Vista previa',
+    closePreview: 'Cerrar vista previa',
+    emptyLinesWarn: '{n} líneas vacías',
     savedLocal: 'LRC guardado en este navegador.',
     copied: 'Contenido del LRC copiado al portapapeles.',
     jsonCopied: 'Estructura JSON del LRC copiada al portapapeles.',
@@ -227,7 +231,10 @@ const dict: Dict = {
     copy: 'Copiar',
     copied: 'Copiado al portapapeles',
     delete: 'Eliminar',
-    deleted: 'Eliminado',
+    deleted: 'Eliminado',    confirmDelete: '¿Eliminar esta letra guardada? No se puede deshacer.',
+    searchPlaceholder: 'Buscar por título o artista...',
+    noResults: 'No se encontraron letras.',
+
   },
   about: {
     title: 'Acerca de Ricsline',

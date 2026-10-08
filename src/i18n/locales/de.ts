@@ -202,6 +202,10 @@ const dict: Dict = {
     moveUp: 'Nach oben',
     moveDown: 'Nach unten',
     deleteLine: 'Löschen',
+    copyPlain: 'Songtext kopieren',
+    preview: 'Vorschau',
+    closePreview: 'Vorschau schließen',
+    emptyLinesWarn: '{n} leere Zeilen',
     savedLocal: 'LRC in diesem Browser gespeichert.',
     copied: 'LRC-Inhalt in die Zwischenablage kopiert.',
     jsonCopied: 'LRC-JSON-Struktur in die Zwischenablage kopiert.',
@@ -227,7 +231,10 @@ const dict: Dict = {
     copy: 'Kopieren',
     copied: 'In Zwischenablage kopiert',
     delete: 'Löschen',
-    deleted: 'Gelöscht',
+    deleted: 'Gelöscht',    confirmDelete: 'Diesen gespeicherten Songtext löschen? Unwiderruflich.',
+    searchPlaceholder: 'Nach Titel oder Künstler suchen...',
+    noResults: 'Keine Songtexte gefunden.',
+
   },
   about: {
     title: 'Über Ricsline',

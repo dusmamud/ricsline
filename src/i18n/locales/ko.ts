@@ -202,6 +202,10 @@ const dict: Dict = {
     moveUp: '위로',
     moveDown: '아래로',
     deleteLine: '삭제',
+    copyPlain: '가사 복사',
+    preview: '미리보기',
+    closePreview: '미리보기 닫기',
+    emptyLinesWarn: '빈 줄 {n}개',
     savedLocal: 'LRC가 이 브라우저에 저장되었습니다.',
     copied: 'LRC 내용이 클립보드에 복사되었습니다.',
     jsonCopied: 'LRC JSON 구조가 클립보드에 복사되었습니다.',
@@ -227,7 +231,10 @@ const dict: Dict = {
     copy: '복사',
     copied: '클립보드에 복사됨',
     delete: '삭제',
-    deleted: '삭제됨',
+    deleted: '삭제됨',    confirmDelete: '저장된 가사를 삭제할까요? 되돌릴 수 없습니다.',
+    searchPlaceholder: '제목이나 아티스트로 검색...',
+    noResults: '일치하는 가사가 없습니다.',
+
   },
   about: {
     title: 'Ricsline 소개',

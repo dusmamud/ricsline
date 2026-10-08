@@ -202,6 +202,10 @@ const dict: Dict = {
     moveUp: 'ওপৰলৈ',
     moveDown: 'তললৈ',
     deleteLine: 'মচি পেলাওক',
+    copyPlain: 'গানর কথা কপি করক',
+    preview: 'প্ৰিভিউ',
+    closePreview: 'প্ৰিভিউ বন্ধ করক',
+    emptyLinesWarn: '{n} খালী শাৰী',
     savedLocal: 'LRC এই ব্ৰাউজাৰত সংৰক্ষিত হ’ল।',
     copied: 'LRC লিখনি ক্লিপব’ৰ্ডত কপি হ’ল।',
     jsonCopied: 'LRC JSON গঠন ক্লিপব’ৰ্ডত কপি হ’ল।',
@@ -227,7 +231,10 @@ const dict: Dict = {
     copy: 'কপি কৰক',
     copied: 'ক্লিপবৰ্ডলৈ কপি হ’ল',
     delete: 'মচক',
-    deleted: 'মচা হ’ল',
+    deleted: 'মচা হ’ল',    confirmDelete: 'সঁৰক্ষিত গানটো মচি পেলাওকনে? ঘূৰাই নপোৱায়।',
+    searchPlaceholder: 'শিৰোনাম বা শিল্পীৰে বিচাৰক...',
+    noResults: 'কোনো গান পোৱা নগ’ল।',
+
   },
   about: {
     title: 'Ricsline-ৰ বিষয়ে',
