@@ -1,6 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { locales, localeNames, localizedPath, type Locale } from '../i18n/index';
+import { locales, localeNames, link, type Locale } from '../i18n/index';
 import type { Dict } from '../i18n/dicts';
 
 interface Props {
@@ -28,7 +28,7 @@ const { locale, path, dict } = Astro.props;
   >
     {locales.map((l) => (
       <a
-        href={localizedPath(l, path)}
+        href={link(l, path)}
         hreflang={l}
         class:list={[
           'flex items-center justify-between px-4 py-2 text-sm transition hover:bg-graphite-100 dark:hover:bg-graphite-800',

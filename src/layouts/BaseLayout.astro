@@ -1,8 +1,9 @@
 ---
 import { ClientRouter } from 'astro:transitions';
+import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import { alternateLinks, isRtl, localizedPath, type Locale } from '../i18n/index';
+import { alternateLinks, asset, isRtl, localizedPath, type Locale } from '../i18n/index';
 import type { Dict } from '../i18n/dicts';
 
 interface Props {
@@ -51,10 +52,10 @@ const dir = isRtl(locale) ? 'rtl' : 'ltr';
 
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#14161B" media="(prefers-color-scheme: dark)" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={asset('/favicon.svg')} />
 
-    <link rel="preload" href="/fonts/sora-700.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={asset('/fonts/sora-700.woff2')} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={asset('/fonts/inter-400.woff2')} as="font" type="font/woff2" crossorigin />
 
     <script is:inline>
       (function () {

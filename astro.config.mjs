@@ -14,7 +14,8 @@ export const rtlLocales = ['ar', 'ur'];
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://ricsline.com',
+  site: 'https://dusmamud.github.io/ricsline',
+  base: '/ricsline',
   integrations: [
     react(),
     tailwind({ applyBaseStyles: false }),

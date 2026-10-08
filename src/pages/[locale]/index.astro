@@ -1,7 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { locales, type Locale } from '../../i18n/index';
+import { asset, locales, type Locale } from '../../i18n/index';
 import { getDict } from '../../i18n/dicts';
 
 export async function getStaticPaths() {
@@ -27,7 +27,7 @@ const bars = Array.from({ length: 32 }, (_, i) => ({
   <!-- ============ HERO ============ -->
   <section class="relative overflow-hidden">
     <div class="pointer-events-none absolute inset-0 -z-10">
-      <img src="/images/hero-art.jpg" alt="" class="h-full w-full object-cover opacity-30 dark:opacity-25" loading="eager" />
+      <img src={asset('/images/hero-art.jpg')} alt="" class="h-full w-full object-cover opacity-30 dark:opacity-25" loading="eager" />
       <div class="absolute inset-0 bg-gradient-to-b from-white via-white/75 to-white dark:from-graphite-950 dark:via-graphite-950/80 dark:to-graphite-950"></div>
       <div class="absolute -top-32 start-1/4 h-96 w-96 rounded-full bg-brand-400/20 blur-3xl dark:bg-brand-500/10"></div>
       <div class="absolute top-40 end-1/5 h-72 w-72 rounded-full bg-cyan-400/20 blur-3xl dark:bg-cyan-500/10"></div>
@@ -81,7 +81,7 @@ const bars = Array.from({ length: 32 }, (_, i) => ({
       <!-- Product mockup card -->
       <div class="reveal reveal-d2 relative">
         <img
-          src="/images/headphones.jpg"
+          src={asset('/images/headphones.jpg')}
           alt="Headphones"
           loading="lazy"
           class="animate-float absolute -top-10 end-2 z-10 hidden w-36 rotate-6 rounded-3xl border-4 border-white object-cover shadow-2xl shadow-graphite-950/30 sm:block lg:w-44 dark:border-graphite-800"

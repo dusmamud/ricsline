@@ -1,7 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { locales, type Locale } from '../../i18n/index';
+import { asset, locales, type Locale } from '../../i18n/index';
 import { getDict } from '../../i18n/dicts';
 
 export async function getStaticPaths() {
@@ -25,7 +25,7 @@ const dict = getDict(locale);
     </p>
 
     <figure class="reveal mt-10 overflow-hidden rounded-3xl border border-graphite-200 shadow-xl dark:border-graphite-800">
-      <img src="/images/about-studio.jpg" alt="Ricsline studio illustration" loading="lazy" class="w-full object-cover" />
+      <img src={asset('/images/about-studio.jpg')} alt="Ricsline studio illustration" loading="lazy" class="w-full object-cover" />
     </figure>
 
     <div class="mt-12 space-y-8">

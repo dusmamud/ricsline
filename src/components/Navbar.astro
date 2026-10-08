@@ -3,7 +3,7 @@ import { Icon } from 'astro-icon/components';
 import Logo from './Logo.astro';
 import ThemeToggle from './ThemeToggle.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
-import { localizedPath, type Locale } from '../i18n/index';
+import { link, type Locale } from '../i18n/index';
 import type { Dict } from '../i18n/dicts';
 
 interface Props {
@@ -13,13 +13,13 @@ interface Props {
 }
 const { locale, path, dict } = Astro.props;
 const links = [
-  { href: localizedPath(locale, '/maker'), label: dict.nav.maker, icon: 'ph:waveform' },
-  { href: localizedPath(locale, '/about'), label: dict.nav.about, icon: 'ph:info' },
+  { href: link(locale, '/maker'), label: dict.nav.maker, icon: 'ph:waveform' },
+  { href: link(locale, '/about'), label: dict.nav.about, icon: 'ph:info' },
 ];
 ---
 <header class="sticky top-0 z-40 border-b border-graphite-200/70 bg-white/80 backdrop-blur-xl dark:border-graphite-800 dark:bg-graphite-950/80">
   <nav class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6" aria-label="Main">
-    <a href={localizedPath(locale, '/')} class="flex items-center gap-2.5">
+    <a href={link(locale, '/')} class="flex items-center gap-2.5">
       <Logo size={34} />
       <span class="font-display text-xl font-extrabold tracking-tight text-graphite-900 dark:text-white">
         Ricsline
@@ -41,7 +41,7 @@ const links = [
       <LanguageSwitcher locale={locale} path={path} dict={dict} />
       <ThemeToggle dict={dict} />
       <a
-        href={localizedPath(locale, '/maker')}
+        href={link(locale, '/maker')}
         class="hidden items-center gap-1.5 rounded-xl bg-gradient-to-r from-brand-500 to-cyan-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-brand-500/25 transition hover:shadow-brand-500/40 hover:brightness-110 sm:inline-flex"
       >
         <Icon name="ph:lightning" class="h-4 w-4" />
@@ -70,7 +70,7 @@ const links = [
       </a>
     ))}
     <a
-      href={localizedPath(locale, '/maker')}
+      href={link(locale, '/maker')}
       class="mt-2 flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-brand-500 to-cyan-500 px-4 py-2.5 text-sm font-semibold text-white"
     >
       <Icon name="ph:lightning" class="h-4 w-4" />
