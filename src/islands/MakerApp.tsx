@@ -109,11 +109,20 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
     a.muted = muted;
   }, [volume, muted, phase]);
 
+  // Throttled to ~10 updates/sec: enough for the progress slider and the
+  // active-line highlight, without re-rendering the whole island 60x/sec.
   useEffect(() => {
     let raf = 0;
+    let last = -1;
     const tick = () => {
       const a = audioRef.current;
-      if (a && !a.paused && !a.seeking) setCurrentTime(a.currentTime);
+      if (a && !a.paused && !a.seeking) {
+        const t10 = Math.round(a.currentTime * 10);
+        if (t10 !== last) {
+          last = t10;
+          setCurrentTime(a.currentTime);
+        }
+      }
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
@@ -237,10 +246,18 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
   }, []);
 
   // ---- file handling ----
+  // Browsers play any format their media stack supports (mp3/wav/m4a/mp4/ogg/flac/...).
+  // We accept by MIME first, then by extension as a fallback.
+  const AUDIO_EXT = /\.(mp3|wav|m4a|mp4|ogg|oga|opus|flac|webm|aac|wma|aiff?)$/i;
+  const AUDIO_ACCEPT = 'audio/*,.m4a,.mp4,.wav,.ogg,.oga,.opus,.flac,.webm,.aac,.wma,.aiff,.mp3';
   const acceptFile = (f: File | undefined | null) => {
     if (!f) return;
-    const ok = f.type.startsWith('audio/') || /\.mp3$/i.test(f.name);
-    if (!ok) return;
+    const ok =
+      f.type.startsWith('audio/') || f.type.startsWith('video/') || AUDIO_EXT.test(f.name);
+    if (!ok) {
+      showToast(m.unsupportedFile);
+      return;
+    }
     if (audioUrl) URL.revokeObjectURL(audioUrl);
     setAudioFile(f);
     setAudioUrl(URL.createObjectURL(f));
@@ -719,7 +736,7 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
             <input
               ref={fileInputRef}
               type="file"
-              accept="audio/mpeg,audio/mp3,.mp3"
+              accept={AUDIO_ACCEPT}
               className="hidden"
               onChange={(e) => acceptFile(e.target.files?.[0])}
             />
@@ -1251,7 +1268,7 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
       <input
         ref={fileInputRef}
         type="file"
-        accept="audio/mpeg,audio/mp3,.mp3"
+        accept={AUDIO_ACCEPT}
         className="hidden"
         onChange={(e) => acceptFile(e.target.files?.[0])}
       />
