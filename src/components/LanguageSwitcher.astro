@@ -46,16 +46,21 @@ const { locale, path, dict } = Astro.props;
 
 <script>
   function initLang() {
+    if (!(document.documentElement as HTMLElement).dataset.langDocInit) {
+      (document.documentElement as HTMLElement).dataset.langDocInit = '1';
+      document.addEventListener('click', () => {
+        document.querySelectorAll('[data-lang-list]').forEach((l) => l.classList.add('hidden'));
+      });
+    }
     document.querySelectorAll('[data-lang-root]').forEach((root) => {
+      if ((root as HTMLElement).dataset.langInit) return;
+      (root as HTMLElement).dataset.langInit = '1';
       const btn = root.querySelector('[data-lang-btn]');
       const list = root.querySelector('[data-lang-list]');
       btn?.addEventListener('click', (e) => {
         e.stopPropagation();
         list?.classList.toggle('hidden');
       });
-    });
-    document.addEventListener('click', () => {
-      document.querySelectorAll('[data-lang-list]').forEach((l) => l.classList.add('hidden'));
     });
   }
   document.addEventListener('astro:page-load', initLang);

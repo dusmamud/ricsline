@@ -55,7 +55,18 @@ const { dict } = Astro.props;
   }
   function initTheme() {
     applyTheme(currentTheme());
+    if (!(document.documentElement as HTMLElement).dataset.themeDocInit) {
+      (document.documentElement as HTMLElement).dataset.themeDocInit = '1';
+      document.addEventListener('click', () => {
+        document.querySelectorAll('[data-theme-list]').forEach((l) => l.classList.add('hidden'));
+      });
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        if (currentTheme() === 'system') applyTheme('system');
+      });
+    }
     document.querySelectorAll('[data-theme-root]').forEach((root) => {
+      if ((root as HTMLElement).dataset.themeInit) return;
+      (root as HTMLElement).dataset.themeInit = '1';
       const btn = root.querySelector('[data-theme-btn]');
       const list = root.querySelector('[data-theme-list]');
       btn?.addEventListener('click', (e) => {
@@ -72,12 +83,6 @@ const { dict } = Astro.props;
           list?.classList.add('hidden');
         });
       });
-    });
-    document.addEventListener('click', () => {
-      document.querySelectorAll('[data-theme-list]').forEach((l) => l.classList.add('hidden'));
-    });
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-      if (currentTheme() === 'system') applyTheme('system');
     });
   }
   document.addEventListener('astro:page-load', initTheme);

@@ -82,10 +82,12 @@ const links = [
 <script>
   function initNav() {
     const toggle = document.querySelector('[data-nav-toggle]');
+    if (!toggle || (toggle as HTMLElement).dataset.navInit) return;
+    (toggle as HTMLElement).dataset.navInit = '1';
     const mobile = document.querySelector('[data-nav-mobile]');
     const open = document.querySelector('[data-nav-icon-open]');
     const close = document.querySelector('[data-nav-icon-close]');
-    toggle?.addEventListener('click', () => {
+    toggle.addEventListener('click', () => {
       const hidden = mobile?.classList.toggle('hidden');
       open?.classList.toggle('hidden', !hidden);
       close?.classList.toggle('hidden', !!hidden);
