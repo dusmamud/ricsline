@@ -1,7 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { asset, locales, type Locale } from '../../i18n/index';
+import { asset, link, locales, type Locale } from '../../i18n/index';
 import { getDict } from '../../i18n/dicts';
 
 export async function getStaticPaths() {
@@ -10,7 +10,7 @@ export async function getStaticPaths() {
 
 const { locale } = Astro.params as { locale: Locale };
 const dict = getDict(locale);
-const makerUrl = `/${locale}/maker`;
+const makerUrl = link(locale, '/maker');
 
 const bars = Array.from({ length: 32 }, (_, i) => ({
   h: 18 + Math.round(46 * Math.abs(Math.sin(i * 0.55) * Math.cos(i * 0.21))),
