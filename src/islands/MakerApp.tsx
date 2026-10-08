@@ -12,8 +12,10 @@ import {
   FloppyDisk,
   ArrowLeft,
   UploadSimple,
+  CloudArrowUp,
+  TagSimple,
+  Plus,
   X,
-  Clock,
 } from 'phosphor-react';
 import { formatLrcTime, parseTimeInput, parseLyrics, buildLrc, type ParsedLine } from './lrc';
 import type { Dict } from '../i18n/dicts';
@@ -25,8 +27,13 @@ interface Line extends ParsedLine {
 let nextId = 1;
 const nid = () => nextId++;
 
+const inputCls =
+  'w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm text-gray-900 outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 dark:border-graphite-700 dark:bg-graphite-800 dark:text-white';
+const labelCls = 'mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-300';
+
 export default function MakerApp({ dict, locale }: { dict: Dict; locale: string }) {
   const m = dict.maker;
+  const rtl = locale === 'ar' || locale === 'ur';
   const [phase, setPhase] = useState<'form' | 'sync'>('form');
 
   // form state
@@ -52,7 +59,7 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
       return 100;
     }
   });
-  const [offsetStr, setOffsetStr] = useState('');
+  const [offsetStr, setOffsetStr] = useState('2.75');
   const [editingId, setEditingId] = useState<number | null>(null);
   const [editTime, setEditTime] = useState('');
   const [editText, setEditText] = useState('');
@@ -192,7 +199,6 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
     showToast(
       m.offsetApplied.replace('{n}', String(n)).replace('{s}', `${d > 0 ? '+' : ''}${d.toFixed(2)}s`),
     );
-    setOffsetStr('');
   };
 
   // ---- inline edit ----
@@ -216,19 +222,20 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
   // ---- export ----
   const taggedCount = lines.filter((l) => l.time != null && l.time > 0).length;
   const totalCount = lines.length;
-  const lrcText = () =>
-    buildLrc({ title, artist, author, lengthSec: duration }, lines);
+  const untaggedCount = totalCount - taggedCount;
+  const allTagged = totalCount > 0 && taggedCount === totalCount;
+  const lrcText = () => buildLrc({ title, artist, author, lengthSec: duration }, lines);
 
-  const guardExport = (): boolean => {
-    if (taggedCount < 2) {
-      showToast(m.needTwoLines);
+  const guardAllTagged = (): boolean => {
+    if (!allTagged) {
+      showToast(m.linesNeedTag.replace('{n}', String(untaggedCount)));
       return false;
     }
     return true;
   };
 
   const download = () => {
-    if (!guardExport()) return;
+    if (!guardAllTagged()) return;
     const blob = new Blob([lrcText()], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -239,7 +246,7 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
   };
 
   const copyText = async () => {
-    if (!guardExport()) return;
+    if (!guardAllTagged()) return;
     try {
       await navigator.clipboard.writeText(lrcText());
       showToast(m.copied);
@@ -249,7 +256,7 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
   };
 
   const copyJson = async () => {
-    if (!guardExport()) return;
+    if (!guardAllTagged()) return;
     const data = {
       title,
       artist,
@@ -280,7 +287,14 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
     try {
       const raw = localStorage.getItem('ricsline-library');
       const lib = raw ? JSON.parse(raw) : [];
-      lib.unshift({ id: Date.now(), title, artist, author, lrc: lrcText(), createdAt: new Date().toISOString() });
+      lib.unshift({
+        id: Date.now(),
+        title,
+        artist,
+        author,
+        lrc: lrcText(),
+        createdAt: new Date().toISOString(),
+      });
       localStorage.setItem('ricsline-library', JSON.stringify(lib.slice(0, 50)));
       setSavedFlag(true);
       showToast(m.savedLocal);
@@ -323,58 +337,60 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
     return `${String(mm).padStart(2, '0')}:${String(ss).padStart(2, '0')}`;
   };
 
+  const toastEl = toast && (
+    <div
+      key={toast.key}
+      className="fixed bottom-6 left-1/2 z-50 max-w-[90vw] -translate-x-1/2 rounded-lg bg-gray-900 px-5 py-3 text-center text-sm font-medium text-white shadow-2xl dark:bg-white dark:text-gray-900"
+    >
+      {toast.msg}
+    </div>
+  );
+
   /* ================= FORM PHASE ================= */
   if (phase === 'form') {
     return (
-      <div className="mx-auto max-w-3xl">
-        <h1 className="font-display text-3xl font-extrabold tracking-tight text-graphite-900 dark:text-white">
-          {m.formTitle}
+      <div className="mx-auto max-w-4xl" dir={rtl ? 'rtl' : 'ltr'}>
+        <h1 className="font-display text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+          Lrc Maker
         </h1>
-        <p className="mt-2 text-graphite-500 dark:text-graphite-400">{m.formSubtitle}</p>
 
-        <div className="mt-8 space-y-5 rounded-3xl border border-graphite-200 bg-white p-6 sm:p-8 dark:border-graphite-800 dark:bg-graphite-900">
-          <div className="grid gap-5 sm:grid-cols-3">
-            <label className="block">
-              <span className="mb-1.5 block text-sm font-semibold text-graphite-700 dark:text-graphite-200">{m.labelTitle}</span>
-              <input
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder={m.titlePlaceholder}
-                className="w-full rounded-xl border border-graphite-200 bg-graphite-50 px-4 py-2.5 text-sm outline-none transition focus:border-brand-400 focus:ring-2 focus:ring-brand-500/20 dark:border-graphite-700 dark:bg-graphite-800 dark:text-white"
-              />
-            </label>
-            <label className="block">
-              <span className="mb-1.5 block text-sm font-semibold text-graphite-700 dark:text-graphite-200">{m.labelArtist}</span>
-              <input
-                value={artist}
-                onChange={(e) => setArtist(e.target.value)}
-                placeholder={m.artistPlaceholder}
-                className="w-full rounded-xl border border-graphite-200 bg-graphite-50 px-4 py-2.5 text-sm outline-none transition focus:border-brand-400 focus:ring-2 focus:ring-brand-500/20 dark:border-graphite-700 dark:bg-graphite-800 dark:text-white"
-              />
-            </label>
-            <label className="block">
-              <span className="mb-1.5 block text-sm font-semibold text-graphite-700 dark:text-graphite-200">{m.labelAuthor}</span>
-              <input
-                value={author}
-                onChange={(e) => setAuthor(e.target.value)}
-                placeholder={m.authorPlaceholder}
-                className="w-full rounded-xl border border-graphite-200 bg-graphite-50 px-4 py-2.5 text-sm outline-none transition focus:border-brand-400 focus:ring-2 focus:ring-brand-500/20 dark:border-graphite-700 dark:bg-graphite-800 dark:text-white"
-              />
-            </label>
+        <div className="mt-8 space-y-6">
+          <div>
+            <label className={labelCls}>{m.labelTitle}</label>
+            <input
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className={inputCls}
+            />
+          </div>
+          <div>
+            <label className={labelCls}>{m.labelArtist}</label>
+            <input
+              value={artist}
+              onChange={(e) => setArtist(e.target.value)}
+              className={inputCls}
+            />
+          </div>
+          <div>
+            <label className={labelCls}>{m.labelAuthor}</label>
+            <input
+              value={author}
+              onChange={(e) => setAuthor(e.target.value)}
+              className={inputCls}
+            />
           </div>
 
-          <label className="block">
-            <span className="mb-1.5 block text-sm font-semibold text-graphite-700 dark:text-graphite-200">{m.lyricsLabel}</span>
+          <div>
+            <label className={labelCls}>{m.lyricsLabel}</label>
             <textarea
               value={rawLyrics}
               onChange={(e) => setRawLyrics(e.target.value)}
               placeholder={m.lyricsPlaceholder}
-              rows={8}
+              rows={9}
               dir="auto"
-              className="w-full resize-y rounded-xl border border-graphite-200 bg-graphite-50 px-4 py-3 text-sm leading-relaxed outline-none transition focus:border-brand-400 focus:ring-2 focus:ring-brand-500/20 dark:border-graphite-700 dark:bg-graphite-800 dark:text-white"
+              className={`${inputCls} resize-y leading-relaxed`}
             />
-            <span className="mt-1.5 block text-xs text-graphite-400 dark:text-graphite-500">{m.lyricsHint}</span>
-          </label>
+          </div>
 
           <div>
             <div
@@ -389,22 +405,15 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
                 acceptFile(e.dataTransfer.files?.[0]);
               }}
               onClick={() => fileInputRef.current?.click()}
-              className={`flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed px-6 py-10 text-center transition ${
+              className={`flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed px-6 py-10 text-center transition ${
                 dragging
                   ? 'border-brand-500 bg-brand-50 dark:bg-brand-500/10'
-                  : 'border-graphite-200 bg-graphite-50 hover:border-brand-400 hover:bg-brand-50/50 dark:border-graphite-700 dark:bg-graphite-800/50 dark:hover:border-brand-500'
+                  : 'border-gray-300 hover:border-brand-400 hover:bg-gray-50 dark:border-graphite-700 dark:hover:bg-graphite-800/50'
               }`}
             >
-              <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-cyan-500 text-white shadow-lg shadow-brand-500/25">
-                <UploadSimple className="h-6 w-6" />
-              </span>
-              <p className="mt-4 font-semibold text-graphite-800 dark:text-graphite-100">{m.dropTitle}</p>
-              <p className="mt-1 text-xs text-graphite-400 dark:text-graphite-500">{m.dropSub}</p>
-              {!audioFile && (
-                <span className="mt-4 rounded-xl bg-graphite-900 px-4 py-2 text-sm font-semibold text-white dark:bg-white dark:text-graphite-900">
-                  {m.chooseFile}
-                </span>
-              )}
+              <CloudArrowUp className="h-10 w-10 text-gray-400 dark:text-gray-500" />
+              <p className="mt-3 font-medium text-gray-700 dark:text-gray-200">{m.dropTitle}</p>
+              <p className="mt-1 text-xs text-gray-400 dark:text-gray-500">{m.dropSub}</p>
             </div>
             <input
               ref={fileInputRef}
@@ -414,15 +423,15 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
               onChange={(e) => acceptFile(e.target.files?.[0])}
             />
             {audioFile && (
-              <div className="mt-3 flex items-center justify-between gap-3 rounded-xl border border-brand-200 bg-brand-50 px-4 py-3 dark:border-brand-500/30 dark:bg-brand-500/10">
-                <span className="truncate text-sm font-medium text-graphite-800 dark:text-graphite-100">
+              <div className="mt-3 flex items-center justify-between gap-3 rounded-lg border border-gray-200 bg-gray-50 px-4 py-2.5 dark:border-graphite-700 dark:bg-graphite-800">
+                <span className="truncate text-sm font-medium text-gray-800 dark:text-gray-100">
                   {audioFile.name}
                 </span>
-                <span className="flex shrink-0 gap-2">
+                <span className="flex shrink-0 gap-1">
                   <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
-                    className="rounded-lg px-3 py-1.5 text-xs font-semibold text-brand-700 hover:bg-brand-100 dark:text-brand-300 dark:hover:bg-brand-500/20"
+                    className="rounded-md px-3 py-1.5 text-xs font-semibold text-brand-600 hover:bg-brand-50 dark:text-brand-300 dark:hover:bg-brand-500/10"
                   >
                     {m.replaceFile}
                   </button>
@@ -433,7 +442,7 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
                       setAudioFile(null);
                       setAudioUrl(null);
                     }}
-                    className="rounded-lg px-3 py-1.5 text-xs font-semibold text-red-600 hover:bg-red-50 dark:hover:bg-red-500/10"
+                    className="rounded-md px-3 py-1.5 text-xs font-semibold text-red-600 hover:bg-red-50 dark:hover:bg-red-500/10"
                   >
                     {m.removeAudio}
                   </button>
@@ -445,25 +454,20 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
           <button
             type="button"
             onClick={startSyncing}
-            className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-brand-500 to-cyan-500 px-6 py-4 text-base font-bold text-white shadow-xl shadow-brand-500/30 transition hover:brightness-110 active:scale-[0.99]"
+            className="w-full rounded-lg bg-brand-500 px-6 py-3.5 text-base font-semibold text-white shadow-md transition hover:bg-brand-600 active:scale-[0.99]"
           >
-            <Clock className="h-5 w-5" />
             {m.startSyncing}
           </button>
         </div>
 
-        {toast && (
-          <div className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-full bg-graphite-900 px-5 py-3 text-sm font-medium text-white shadow-2xl dark:bg-white dark:text-graphite-900">
-            {toast.msg}
-          </div>
-        )}
+        {toastEl}
       </div>
     );
   }
 
   /* ================= SYNC PHASE ================= */
   return (
-    <div className="mx-auto max-w-4xl" dir={locale === 'ar' || locale === 'ur' ? 'rtl' : 'ltr'}>
+    <div className="mx-auto max-w-4xl" dir={rtl ? 'rtl' : 'ltr'}>
       <audio
         ref={audioRef}
         src={audioUrl ?? undefined}
@@ -474,124 +478,124 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
         onEnded={() => setIsPlaying(false)}
       />
 
-      <div className="flex items-center justify-between gap-4">
+      {/* header */}
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+            {title || 'Untitled'}
+          </h2>
+          <p className="mt-0.5 text-sm text-gray-500 dark:text-gray-400">
+            {[artist, m.linesTagged.replace('{done}', String(taggedCount)).replace('{total}', String(totalCount))]
+              .filter(Boolean)
+              .join(' · ')}
+          </p>
+        </div>
         <button
           type="button"
           onClick={backToForm}
-          className="inline-flex items-center gap-1.5 rounded-xl border border-graphite-200 px-3.5 py-2 text-sm font-medium text-graphite-600 transition hover:border-brand-400 hover:text-brand-600 dark:border-graphite-700 dark:text-graphite-300"
+          className="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-600 transition hover:border-brand-400 hover:text-brand-600 dark:border-graphite-700 dark:text-gray-300"
         >
           <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
           {m.backToForm}
         </button>
-        <p className="rounded-full bg-brand-50 px-4 py-1.5 text-sm font-bold tabular-nums text-brand-700 dark:bg-brand-500/10 dark:text-brand-300">
-          {m.linesTagged.replace('{done}', String(taggedCount)).replace('{total}', String(totalCount))}
-        </p>
       </div>
 
-      <h1 className="mt-5 font-display text-3xl font-extrabold tracking-tight text-graphite-900 dark:text-white">
-        {title || 'Untitled'}
-      </h1>
-      {(artist || author) && (
-        <p className="mt-1 text-graphite-500 dark:text-graphite-400">
-          {[artist, author].filter(Boolean).join(' · ')}
-        </p>
-      )}
-
-      {/* Player */}
-      <div className="mt-6 rounded-3xl border border-graphite-200 bg-white p-5 dark:border-graphite-800 dark:bg-graphite-900">
-        <div className="flex items-center gap-4">
-          <button
-            type="button"
-            onClick={togglePlay}
-            aria-label={isPlaying ? 'Pause' : 'Play'}
-            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-brand-500 to-cyan-500 text-white shadow-lg shadow-brand-500/30 transition hover:brightness-110 active:scale-95"
-          >
-            {isPlaying ? <Pause className="h-6 w-6" weight="fill" /> : <Play className="h-6 w-6" weight="fill" />}
-          </button>
-          <div className="flex-1">
-            <input
-              type="range"
-              min={0}
-              max={duration || 0}
-              step={0.01}
-              value={Math.min(currentTime, duration || 0)}
-              onChange={(e) => {
-                const v = Number(e.target.value);
-                const a = audioRef.current;
-                if (a) a.currentTime = v;
-                setCurrentTime(v);
-              }}
-              className="slider w-full"
-              style={{ ['--fill' as string]: `${seekPct}%` }}
-              aria-label="Seek"
-            />
-            <div className="mt-1 flex justify-between text-xs font-medium tabular-nums text-graphite-400">
-              <span>{fmtClock(currentTime)}</span>
-              <span>{fmtClock(duration)}</span>
-            </div>
-          </div>
-          <div className="hidden items-center gap-2 sm:flex">
-            <button
-              type="button"
-              onClick={() => setMuted((v) => !v)}
-              aria-label={muted ? m.unmute : m.mute}
-              className="flex h-9 w-9 items-center justify-center rounded-lg text-graphite-500 transition hover:bg-graphite-100 hover:text-graphite-800 dark:text-graphite-400 dark:hover:bg-graphite-800"
-            >
-              {muted || volume === 0 ? <SpeakerX className="h-5 w-5" /> : <SpeakerHigh className="h-5 w-5" />}
-            </button>
-            <input
-              type="range"
-              min={0}
-              max={100}
-              value={muted ? 0 : volume}
-              onChange={(e) => {
-                const v = Number(e.target.value);
-                setVolume(v);
-                if (v > 0) setMuted(false);
-                try {
-                  localStorage.setItem('ricsline-volume', String(v));
-                } catch {}
-              }}
-              className="slider w-24"
-              style={{ ['--fill' as string]: `${muted ? 0 : volume}%` }}
-              aria-label="Volume"
-            />
-          </div>
-        </div>
+      {/* player */}
+      <div className="mt-4 flex items-center gap-3 rounded-xl bg-gray-100 px-4 py-3 dark:bg-graphite-800">
+        <button
+          type="button"
+          onClick={togglePlay}
+          aria-label={isPlaying ? 'Pause' : 'Play'}
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-500 text-white shadow transition hover:bg-brand-600 active:scale-95"
+        >
+          {isPlaying ? (
+            <Pause className="h-5 w-5" weight="fill" />
+          ) : (
+            <Play className="h-5 w-5" weight="fill" />
+          )}
+        </button>
+        <input
+          type="range"
+          min={0}
+          max={duration || 0}
+          step={0.01}
+          value={Math.min(currentTime, duration || 0)}
+          onChange={(e) => {
+            const v = Number(e.target.value);
+            const a = audioRef.current;
+            if (a) a.currentTime = v;
+            setCurrentTime(v);
+          }}
+          className="slider min-w-0 flex-1"
+          style={{ ['--fill' as string]: `${seekPct}%` }}
+          aria-label="Seek"
+        />
+        <span className="shrink-0 text-sm tabular-nums text-gray-500 dark:text-gray-400">
+          {fmtClock(currentTime)} / {fmtClock(duration)}
+        </span>
+        <button
+          type="button"
+          onClick={() => setMuted((v) => !v)}
+          aria-label={muted ? m.unmute : m.mute}
+          className="shrink-0 text-gray-500 transition hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
+        >
+          {muted || volume === 0 ? (
+            <SpeakerX className="h-5 w-5" />
+          ) : (
+            <SpeakerHigh className="h-5 w-5" />
+          )}
+        </button>
+        <input
+          type="range"
+          min={0}
+          max={100}
+          value={muted ? 0 : volume}
+          onChange={(e) => {
+            const v = Number(e.target.value);
+            setVolume(v);
+            if (v > 0) setMuted(false);
+            try {
+              localStorage.setItem('ricsline-volume', String(v));
+            } catch {}
+          }}
+          className="slider hidden w-24 shrink-0 sm:block"
+          style={{ ['--fill' as string]: `${muted ? 0 : volume}%` }}
+          aria-label="Volume"
+        />
       </div>
 
-      <p className="mt-5 rounded-2xl border border-brand-200/60 bg-brand-50/60 px-5 py-4 text-sm leading-relaxed text-graphite-600 dark:border-brand-500/20 dark:bg-brand-500/5 dark:text-graphite-300">
-        {m.tapHint}
-      </p>
+      {/* instructions */}
+      <p className="mt-4 text-sm leading-relaxed text-gray-600 dark:text-gray-400">{m.tapHint}</p>
 
-      {/* Offset */}
-      <div className="mt-4 flex flex-wrap items-center gap-3 rounded-2xl border border-graphite-200 bg-white px-5 py-4 dark:border-graphite-800 dark:bg-graphite-900">
-        <span className="text-sm font-semibold text-graphite-700 dark:text-graphite-200">{m.offsetLabel}</span>
+      {/* offset */}
+      <div className="mt-3 flex flex-wrap items-center gap-2">
+        <span className="text-sm font-bold text-gray-800 dark:text-gray-100">{m.offsetLabel}</span>
         <input
           type="number"
-          step="0.1"
+          step="0.05"
           value={offsetStr}
           onChange={(e) => setOffsetStr(e.target.value)}
-          placeholder="±"
           disabled={taggedCount === 0}
-          className="w-24 rounded-xl border border-graphite-200 bg-graphite-50 px-3 py-2 text-sm tabular-nums outline-none transition focus:border-brand-400 disabled:opacity-40 dark:border-graphite-700 dark:bg-graphite-800 dark:text-white"
+          dir="ltr"
+          className="w-24 rounded-md border border-gray-300 bg-white px-2.5 py-1.5 text-sm tabular-nums outline-none transition focus:border-brand-500 disabled:opacity-40 dark:border-graphite-700 dark:bg-graphite-800 dark:text-white"
         />
-        <span className="text-sm text-graphite-400">{m.seconds}</span>
+        <span className="text-sm text-gray-500 dark:text-gray-400">{m.seconds}</span>
         <button
           type="button"
           onClick={applyOffset}
           disabled={taggedCount === 0}
-          className="rounded-xl bg-graphite-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-graphite-700 disabled:opacity-40 dark:bg-white dark:text-graphite-900 dark:hover:bg-graphite-200"
+          className="rounded-md border border-gray-300 px-4 py-1.5 text-sm font-medium text-gray-600 transition hover:border-brand-400 hover:text-brand-600 disabled:opacity-40 dark:border-graphite-700 dark:text-gray-300"
         >
           {m.apply}
         </button>
-        <span className="w-full text-xs text-graphite-400 dark:text-graphite-500">{m.offsetHint}</span>
       </div>
+      <p className="mt-1 text-xs text-gray-500 dark:text-gray-500">{m.offsetHint}</p>
 
-      {/* Lines */}
-      <div className="mt-4 space-y-2">
+      {/* lyric rows */}
+      <div className="mt-5 space-y-3">
         {lines.map((line, i) => {
-          const isActive = i === activeIdx && line.time != null;
+          const tagged = line.time != null;
+          const isActive = i === activeIdx && tagged;
           const isEditing = editingId === line.id;
           return (
             <div
@@ -600,46 +604,39 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
                 if (el) lineRefs.current.set(line.id, el);
                 else lineRefs.current.delete(line.id);
               }}
-              className={`rounded-2xl border px-4 py-3 transition ${
-                isActive
-                  ? 'border-brand-400 bg-brand-50 shadow-md shadow-brand-500/10 dark:border-brand-500/50 dark:bg-brand-500/10'
-                  : 'border-graphite-200 bg-white dark:border-graphite-800 dark:bg-graphite-900'
-              }`}
             >
               {isEditing ? (
-                <div className="flex flex-col gap-2 sm:flex-row">
+                <div className="flex items-center gap-2">
                   <input
                     value={editTime}
                     onChange={(e) => setEditTime(e.target.value)}
                     placeholder="mm:ss.xx"
                     title={m.editTimeTitle}
                     dir="ltr"
-                    className="w-32 rounded-lg border border-graphite-200 bg-graphite-50 px-3 py-2 font-mono text-sm outline-none focus:border-brand-400 dark:border-graphite-700 dark:bg-graphite-800 dark:text-white"
+                    className="w-28 rounded-md border border-gray-300 bg-white px-2.5 py-1.5 font-mono text-sm outline-none focus:border-brand-500 dark:border-graphite-700 dark:bg-graphite-800 dark:text-white"
                   />
                   <input
                     value={editText}
                     onChange={(e) => setEditText(e.target.value)}
                     dir="auto"
-                    className="flex-1 rounded-lg border border-graphite-200 bg-graphite-50 px-3 py-2 text-sm outline-none focus:border-brand-400 dark:border-graphite-700 dark:bg-graphite-800 dark:text-white"
+                    className="min-w-0 flex-1 rounded-md border border-gray-300 bg-white px-2.5 py-1.5 text-sm outline-none focus:border-brand-500 dark:border-graphite-700 dark:bg-graphite-800 dark:text-white"
                   />
-                  <span className="flex gap-2">
-                    <button
-                      type="button"
-                      onClick={saveEdit}
-                      aria-label="Save"
-                      className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-500 text-white transition hover:brightness-110"
-                    >
-                      <Check className="h-4 w-4" weight="bold" />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setEditingId(null)}
-                      aria-label="Cancel"
-                      className="flex h-9 w-9 items-center justify-center rounded-lg border border-graphite-200 text-graphite-500 transition hover:bg-graphite-100 dark:border-graphite-700 dark:hover:bg-graphite-800"
-                    >
-                      <X className="h-4 w-4" />
-                    </button>
-                  </span>
+                  <button
+                    type="button"
+                    onClick={saveEdit}
+                    aria-label="Save"
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-brand-500 text-white transition hover:bg-brand-600"
+                  >
+                    <Check className="h-4 w-4" weight="bold" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setEditingId(null)}
+                    aria-label="Cancel"
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-gray-300 text-gray-500 transition hover:bg-gray-100 dark:border-graphite-700"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
                 </div>
               ) : (
                 <div className="flex items-center gap-3">
@@ -648,22 +645,24 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
                     onClick={() => tagLine(line.id)}
                     title={m.tagNext}
                     dir="ltr"
-                    className={`shrink-0 rounded-lg px-2.5 py-1.5 font-mono text-xs font-bold tabular-nums transition ${
-                      line.time != null
-                        ? 'bg-brand-500 text-white shadow-sm shadow-brand-500/30 hover:brightness-110'
-                        : 'bg-graphite-100 text-graphite-400 hover:bg-brand-100 hover:text-brand-700 dark:bg-graphite-800 dark:text-graphite-500 dark:hover:bg-brand-500/20 dark:hover:text-brand-300'
+                    className={`shrink-0 rounded-md border px-3 py-1.5 font-mono text-sm tabular-nums transition ${
+                      tagged
+                        ? 'border-brand-500 bg-brand-500 font-semibold text-white shadow-sm hover:bg-brand-600'
+                        : 'border-gray-300 bg-white text-gray-500 hover:border-brand-400 hover:text-brand-600 dark:border-graphite-700 dark:bg-graphite-800 dark:text-gray-400'
                     }`}
                   >
-                    {line.time != null ? formatLrcTime(line.time) : '[00:00.00]'}
+                    {tagged ? formatLrcTime(line.time!) : '[00:00.00]'}
                   </button>
                   <button
                     type="button"
                     onClick={() => seekLine(line)}
                     dir="auto"
-                    className={`flex-1 truncate text-start text-sm ${
-                      line.time != null
-                        ? 'font-medium text-graphite-800 hover:text-brand-600 dark:text-graphite-100 dark:hover:text-brand-300'
-                        : 'text-graphite-400 dark:text-graphite-500'
+                    className={`min-w-0 flex-1 truncate text-start text-[15px] ${
+                      tagged
+                        ? `font-bold text-brand-600 hover:underline dark:text-brand-400 ${
+                            isActive ? 'underline' : ''
+                          }`
+                        : 'text-gray-600 dark:text-gray-400'
                     }`}
                   >
                     {line.text}
@@ -673,7 +672,7 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
                     onClick={() => openEdit(line)}
                     title={m.editLine}
                     aria-label={m.editLine}
-                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-graphite-400 transition hover:bg-graphite-100 hover:text-graphite-700 dark:hover:bg-graphite-800 dark:hover:text-graphite-200"
+                    className="shrink-0 p-1 text-gray-400 transition hover:text-gray-700 dark:hover:text-gray-200"
                   >
                     <PencilSimpleLine className="h-4 w-4" />
                   </button>
@@ -684,22 +683,21 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
         })}
       </div>
 
-      {taggedCount < totalCount && (
-        <p className="mt-4 flex items-center gap-2 text-sm font-medium text-amber-600 dark:text-amber-400">
-          <Clock className="h-4 w-4" />
-          {m.linesNeedTag.replace('{n}', String(totalCount - taggedCount))}
-        </p>
+      {/* warning banner */}
+      {untaggedCount > 0 && (
+        <div className="mt-4 rounded-lg border border-amber-200 bg-amber-100/70 px-4 py-2.5 text-sm text-amber-900 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-200">
+          {m.linesNeedTag.replace('{n}', String(untaggedCount))}
+        </div>
       )}
 
-      {/* Toolbar */}
-      <div className="mt-6 flex flex-wrap gap-3">
+      {/* export row */}
+      <div className="mt-4 flex flex-wrap gap-2">
         <button
           type="button"
           onClick={saveLocal}
-          className={`inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition ${
-            savedFlag
-              ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/25'
-              : 'bg-graphite-900 text-white hover:bg-graphite-700 dark:bg-white dark:text-graphite-900 dark:hover:bg-graphite-200'
+          disabled={taggedCount === 0}
+          className={`inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium text-white shadow-sm transition disabled:opacity-40 ${
+            savedFlag ? 'bg-emerald-500 hover:bg-emerald-600' : 'bg-brand-500 hover:bg-brand-600'
           }`}
         >
           <FloppyDisk className="h-4 w-4" />
@@ -708,8 +706,8 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
         <button
           type="button"
           onClick={download}
-          disabled={taggedCount < 2}
-          className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-brand-500 to-cyan-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-500/25 transition hover:brightness-110 disabled:opacity-40 disabled:saturate-50"
+          disabled={!allTagged}
+          className="inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition hover:border-brand-400 hover:text-brand-600 disabled:opacity-40 dark:border-graphite-700 dark:text-gray-200"
         >
           <DownloadSimple className="h-4 w-4" />
           {m.downloadLrc}
@@ -717,8 +715,8 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
         <button
           type="button"
           onClick={copyText}
-          disabled={taggedCount < 2}
-          className="inline-flex items-center gap-2 rounded-xl border border-graphite-200 px-5 py-3 text-sm font-semibold text-graphite-700 transition hover:border-brand-400 hover:text-brand-600 disabled:opacity-40 dark:border-graphite-700 dark:text-graphite-200"
+          disabled={!allTagged}
+          className="inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition hover:border-brand-400 hover:text-brand-600 disabled:opacity-40 dark:border-graphite-700 dark:text-gray-200"
         >
           <CopySimple className="h-4 w-4" />
           {m.copyContent}
@@ -726,34 +724,37 @@ export default function MakerApp({ dict, locale }: { dict: Dict; locale: string 
         <button
           type="button"
           onClick={copyJson}
-          disabled={taggedCount < 2}
-          className="inline-flex items-center gap-2 rounded-xl border border-graphite-200 px-5 py-3 text-sm font-semibold text-graphite-700 transition hover:border-brand-400 hover:text-brand-600 disabled:opacity-40 dark:border-graphite-700 dark:text-graphite-200"
+          disabled={!allTagged}
+          className="inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition hover:border-brand-400 hover:text-brand-600 disabled:opacity-40 dark:border-graphite-700 dark:text-gray-200"
         >
           <BracketsCurly className="h-4 w-4" />
           {m.copyJson}
         </button>
       </div>
 
-      {/* FAB */}
+      {/* floating tag button */}
       <button
         type="button"
         onClick={tagNext}
         title={m.tagNext}
         aria-label={m.tagNext}
-        className="group fixed bottom-6 end-6 z-40 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-brand-500 to-cyan-500 text-white shadow-2xl shadow-brand-500/40 transition hover:brightness-110 active:scale-95"
+        className="fixed bottom-6 end-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-brand-500 text-white shadow-xl transition hover:bg-brand-600 active:scale-95"
       >
-        <span className="animate-pulse-ring absolute inset-0 rounded-full bg-brand-500"></span>
-        <Clock className="relative h-7 w-7" weight="bold" />
+        <TagSimple className="h-6 w-6" weight="fill" />
+        <span className="absolute -right-0.5 -top-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-white text-brand-600 shadow">
+          <Plus className="h-3 w-3" weight="bold" />
+        </span>
       </button>
 
-      {toast && (
-        <div
-          key={toast.key}
-          className="fixed bottom-6 left-1/2 z-50 max-w-[90vw] -translate-x-1/2 rounded-full bg-graphite-900 px-5 py-3 text-center text-sm font-medium text-white shadow-2xl dark:bg-white dark:text-graphite-900"
-        >
-          {toast.msg}
-        </div>
-      )}
+      {/* hidden file input lives on form phase; keep audio element mounted */}
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="audio/mpeg,audio/mp3,.mp3"
+        className="hidden"
+        onChange={(e) => acceptFile(e.target.files?.[0])}
+      />
+      {toastEl}
     </div>
   );
 }
