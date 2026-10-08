@@ -54,6 +54,8 @@ if r.returncode != 0:
     print('BUILD FAILED'); print(r.stderr[-2000:]); sys.exit(1)
 
 # push dist to gh-pages
+# NB: `npm run build` wipes dist/.git, so remove any stale repo first
+sh(['rm', '-rf', os.path.join(DIST, '.git')])
 sh(['git', 'init', '-qb', 'gh-pages'], cwd=DIST)
 sh(['git', 'add', '-A'], cwd=DIST)
 sh(['git', '-c', 'user.name=Muse', '-c', 'user.email=muse@ricsline.local',
