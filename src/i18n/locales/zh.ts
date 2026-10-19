@@ -28,6 +28,7 @@ const dict: Dict = {
     themeSystem: '跟随系统',
     language: '语言',
     startFree: '免费开始',
+    byDusrel: 'Dusrel 出品',
   },
   hero: {
     badge: '免费 · 无需注册 · 100% 私密',
@@ -140,6 +141,7 @@ const dict: Dict = {
     legal: '法律',
     rights: '版权所有。',
     madeWith: '为全世界的音乐爱好者而造。',
+    byDusrel: 'Dusrel 出品',
   },
   maker: {
     backToForm: '返回表单',
@@ -259,6 +261,8 @@ const dict: Dict = {
         text: 'Ricsline 对所有人免费，整个网站——从落地页到同步工具——都已翻译成 20 种语言，任何人都可以用自己的语言制作同步歌词。',
       },
     ],
+    dusrelTitle: 'Dusrel 出品',
+    dusrelBody: 'Ricsline 是 Dusrel 出品 — 由 Dusrel 团队设计和维护，属于一系列免费、注重隐私的工具，你的文件永远不会被上传。',
   },
   privacy: {
     title: '隐私政策',

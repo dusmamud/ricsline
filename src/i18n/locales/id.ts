@@ -28,6 +28,7 @@ const dict: Dict = {
     themeSystem: 'Sistem',
     language: 'Bahasa',
     startFree: 'Mulai gratis',
+    byDusrel: 'oleh Dusrel',
   },
   hero: {
     badge: 'Gratis · Tanpa daftar · 100% privat',
@@ -140,6 +141,7 @@ const dict: Dict = {
     legal: 'Legal',
     rights: 'Hak cipta dilindungi.',
     madeWith: 'Dibuat untuk pecinta musik di mana pun.',
+    byDusrel: 'Produk Dusrel',
   },
   maker: {
     backToForm: 'Kembali ke formulir',
@@ -259,6 +261,8 @@ const dict: Dict = {
         text: 'Ricsline gratis untuk semua orang, dan seluruh situs — dari halaman utama hingga alat sinkronisasi — diterjemahkan ke 20 bahasa, sehingga siapa pun dapat membuat lirik tersinkron dalam bahasanya sendiri.',
       },
     ],
+    dusrelTitle: 'Produk Dusrel',
+    dusrelBody: 'Ricsline adalah produk Dusrel — dirancang dan dirawat oleh tim Dusrel sebagai bagian dari keluarga alat gratis yang mengutamakan privasi dan tidak pernah mengunggah file Anda.',
   },
   privacy: {
     title: 'Kebijakan Privasi',

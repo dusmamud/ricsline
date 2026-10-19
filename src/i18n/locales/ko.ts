@@ -28,6 +28,7 @@ const dict: Dict = {
     themeSystem: '시스템',
     language: '언어',
     startFree: '무료로 시작',
+    byDusrel: 'Dusrel 제공',
   },
   hero: {
     badge: '무료 · 가입 불필요 · 100% 프라이빗',
@@ -140,6 +141,7 @@ const dict: Dict = {
     legal: '법적 고지',
     rights: '판권 소유.',
     madeWith: '전 세계 음악 팬들을 위해 만들었습니다.',
+    byDusrel: 'Dusrel 제품',
   },
   maker: {
     backToForm: '폼으로 돌아가기',
@@ -259,6 +261,8 @@ const dict: Dict = {
         text: 'Ricsline은 모두에게 무료이며, 랜딩 페이지부터 싱크 도구까지 사이트 전체가 20개 언어로 번역되어 있어 누구나 자기 언어로 싱크 가사를 만들 수 있습니다.',
       },
     ],
+    dusrelTitle: 'Dusrel 제품',
+    dusrelBody: 'Ricsline은 Dusrel 제품입니다 — Dusrel 팀이 설계하고 유지보수하며, 파일을 절대 업로드하지 않는 무료 프라이버시 중심 도구 제품군의 일부입니다.',
   },
   privacy: {
     title: '개인정보처리방침',

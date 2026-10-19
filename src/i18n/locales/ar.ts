@@ -28,6 +28,7 @@ const dict: Dict = {
     themeSystem: 'النظام',
     language: 'اللغة',
     startFree: 'ابدأ مجانًا',
+    byDusrel: 'بواسطة Dusrel',
   },
   hero: {
     badge: 'مجاني · بلا تسجيل · خصوصية 100%',
@@ -140,6 +141,7 @@ const dict: Dict = {
     legal: 'قانوني',
     rights: 'جميع الحقوق محفوظة.',
     madeWith: 'صُنع لعشاق الموسيقى في كل مكان.',
+    byDusrel: 'منتج من Dusrel',
   },
   maker: {
     backToForm: 'عودة إلى النموذج',
@@ -259,6 +261,8 @@ const dict: Dict = {
         text: 'Ricsline مجاني للجميع، والموقع كله — من صفحة الهبوط إلى أداة المزامنة — مترجم إلى 20 لغة، ليتمكن أي شخص من إنشاء كلمات متزامنة بلغته.',
       },
     ],
+    dusrelTitle: 'منتج من Dusrel',
+    dusrelBody: 'Ricsline منتج من Dusrel — صمّمه وحافظ عليه فريق Dusrel ضمن عائلة من الأدوات المجانية التي تحترم الخصوصية ولا ترفع ملفاتك أبدًا.',
   },
   privacy: {
     title: 'سياسة الخصوصية',

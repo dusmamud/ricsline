@@ -28,6 +28,7 @@ const dict: Dict = {
     themeSystem: 'Theo hệ thống',
     language: 'Ngôn ngữ',
     startFree: 'Bắt đầu miễn phí',
+    byDusrel: 'bởi Dusrel',
   },
   hero: {
     badge: 'Miễn phí · Không cần đăng ký · Riêng tư 100%',
@@ -140,6 +141,7 @@ const dict: Dict = {
     legal: 'Pháp lý',
     rights: 'Bảo lưu mọi quyền.',
     madeWith: 'Dành cho những người yêu nhạc khắp nơi.',
+    byDusrel: 'Một sản phẩm của Dusrel',
   },
   maker: {
     backToForm: 'Về biểu mẫu',
@@ -259,6 +261,8 @@ const dict: Dict = {
         text: 'Ricsline miễn phí cho mọi người, và toàn bộ trang web — từ trang chủ đến công cụ đồng bộ — đã được dịch sang 20 ngôn ngữ, để ai cũng tạo được lời đồng bộ bằng ngôn ngữ của mình.',
       },
     ],
+    dusrelTitle: 'Một sản phẩm của Dusrel',
+    dusrelBody: 'Ricsline là sản phẩm của Dusrel — được thiết kế và duy trì bởi đội ngũ Dusrel, thuộc gia đình các công cụ miễn phí, ưu tiên quyền riêng tư, không bao giờ tải lên tệp của bạn.',
   },
   privacy: {
     title: 'Chính sách quyền riêng tư',

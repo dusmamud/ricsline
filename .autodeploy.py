@@ -2,12 +2,12 @@
 """Auto-deploy ricsline: if origin/main has new commits, build + push dist to gh-pages."""
 import base64, json, os, subprocess, sys, time, urllib.request, urllib.error, http.client
 
-REPO = '/home/hatch/workspace/ricsline'
+REPO = '/home/hatch/workspace/dusrel/web-apps/ricsline'
 DIST = os.path.join(REPO, 'dist')
 STATE = os.path.join(REPO, '.autodeploy-state')
 OWNER_REPO = 'dusmamud/ricsline'
 
-sys.path.insert(0, '/opt/hatch/skills/skill-creator/bin')
+sys.path.insert(0, '/opt/hatch/workflow-skills/custom-connector-setup/bin')
 from dynamic_credentials import add_surrogate_to_request, read_json_response
 
 def api(method, path, body=None, retries=4):

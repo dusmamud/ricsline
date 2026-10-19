@@ -28,6 +28,7 @@ const dict: Dict = {
     themeSystem: 'Sistema',
     language: 'Lingua',
     startFree: 'Inizia gratis',
+    byDusrel: 'di Dusrel',
   },
   hero: {
     badge: 'Gratis · Senza registrazione · 100% privato',
@@ -140,6 +141,7 @@ const dict: Dict = {
     legal: 'Note legali',
     rights: 'Tutti i diritti riservati.',
     madeWith: 'Fatto per gli amanti della musica di tutto il mondo.',
+    byDusrel: 'Un prodotto Dusrel',
   },
   maker: {
     backToForm: 'Torna al modulo',
@@ -259,6 +261,8 @@ const dict: Dict = {
         text: 'Ricsline è gratis per tutti, e l’intero sito — dalla landing page allo strumento di sincronizzazione — è tradotto in 20 lingue, così chiunque può creare testi sincronizzati nella propria lingua.',
       },
     ],
+    dusrelTitle: 'Un prodotto Dusrel',
+    dusrelBody: 'Ricsline è un prodotto Dusrel — progettato e mantenuto dal team Dusrel come parte di una famiglia di strumenti gratuiti e attenti alla privacy che non caricano mai i tuoi file.',
   },
   privacy: {
     title: 'Informativa sulla privacy',

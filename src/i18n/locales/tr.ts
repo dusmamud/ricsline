@@ -28,6 +28,7 @@ const dict: Dict = {
     themeSystem: 'Sistem',
     language: 'Dil',
     startFree: 'Ücretsiz başla',
+    byDusrel: 'Dusrel tarafından',
   },
   hero: {
     badge: 'Ücretsiz · Kayıt yok · %100 gizli',
@@ -140,6 +141,7 @@ const dict: Dict = {
     legal: 'Yasal',
     rights: 'Tüm hakları saklıdır.',
     madeWith: 'Dünyanın her yerindeki müzikseverler için yapıldı.',
+    byDusrel: 'Bir Dusrel ürünü',
   },
   maker: {
     backToForm: 'Forma dön',
@@ -259,6 +261,8 @@ const dict: Dict = {
         text: 'Ricsline herkes için ücretsizdir ve sitenin tamamı — açılış sayfasından senkron aracına — 20 dile çevrilmiştir; böylece herkes kendi dilinde senkron sözler oluşturabilir.',
       },
     ],
+    dusrelTitle: 'Bir Dusrel ürünü',
+    dusrelBody: 'Ricsline bir Dusrel ürünüdür — Dusrel ekibi tarafından tasarlanıp sürdürülen, dosyalarınızı asla yüklemeyen ücretsiz, gizlilik öncelikli araçlar ailesinin bir parçasıdır.',
   },
   privacy: {
     title: 'Gizlilik Politikası',

@@ -1,5 +1,7 @@
 # Ricsline — Free Online LRC Maker
 
+> A **Dusrel** product — part of the [Dusrel](https://dusrel.com) ecosystem.
+
 **Every line, on time.** Create perfectly synced lyrics (`.lrc` files) for your songs in minutes — free, no sign-up, your audio never leaves your browser.
 
 🌐 Live site: _(coming soon — deploy `dist/` to Cloudflare Pages)_

@@ -28,6 +28,7 @@ const dict: Dict = {
     themeSystem: 'Sistema',
     language: 'Idioma',
     startFree: 'Empezar gratis',
+    byDusrel: 'por Dusrel',
   },
   hero: {
     badge: 'Gratis · Sin registro · 100% privado',
@@ -140,6 +141,7 @@ const dict: Dict = {
     legal: 'Legal',
     rights: 'Todos los derechos reservados.',
     madeWith: 'Hecho para amantes de la música de todo el mundo.',
+    byDusrel: 'Un producto de Dusrel',
   },
   maker: {
     backToForm: 'Volver al formulario',
@@ -259,6 +261,8 @@ const dict: Dict = {
         text: 'Ricsline es gratis para todos, y todo el sitio — de la página principal a la herramienta de sincronización — está traducido a 20 idiomas, para que cualquiera pueda crear letras sincronizadas en su idioma.',
       },
     ],
+    dusrelTitle: 'Un producto de Dusrel',
+    dusrelBody: 'Ricsline es un producto de Dusrel — diseñado y mantenido por el equipo de Dusrel como parte de una familia de herramientas gratuitas y privadas que nunca suben tus archivos.',
   },
   privacy: {
     title: 'Política de privacidad',

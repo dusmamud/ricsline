@@ -26,6 +26,7 @@ const en = {
     themeSystem: 'System',
     language: 'Language',
     startFree: 'Start free',
+    byDusrel: 'by Dusrel',
   },
   hero: {
     badge: 'Free · No sign-up · 100% private',
@@ -138,6 +139,7 @@ const en = {
     legal: 'Legal',
     rights: 'All rights reserved.',
     madeWith: 'Made for music lovers everywhere.',
+    byDusrel: 'A Dusrel product',
   },
   maker: {
     backToForm: 'Back to form',
@@ -257,6 +259,8 @@ const en = {
         text: 'Ricsline is free for everyone, and the entire site — from the landing page to the sync tool — is translated into 20 languages, so anyone can create synced lyrics in their own language.',
       },
     ],
+    dusrelTitle: 'A Dusrel product',
+    dusrelBody: 'Ricsline is a Dusrel product — designed and maintained by the Dusrel team as part of a family of free, privacy-first tools that never upload your files.',
   },
   privacy: {
     title: 'Privacy Policy',

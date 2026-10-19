@@ -28,6 +28,7 @@ const dict: Dict = {
     themeSystem: 'システム',
     language: '言語',
     startFree: '無料ではじめる',
+    byDusrel: 'Dusrel製',
   },
   hero: {
     badge: '無料 · 登録不要 · 完全プライベート',
@@ -140,6 +141,7 @@ const dict: Dict = {
     legal: '法務',
     rights: '全著作権所有。',
     madeWith: '世界中の音楽ファンのために。',
+    byDusrel: 'Dusrelのプロダクト',
   },
   maker: {
     backToForm: 'フォームに戻る',
@@ -259,6 +261,8 @@ const dict: Dict = {
         text: 'Ricslineは誰でも無料。ランディングページからシンクロツールまでサイト全体が20言語に翻訳され、誰もが自分の言語でシンクロ歌詞を作れます。',
       },
     ],
+    dusrelTitle: 'Dusrelのプロダクト',
+    dusrelBody: 'RicslineはDusrelのプロダクトです — Dusrelチームが設計・保守しており、ファイルを一切アップロードしない、無料でプライバシー重視のツール群の一員です。',
   },
   privacy: {
     title: 'プライバシーポリシー',
