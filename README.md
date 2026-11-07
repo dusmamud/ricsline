@@ -43,3 +43,4 @@ npm run preview  # preview the build
 
 All rights reserved.
 Tip: press `Spacebar` (or tap the floating button) while the MP3 plays to timestamp each lyric line as you hear it.
+Tip: if every line is slightly early or late, use the offset shifter to move all timestamps by ± seconds at once instead of editing lines one by one.
