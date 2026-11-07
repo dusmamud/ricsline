@@ -42,3 +42,4 @@ npm run preview  # preview the build
 ## License
 
 All rights reserved.
+Tip: press `Spacebar` (or tap the floating button) while the MP3 plays to timestamp each lyric line as you hear it.
